@@ -1,0 +1,60 @@
+{
+  "private": true,
+  "name": "@earth-app/recess",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "generate": "NODE_OPTIONS='--max-old-space-size=8192' nuxt build",
+    "generate:ios": "NODE_OPTIONS='--max-old-space-size=8192' nuxt build --dotenv .env.ios",
+    "generate:android": "NODE_OPTIONS='--max-old-space-size=8192' nuxt build --dotenv .env.android",
+    "dev": "bunx nuxi dev --no-restart --public --port 3001",
+    "sync": "bunx cap sync",
+    "sync:assets": "bun run capacitor-assets generate --ios --android && bash scripts/generate-ios-icon-variants.sh && bash scripts/generate-watch-icon.sh",
+    "prettier": "bunx prettier --write .",
+    "prettier:check": "bunx prettier --check .",
+    "postinstall": "nuxt prepare",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/app": "^8.1.0",
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/dialog": "^8.0.1",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.4.1",
+    "@capacitor/local-notifications": "^8.2.0",
+    "@capacitor/preferences": "^8.0.1",
+    "@capacitor/splash-screen": "^8.0.1",
+    "@capacitor/toast": "^8.0.1",
+    "@codecov/nuxt-plugin": "^2.0.1",
+    "@ionic/vue": "^8.8.11",
+    "@ionic/vue-router": "^8.8.11",
+    "@nuxt/icon": "^2.2.3",
+    "@nuxt/ui": "^4.9.0",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/i18n": "^10.4.0",
+    "@nuxtjs/ionic": "^1.0.2",
+    "@pinia/nuxt": "^0.11.3",
+    "@vueuse/core": "^14.3.0",
+    "@vueuse/nuxt": "^14.3.0",
+    "luxon": "^3.7.2",
+    "nuxt": "^4.4.8",
+    "vue": "^3.5.38",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.4.1",
+    "@ionic/cli": "^7.2.1",
+    "@prettier/plugin-xml": "^3.4.2",
+    "@types/luxon": "^3.7.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "prettier": "^3.8.4",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "vue-tsc": "^3.3.5"
+  },
+  "lint-staged": {
+    "*.{ts,vue,css,md,json,xml,plist,storyboard,yml}": "prettier --write"
+  }
+}

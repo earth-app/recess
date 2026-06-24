@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@layer base {
+	:root,
+	html,
+	body,
+	ion-app {
+		--font-title: 'Noto Sans', sans-serif;
+
+		--ion-safe-area-top: 48px;
+	}
+
+	button:disabled,
+	input:disabled,
+	select:disabled,
+	textarea:disabled,
+	button[aria-disabled='true'],
+	[data-disabled='true'],
+	button[data-loading='true'] {
+		cursor: not-allowed;
+		opacity: 0.6;
+		pointer-events: none;
+	}
+}
+
+@layer theme {
+	html.animations-disabled *,
+	html.animations-disabled *::before,
+	html.animations-disabled *::after {
+		animation-duration: 0.001ms !important;
+		animation-delay: 0ms !important;
+		transition-duration: 0.001ms !important;
+		transition-delay: 0ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.001ms !important;
+			animation-delay: 0ms !important;
+			transition-duration: 0.001ms !important;
+			transition-delay: 0ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
+}

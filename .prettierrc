@@ -1,0 +1,23 @@
+{
+	"plugins": [
+		"prettier-plugin-tailwindcss",
+		"prettier-plugin-organize-imports",
+		"@prettier/plugin-xml"
+	],
+	"printWidth": 100,
+	"singleQuote": true,
+	"semi": true,
+	"useTabs": true,
+	"singleAttributePerLine": true,
+	"trailingComma": "none",
+	"endOfLine": "lf",
+	"overrides": [
+		{
+			"files": "**/*.{plist,storyboard,xcprivacy}",
+			"options": {
+				"parser": "xml",
+				"xmlWhitespaceSensitivity": "strict"
+			}
+		}
+	]
+}

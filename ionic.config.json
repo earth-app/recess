@@ -1,0 +1,7 @@
+{
+	"name": "recess",
+	"type": "custom",
+	"integrations": {
+		"capacitor": {}
+	}
+}

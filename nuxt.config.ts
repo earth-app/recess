@@ -102,7 +102,7 @@ export default defineNuxtConfig({
 			'@codecov/nuxt-plugin',
 			{
 				enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
-				bundleName: 'sky',
+				bundleName: 'recess',
 				uploadToken: process.env.CODECOV_TOKEN
 			}
 		]

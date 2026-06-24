@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "com.earthapp.sky"
+    namespace = "com.earthapp.recess"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.earthapp.sky"
+        applicationId "com.earthapp.recess"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

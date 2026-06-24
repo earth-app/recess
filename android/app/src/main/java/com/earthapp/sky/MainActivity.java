@@ -1,4 +1,4 @@
-package com.earthapp.sky;
+package com.earthapp.recess;
 
 import com.getcapacitor.BridgeActivity;
 

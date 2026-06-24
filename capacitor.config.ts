@@ -3,11 +3,11 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-	appId: 'com.earthapp.sky',
-	appName: 'The Earth App',
+	appId: 'com.earthapp.recess',
+	appName: 'Recess',
 	webDir: '.output/public',
 	loggingBehavior: 'debug',
-	appendUserAgent: 'The Earth App/Sky',
+	appendUserAgent: 'Recess',
 	server: {
 		androidScheme: 'https',
 		iosScheme: 'https'

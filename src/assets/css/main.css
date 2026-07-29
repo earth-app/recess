@@ -1,14 +1,123 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
+/* Ionic ships its dark palette as a separate sheet keyed off `.ion-palette-dark`.
+   Without this import Nuxt UI's tokens follow `.dark` while every ion-content stays
+   light, which reads as dark cards floating on a white page */
+@import '@ionic/vue/css/palettes/dark.class.css' layer(base);
+
+/* mirrors src/data/colors.json; keep the two in sync when adding an alias */
+@theme {
+	--color-recess-white: #ffffff;
+	--color-recess-red: #e74c3c;
+	--color-recess-orange: #ffb300;
+	--color-recess-yellow: #f1c40f;
+	--color-recess-gold: #ffd700;
+	--color-recess-lime: #8bc34a;
+	--color-recess-green: #2d9973;
+	--color-recess-teal: #17a2a2;
+	--color-recess-blue: #3498db;
+	--color-recess-indigo: #5b6ee1;
+	--color-recess-purple: #9b59b6;
+	--color-recess-pink: #e91e63;
+	--color-recess-coral: #ff7f6b;
+	--color-recess-brown: #8b4513;
+	--color-recess-gray: #2f2f2f;
+	--color-recess-dark-gray: #1f1f1f;
+
+	--font-title: 'Noto Sans', sans-serif;
+}
 
 @layer base {
+	/* Ionic's colour roles, background/text pair and step ladders belong on `:root`
+	   ONLY. Declaring them on `body` or `ion-app` too re-declares them locally, and a
+	   local declaration beats an inherited one whatever the specificity - so
+	   `.ion-palette-dark.md`, which matches only `<html>`, would lose to the light
+	   values inherited from `body`. */
+	:root {
+		/* Ionic never declares these; its components inline `var(--ion-background-color, #fff)`
+		   fallbacks instead. Anything reading the variable directly - our card wash did -
+		   therefore resolved to `transparent` and let the stack behind it bleed through */
+		--ion-background-color: #ffffff;
+		--ion-background-color-rgb: 255, 255, 255;
+		--ion-text-color: #0b0f14;
+		--ion-text-color-rgb: 11, 15, 20;
+
+		/* only Ionic's dark sheet declares this one, so in light mode
+		   `var(--ion-item-background)` with no fallback resolves to nothing and the whole
+		   declaration goes invalid at computed-value time */
+		--ion-item-background: #ffffff;
+		--ion-card-background: #ffffff;
+
+		/* neutral mixes, matching what Ionic ships. A tinted ladder drags step-400 -
+		   which is what a bare `ion-note` resolves to - below AA on white */
+		--ion-background-color-step-50: #f2f2f2;
+		--ion-background-color-step-100: #e6e6e6;
+		--ion-background-color-step-150: #d9d9d9;
+		--ion-background-color-step-200: #cccccc;
+		--ion-background-color-step-250: #bfbfbf;
+		--ion-background-color-step-300: #b2b2b2;
+		--ion-background-color-step-350: #a6a6a6;
+		--ion-background-color-step-400: #999999;
+		--ion-background-color-step-450: #8c8c8c;
+		--ion-background-color-step-500: #808080;
+		--ion-background-color-step-550: #737373;
+		--ion-background-color-step-600: #666666;
+		--ion-background-color-step-650: #595959;
+		--ion-background-color-step-700: #4c4c4c;
+		--ion-background-color-step-750: #404040;
+		--ion-background-color-step-800: #333333;
+		--ion-background-color-step-850: #262626;
+		--ion-background-color-step-900: #1a1a1a;
+		--ion-background-color-step-950: #0d0d0d;
+		--ion-text-color-step-50: #0d0d0d;
+		--ion-text-color-step-100: #1a1a1a;
+		--ion-text-color-step-150: #262626;
+		--ion-text-color-step-200: #333333;
+		--ion-text-color-step-250: #404040;
+		--ion-text-color-step-300: #4c4c4c;
+		--ion-text-color-step-350: #595959;
+		--ion-text-color-step-400: #666666;
+		--ion-text-color-step-450: #737373;
+		--ion-text-color-step-500: #808080;
+		--ion-text-color-step-550: #8c8c8c;
+		--ion-text-color-step-600: #999999;
+		--ion-text-color-step-650: #a6a6a6;
+		--ion-text-color-step-700: #b2b2b2;
+		--ion-text-color-step-750: #bfbfbf;
+		--ion-text-color-step-800: #cccccc;
+		--ion-text-color-step-850: #d9d9d9;
+		--ion-text-color-step-900: #e6e6e6;
+		--ion-text-color-step-950: #f2f2f2;
+	}
+
 	:root,
 	html,
 	body,
 	ion-app {
 		--font-title: 'Noto Sans', sans-serif;
+		--app-ui-scale: 1;
+		--app-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
 		--ion-safe-area-top: 48px;
+		--ion-font-family: var(--app-font-family);
+
+		/* every nudge sheet paints from these; set per-nudge from its resolved color */
+		--nudge-accent: var(--color-recess-green);
+		--nudge-accent-soft: #2d997326;
+
+		/* saturated brand colors are unreadable as small text on their own tint - gold on
+		   15% gold is 1.2:1 - so ink pulls the hue toward the page text instead */
+		--nudge-ink: color-mix(in srgb, var(--nudge-accent) 55%, var(--ion-text-color));
+		--recess-ink-success: color-mix(in srgb, var(--ion-color-success) 68%, var(--ion-text-color));
+	}
+
+	html {
+		font-size: calc(1rem * var(--app-ui-scale));
+	}
+
+	body,
+	ion-app {
+		font-family: var(--app-font-family);
 	}
 
 	button:disabled,
@@ -21,6 +130,32 @@
 		cursor: not-allowed;
 		opacity: 0.6;
 		pointer-events: none;
+	}
+
+	/* safe-area helpers; ion-content handles its own, these are for teleported layers */
+	.pt-safe {
+		padding-top: env(safe-area-inset-top);
+	}
+
+	.pb-safe {
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+}
+
+@layer components {
+	/* radial wash behind a nudge sheet, tinted by the nudge's own accent */
+	.nudge-wash {
+		background:
+			radial-gradient(120% 80% at 50% 0%, var(--nudge-accent-soft) 0%, transparent 70%),
+			var(--ion-background-color, transparent);
+	}
+
+	/* the day's ring; --ring-progress is 0..1 */
+	.day-ring {
+		background: conic-gradient(
+			var(--nudge-accent) calc(var(--ring-progress, 0) * 360deg),
+			color-mix(in srgb, var(--nudge-accent) 18%, transparent) 0
+		);
 	}
 }
 
@@ -46,4 +181,205 @@
 			scroll-behavior: auto !important;
 		}
 	}
+}
+
+/* Ionic's 9 colour roles, mapped onto colors.json.
+ *
+ * UNLAYERED and doubly-specific, both deliberately. `@ionic/core/css/core.css`
+ * declares `:root { --ion-color-primary: … }` with no `@layer` at all, and an
+ * unlayered declaration beats anything inside `@layer base` however specific it is -
+ * so the first attempt at this lived in the layer and silently did nothing, leaving
+ * every defaulted control painting Ionic's stock #0054e9. `:root:root` then removes the
+ * remaining dependency on whether main.css happens to load after core.css.
+ *
+ * The step ladders stay inside `@layer base`: Ionic never declares those outside its
+ * dark palette sheet, so there is nothing unlayered to lose to.
+ *
+ * Every base that also renders as text is darkened until it clears 4.5:1 on the page,
+ * and `-contrast` is white wherever white clears 4.5:1 on the base. Generated, not
+ * eyeballed - see the roles script in the session scratchpad. */
+:root:root {
+	--ion-color-primary: #2a7bb1;
+	--ion-color-primary-rgb: 42, 123, 177;
+	--ion-color-primary-contrast: #ffffff;
+	--ion-color-primary-contrast-rgb: 255, 255, 255;
+	--ion-color-primary-shade: #256c9c;
+	--ion-color-primary-tint: #448bbb;
+	--ion-color-secondary: #138383;
+	--ion-color-secondary-rgb: 19, 131, 131;
+	--ion-color-secondary-contrast: #ffffff;
+	--ion-color-secondary-contrast-rgb: 255, 255, 255;
+	--ion-color-secondary-shade: #107373;
+	--ion-color-secondary-tint: #2f9292;
+	--ion-color-tertiary: #596cdc;
+	--ion-color-tertiary-rgb: 89, 108, 220;
+	--ion-color-tertiary-contrast: #ffffff;
+	--ion-color-tertiary-contrast-rgb: 255, 255, 255;
+	--ion-color-tertiary-shade: #4e5fc2;
+	--ion-color-tertiary-tint: #6d7de1;
+	--ion-color-success: #278564;
+	--ion-color-success-rgb: 39, 133, 100;
+	--ion-color-success-contrast: #ffffff;
+	--ion-color-success-contrast-rgb: 255, 255, 255;
+	--ion-color-success-shade: #227558;
+	--ion-color-success-tint: #419477;
+	--ion-color-warning: #ffb300;
+	--ion-color-warning-rgb: 255, 179, 0;
+	--ion-color-warning-contrast: #000000;
+	--ion-color-warning-contrast-rgb: 0, 0, 0;
+	--ion-color-warning-shade: #e09e00;
+	--ion-color-warning-tint: #ffbc1f;
+	--ion-color-danger: #d24537;
+	--ion-color-danger-rgb: 210, 69, 55;
+	--ion-color-danger-contrast: #ffffff;
+	--ion-color-danger-contrast-rgb: 255, 255, 255;
+	--ion-color-danger-shade: #b93d30;
+	--ion-color-danger-tint: #d85b4f;
+	--ion-color-light: #f2f4f6;
+	--ion-color-light-rgb: 242, 244, 246;
+	--ion-color-light-contrast: #000000;
+	--ion-color-light-contrast-rgb: 0, 0, 0;
+	--ion-color-light-shade: #d5d7d8;
+	--ion-color-light-tint: #f4f5f7;
+	--ion-color-medium: #5b6470;
+	--ion-color-medium-rgb: 91, 100, 112;
+	--ion-color-medium-contrast: #ffffff;
+	--ion-color-medium-contrast-rgb: 255, 255, 255;
+	--ion-color-medium-shade: #505863;
+	--ion-color-medium-tint: #6f7781;
+	--ion-color-dark: #1f232b;
+	--ion-color-dark-rgb: 31, 35, 43;
+	--ion-color-dark-contrast: #ffffff;
+	--ion-color-dark-contrast-rgb: 255, 255, 255;
+	--ion-color-dark-shade: #1b1f26;
+	--ion-color-dark-tint: #3a3d44;
+}
+
+/* higher again, so dark beats the light block above without depending on order */
+:root:root.ion-palette-dark {
+	--ion-color-primary: #3498db;
+	--ion-color-primary-rgb: 52, 152, 219;
+	--ion-color-primary-contrast: #000000;
+	--ion-color-primary-contrast-rgb: 0, 0, 0;
+	--ion-color-primary-shade: #2e86c1;
+	--ion-color-primary-tint: #4ca4df;
+	--ion-color-secondary: #17a2a2;
+	--ion-color-secondary-rgb: 23, 162, 162;
+	--ion-color-secondary-contrast: #000000;
+	--ion-color-secondary-contrast-rgb: 0, 0, 0;
+	--ion-color-secondary-shade: #148f8f;
+	--ion-color-secondary-tint: #33adad;
+	--ion-color-tertiary: #6274e2;
+	--ion-color-tertiary-rgb: 98, 116, 226;
+	--ion-color-tertiary-contrast: #000000;
+	--ion-color-tertiary-contrast-rgb: 0, 0, 0;
+	--ion-color-tertiary-shade: #5666c7;
+	--ion-color-tertiary-tint: #7485e6;
+	--ion-color-success: #2d9973;
+	--ion-color-success-rgb: 45, 153, 115;
+	--ion-color-success-contrast: #000000;
+	--ion-color-success-contrast-rgb: 0, 0, 0;
+	--ion-color-success-shade: #288765;
+	--ion-color-success-tint: #46a584;
+	--ion-color-warning: #ffb300;
+	--ion-color-warning-rgb: 255, 179, 0;
+	--ion-color-warning-contrast: #000000;
+	--ion-color-warning-contrast-rgb: 0, 0, 0;
+	--ion-color-warning-shade: #e09e00;
+	--ion-color-warning-tint: #ffbc1f;
+	--ion-color-danger: #e74c3c;
+	--ion-color-danger-rgb: 231, 76, 60;
+	--ion-color-danger-contrast: #000000;
+	--ion-color-danger-contrast-rgb: 0, 0, 0;
+	--ion-color-danger-shade: #cb4335;
+	--ion-color-danger-tint: #ea6153;
+	--ion-color-light: #26292f;
+	--ion-color-light-rgb: 38, 41, 47;
+	--ion-color-light-contrast: #ffffff;
+	--ion-color-light-contrast-rgb: 255, 255, 255;
+	--ion-color-light-shade: #212429;
+	--ion-color-light-tint: #404348;
+	--ion-color-medium: #9aa3b0;
+	--ion-color-medium-rgb: 154, 163, 176;
+	--ion-color-medium-contrast: #000000;
+	--ion-color-medium-contrast-rgb: 0, 0, 0;
+	--ion-color-medium-shade: #888f9b;
+	--ion-color-medium-tint: #a6aeb9;
+	--ion-color-dark: #f2f4f6;
+	--ion-color-dark-rgb: 242, 244, 246;
+	--ion-color-dark-contrast: #000000;
+	--ion-color-dark-contrast-rgb: 0, 0, 0;
+	--ion-color-dark-shade: #d5d7d8;
+	--ion-color-dark-tint: #f4f5f7;
+}
+
+/* Apple's 44pt minimum tap target, applied once at the source.
+ *
+ * Ionic's own defaults land well under it - toolbar icon buttons measured 32px, the model
+ * pack Download button 25px - and WCAG 2.2's 24px floor is not the bar for an iOS-first
+ * app. `.button-native` tracks the host's height (measured), so a `min-height` here grows
+ * both the hit area and the drawn button rather than leaving an invisible margin.
+ *
+ * UNLAYERED for the same reason the colour roles above are: Ionic's sizing rules are
+ * unlayered too, and anything in `@layer base` loses to them regardless of specificity.
+ * Both dimensions, not just height: Apple's minimum is 44x44, and dropping md's uppercase
+ * tracking narrowed a toolbar `Skip` from 46px to 41px wide with its height still fine.
+ * Interactive chips carry the height in their own template, because the decorative ones
+ * (playground biomes) are labels rather than controls and should stay small. */
+ion-button,
+ion-back-button {
+	min-height: 44px;
+	min-width: 44px;
+}
+
+/* A tab-root title has no leading button to inset it, so it sat at x=0 with its text
+ * touching the screen edge on all four tabs. Ionic only pads the title through whatever is
+ * slotted before it, and a tab root slots nothing.
+ *
+ * Both sides, not just the start: md left-aligns the title so only the start inset shows,
+ * but ios centres it, and padding one side would shift a centred title off centre. All
+ * seven back buttons in the app are inside `ion-buttons`, so `:has()` cleanly separates the
+ * two cases without depending on which order a template happens to write them in. */
+ion-toolbar:not(:has(ion-buttons[slot='start'])) ion-title {
+	padding-inline: 16px;
+}
+
+/* Grouped settings cards need a boundary of their own.
+ *
+ * Ionic's `inset` list paints `--ion-item-background` on `--ion-background-color`, and both
+ * are white here - iOS gets away with the same markup because its page is #f2f2f7, not
+ * white. So every grouped card was invisible: a single-row list (Erase Everything) had no
+ * edge at all, and two adjacent groups read as one accidental gap.
+ *
+ * A hairline, not a shadow. A card that cannot be dragged or dismissed and never overlaps
+ * anything is a boundary, not an elevation - spending the shadow budget here would leave
+ * nothing to distinguish the surfaces that really do float. `step-100` keeps it low
+ * contrast and inverts with the dark palette on its own. The 2px radius Ionic ships on md
+ * reads as a mistake once the edge is visible, hence 14px. */
+ion-list.list-inset {
+	border: 1px solid var(--ion-background-color-step-100);
+	border-radius: 14px;
+	overflow: hidden;
+}
+
+/* Toolbar buttons need a second pass. Ionic scopes them down to 32px through its own
+ * generated class (`.sc-ion-buttons-md-s ion-button`), which outranks a bare type
+ * selector, so the rule above silently lost on every header and footer toolbar - which is
+ * where onboarding's Back/Next/Skip and the QR share entry points live. `[class]` matches
+ * whichever scope class the current mode generated without hardcoding `-md-` or `-ios-`,
+ * and carries enough specificity to win outright rather than by load order. */
+ion-buttons[class] ion-button,
+ion-buttons[class] ion-back-button {
+	min-height: 44px;
+	min-width: 44px;
+}
+
+/* Ionic's md theme uppercases button labels with added tracking, so `Download` rendered as
+ * `DOWNLOAD` - Material's convention, and the wrong register for an app whose copy is
+ * deliberately casual. The ios mode never did this, so only the web and Android builds
+ * disagreed with the strings the code actually holds. `::part(native)` because the
+ * transform sits on the shadow button, not the host. */
+ion-button::part(native) {
+	text-transform: none;
+	letter-spacing: normal;
 }

@@ -20,6 +20,13 @@ yarn.lock
 logs
 *.log
 
+# Test artifacts
+coverage
+.coverage
+playwright-report
+playwright-results
+test-results
+
 # Misc
 .DS_Store
 .fleet
@@ -30,6 +37,7 @@ logs
 
 # iOS (Capacitor)
 ios/App/Pods/
+ios/App/CapApp-SPM/.build/
 ios/App/App/public/
 ios/App/App/capacitor.config.json
 ios/App/App/capacitor.plugins.json

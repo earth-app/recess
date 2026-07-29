@@ -14,5 +14,35 @@
 	"prettier.printWidth": 100,
 	"npm.packageManager": "bun",
 	"java.configuration.updateBuildConfiguration": "automatic",
-	"java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms100m -Xlog:disable"
+	"java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms100m -Xlog:disable",
+	"json.schemas": [
+		{
+			"fileMatch": ["/src/data/*/*/task.json"],
+			"url": "./.vscode/schemas/task.schema.json"
+		},
+		{
+			"fileMatch": ["/src/data/*/*/question.json"],
+			"url": "./.vscode/schemas/question.schema.json"
+		},
+		{
+			"fileMatch": ["/src/data/*/*/think.json"],
+			"url": "./.vscode/schemas/think.schema.json"
+		},
+		{
+			"fileMatch": ["/src/data/*/*/choose.json"],
+			"url": "./.vscode/schemas/choose.schema.json"
+		},
+		{
+			"fileMatch": ["/src/data/*/*/create.json"],
+			"url": "./.vscode/schemas/create.schema.json"
+		},
+		{
+			"fileMatch": ["/src/data/*/*/notice.json"],
+			"url": "./.vscode/schemas/notice.schema.json"
+		},
+		{
+			"fileMatch": ["/src/data/*/*/count.json"],
+			"url": "./.vscode/schemas/count.schema.json"
+		}
+	]
 }

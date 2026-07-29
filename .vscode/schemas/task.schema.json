@@ -1,0 +1,113 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Recess task nudges",
+	"type": "array",
+	"items": {
+		"allOf": [
+			{
+				"$ref": "./defs.schema.json#/definitions/base"
+			}
+		],
+		"type": "object",
+		"required": ["id", "icon", "color", "points", "title", "description", "validation_type"],
+		"properties": {
+			"title": {
+				"type": "string",
+				"minLength": 1,
+				"description": "Title Case, imperative"
+			},
+			"description": {
+				"type": "string",
+				"minLength": 1,
+				"description": "Sentence case"
+			},
+			"validation_type": {
+				"enum": ["confirm", "text", "photo", "audio", "barcode", "count"]
+			},
+			"validation_data": {}
+		},
+		"if": {
+			"properties": {
+				"validation_type": {
+					"const": "text"
+				}
+			}
+		},
+		"then": {
+			"required": ["validation_data"],
+			"properties": {
+				"validation_data": {
+					"$ref": "./defs.schema.json#/definitions/textValidation"
+				}
+			}
+		},
+		"else": {
+			"if": {
+				"properties": {
+					"validation_type": {
+						"const": "photo"
+					}
+				}
+			},
+			"then": {
+				"required": ["validation_data"],
+				"properties": {
+					"validation_data": {
+						"$ref": "./defs.schema.json#/definitions/photoValidation"
+					}
+				}
+			},
+			"else": {
+				"if": {
+					"properties": {
+						"validation_type": {
+							"const": "audio"
+						}
+					}
+				},
+				"then": {
+					"required": ["validation_data"],
+					"properties": {
+						"validation_data": {
+							"$ref": "./defs.schema.json#/definitions/audioValidation"
+						}
+					}
+				},
+				"else": {
+					"if": {
+						"properties": {
+							"validation_type": {
+								"const": "barcode"
+							}
+						}
+					},
+					"then": {
+						"required": ["validation_data"],
+						"properties": {
+							"validation_data": {
+								"$ref": "./defs.schema.json#/definitions/barcodeValidation"
+							}
+						}
+					},
+					"else": {
+						"if": {
+							"properties": {
+								"validation_type": {
+									"const": "count"
+								}
+							}
+						},
+						"then": {
+							"required": ["validation_data"],
+							"properties": {
+								"validation_data": {
+									"$ref": "./defs.schema.json#/definitions/countValidation"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,48 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Recess question nudges",
+	"type": "array",
+	"items": {
+		"allOf": [
+			{
+				"$ref": "./defs.schema.json#/definitions/base"
+			}
+		],
+		"type": "object",
+		"required": ["id", "icon", "color", "points", "question", "actions"],
+		"properties": {
+			"question": {
+				"type": "string",
+				"minLength": 1
+			},
+			"actions": {
+				"type": "array",
+				"minItems": 2,
+				"maxItems": 4,
+				"items": {
+					"type": "object",
+					"required": ["label", "color"],
+					"additionalProperties": false,
+					"properties": {
+						"label": {
+							"type": "string",
+							"minLength": 1,
+							"description": "Title Case"
+						},
+						"color": {
+							"$ref": "./defs.schema.json#/definitions/color"
+						},
+						"icon": {
+							"type": "string",
+							"minLength": 1
+						},
+						"leads_to": {
+							"type": "string",
+							"description": "Composed id of another nudge, e.g. nature.task.go_outside. Turns an answer into an if-then plan."
+						}
+					}
+				}
+			}
+		}
+	}
+}

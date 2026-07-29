@@ -1,0 +1,45 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Recess notice nudges",
+	"type": "array",
+	"items": {
+		"allOf": [
+			{
+				"$ref": "./defs.schema.json#/definitions/base"
+			}
+		],
+		"type": "object",
+		"required": ["id", "icon", "color", "points", "prompt", "validation_type", "validation_data"],
+		"properties": {
+			"prompt": {
+				"type": "string",
+				"minLength": 1
+			},
+			"validation_type": {
+				"enum": ["photo", "audio"]
+			},
+			"validation_data": {}
+		},
+		"if": {
+			"properties": {
+				"validation_type": {
+					"const": "photo"
+				}
+			}
+		},
+		"then": {
+			"properties": {
+				"validation_data": {
+					"$ref": "./defs.schema.json#/definitions/photoValidation"
+				}
+			}
+		},
+		"else": {
+			"properties": {
+				"validation_data": {
+					"$ref": "./defs.schema.json#/definitions/audioValidation"
+				}
+			}
+		}
+	}
+}

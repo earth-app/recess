@@ -1,0 +1,546 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "recess://defs",
+	"title": "Recess shared nudge definitions",
+	"definitions": {
+		"color": {
+			"type": "string",
+			"description": "@alias from src/data/colors.json, or a literal #hex / rgb() / rgba()",
+			"pattern": "^(@[a-z][a-z0-9_]*|#[0-9a-fA-F]{3,4}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|rgba?\\(\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*,\\s*\\d{1,3}\\s*(,\\s*(0|1|0?\\.\\d+)\\s*)?\\))$"
+		},
+		"slug": {
+			"type": "string",
+			"description": "Stable key, unique within this category and type. Never rename it - the completion ledger, cooldowns and locale overlays all key off it.",
+			"pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+		},
+		"comparison": {
+			"type": "object",
+			"description": "Numeric filter. Every operator supplied must hold (AND).",
+			"properties": {
+				"equals": { "type": "number" },
+				"greater_than": { "type": "number" },
+				"greater_than_or_eq": { "type": "number" },
+				"less_than": { "type": "number" },
+				"less_than_or_eq": { "type": "number" },
+				"between": {
+					"type": "array",
+					"items": { "type": "number" },
+					"minItems": 2,
+					"maxItems": 2
+				}
+			},
+			"anyOf": [
+				{ "required": ["equals"] },
+				{ "required": ["greater_than"] },
+				{ "required": ["greater_than_or_eq"] },
+				{ "required": ["less_than"] },
+				{ "required": ["less_than_or_eq"] },
+				{ "required": ["between"] }
+			],
+			"additionalProperties": false
+		},
+		"temperatureComparison": {
+			"type": "object",
+			"description": "Numeric filter plus a unit. Inlined rather than composed from `comparison`, because that one forbids extra properties and would reject `unit`.",
+			"properties": {
+				"equals": { "type": "number" },
+				"greater_than": { "type": "number" },
+				"greater_than_or_eq": { "type": "number" },
+				"less_than": { "type": "number" },
+				"less_than_or_eq": { "type": "number" },
+				"between": {
+					"type": "array",
+					"items": { "type": "number" },
+					"minItems": 2,
+					"maxItems": 2
+				},
+				"unit": { "enum": ["c", "f"], "default": "c" }
+			},
+			"anyOf": [
+				{ "required": ["equals"] },
+				{ "required": ["greater_than"] },
+				{ "required": ["greater_than_or_eq"] },
+				{ "required": ["less_than"] },
+				{ "required": ["less_than_or_eq"] },
+				{ "required": ["between"] }
+			],
+			"additionalProperties": false
+		},
+		"weatherToken": {
+			"type": "string",
+			"enum": [
+				"clear",
+				"mainly_clear",
+				"partly_cloudy",
+				"overcast",
+				"fog",
+				"rime_fog",
+				"light_drizzle",
+				"drizzle",
+				"heavy_drizzle",
+				"light_freezing_drizzle",
+				"freezing_drizzle",
+				"light_rain",
+				"rain",
+				"heavy_rain",
+				"light_freezing_rain",
+				"freezing_rain",
+				"light_snow",
+				"snow",
+				"heavy_snow",
+				"snow_grains",
+				"light_showers",
+				"showers",
+				"heavy_showers",
+				"light_snow_showers",
+				"snow_showers",
+				"thunderstorm",
+				"thunderstorm_hail",
+				"thunderstorm_heavy_hail",
+				"clear_ish",
+				"cloudy_ish",
+				"foggy",
+				"any_drizzle",
+				"any_rain",
+				"any_snow",
+				"any_showers",
+				"any_freezing",
+				"any_precipitation",
+				"any_thunderstorm",
+				"severe",
+				"hot",
+				"cold",
+				"windy",
+				"humid",
+				"uv_high"
+			]
+		},
+		"filter": {
+			"type": "object",
+			"required": ["type", "value"],
+			"additionalProperties": false,
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"time_of_day",
+						"season",
+						"weekday",
+						"weather",
+						"moon_phase",
+						"permission",
+						"model_pack",
+						"locale",
+						"completed",
+						"hour",
+						"temperature",
+						"wind_speed",
+						"humidity",
+						"uv_index",
+						"daylight_remaining",
+						"moon_illumination",
+						"points",
+						"streak_days",
+						"completed_today",
+						"days_since_completed"
+					]
+				},
+				"value": {}
+			},
+			"allOf": [
+				{
+					"if": { "properties": { "type": { "const": "time_of_day" } } },
+					"then": {
+						"properties": {
+							"value": {
+								"type": "object",
+								"additionalProperties": false,
+								"properties": {
+									"is": {
+										"type": "array",
+										"minItems": 1,
+										"items": { "enum": ["dawn", "day", "dusk", "night"] }
+									},
+									"is_not": {
+										"type": "array",
+										"minItems": 1,
+										"items": { "enum": ["dawn", "day", "dusk", "night"] }
+									}
+								},
+								"anyOf": [{ "required": ["is"] }, { "required": ["is_not"] }]
+							}
+						}
+					}
+				},
+				{
+					"if": { "properties": { "type": { "const": "season" } } },
+					"then": {
+						"properties": {
+							"value": {
+								"type": "object",
+								"additionalProperties": false,
+								"properties": {
+									"is": {
+										"type": "array",
+										"minItems": 1,
+										"items": { "enum": ["spring", "summer", "autumn", "winter"] }
+									},
+									"is_not": {
+										"type": "array",
+										"minItems": 1,
+										"items": { "enum": ["spring", "summer", "autumn", "winter"] }
+									}
+								},
+								"anyOf": [{ "required": ["is"] }, { "required": ["is_not"] }]
+							}
+						}
+					}
+				},
+				{
+					"if": { "properties": { "type": { "const": "weekday" } } },
+					"then": {
+						"properties": {
+							"value": {
+								"type": "object",
+								"additionalProperties": false,
+								"properties": {
+									"is": {
+										"type": "array",
+										"minItems": 1,
+										"items": {
+											"enum": [
+												"mon",
+												"tue",
+												"wed",
+												"thu",
+												"fri",
+												"sat",
+												"sun",
+												"weekday",
+												"weekend"
+											]
+										}
+									},
+									"is_not": {
+										"type": "array",
+										"minItems": 1,
+										"items": {
+											"enum": [
+												"mon",
+												"tue",
+												"wed",
+												"thu",
+												"fri",
+												"sat",
+												"sun",
+												"weekday",
+												"weekend"
+											]
+										}
+									}
+								},
+								"anyOf": [{ "required": ["is"] }, { "required": ["is_not"] }]
+							}
+						}
+					}
+				},
+				{
+					"if": { "properties": { "type": { "const": "weather" } } },
+					"then": {
+						"properties": {
+							"value": {
+								"type": "object",
+								"additionalProperties": false,
+								"properties": {
+									"is": {
+										"type": "array",
+										"minItems": 1,
+										"items": { "$ref": "#/definitions/weatherToken" }
+									},
+									"is_not": {
+										"type": "array",
+										"minItems": 1,
+										"items": { "$ref": "#/definitions/weatherToken" }
+									}
+								},
+								"anyOf": [{ "required": ["is"] }, { "required": ["is_not"] }]
+							}
+						}
+					}
+				},
+				{
+					"if": { "properties": { "type": { "const": "moon_phase" } } },
+					"then": {
+						"properties": {
+							"value": {
+								"type": "object",
+								"additionalProperties": false,
+								"properties": {
+									"is": {
+										"type": "array",
+										"minItems": 1,
+										"items": {
+											"enum": [
+												"new",
+												"waxing_crescent",
+												"first_quarter",
+												"waxing_gibbous",
+												"full",
+												"waning_gibbous",
+												"last_quarter",
+												"waning_crescent"
+											]
+										}
+									},
+									"is_not": {
+										"type": "array",
+										"minItems": 1,
+										"items": {
+											"enum": [
+												"new",
+												"waxing_crescent",
+												"first_quarter",
+												"waxing_gibbous",
+												"full",
+												"waning_gibbous",
+												"last_quarter",
+												"waning_crescent"
+											]
+										}
+									}
+								},
+								"anyOf": [{ "required": ["is"] }, { "required": ["is_not"] }]
+							}
+						}
+					}
+				},
+				{
+					"if": { "properties": { "type": { "const": "permission" } } },
+					"then": {
+						"properties": {
+							"value": {
+								"type": "object",
+								"additionalProperties": false,
+								"properties": {
+									"is": {
+										"type": "array",
+										"minItems": 1,
+										"items": {
+											"enum": ["camera", "microphone", "location", "notifications"]
+										}
+									},
+									"is_not": {
+										"type": "array",
+										"minItems": 1,
+										"items": {
+											"enum": ["camera", "microphone", "location", "notifications"]
+										}
+									}
+								},
+								"anyOf": [{ "required": ["is"] }, { "required": ["is_not"] }]
+							}
+						}
+					}
+				},
+				{
+					"if": { "properties": { "type": { "const": "model_pack" } } },
+					"then": {
+						"properties": {
+							"value": {
+								"type": "object",
+								"additionalProperties": false,
+								"properties": {
+									"is": {
+										"type": "array",
+										"minItems": 1,
+										"items": { "enum": ["vision", "text", "audio", "writing"] }
+									},
+									"is_not": {
+										"type": "array",
+										"minItems": 1,
+										"items": { "enum": ["vision", "text", "audio", "writing"] }
+									}
+								},
+								"anyOf": [{ "required": ["is"] }, { "required": ["is_not"] }]
+							}
+						}
+					}
+				},
+				{
+					"if": {
+						"properties": { "type": { "enum": ["locale", "completed"] } }
+					},
+					"then": {
+						"properties": {
+							"value": {
+								"type": "object",
+								"additionalProperties": false,
+								"properties": {
+									"is": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+									"is_not": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+								},
+								"anyOf": [{ "required": ["is"] }, { "required": ["is_not"] }]
+							}
+						}
+					}
+				},
+				{
+					"if": {
+						"properties": {
+							"type": {
+								"enum": [
+									"hour",
+									"wind_speed",
+									"humidity",
+									"uv_index",
+									"daylight_remaining",
+									"moon_illumination",
+									"points",
+									"streak_days",
+									"completed_today",
+									"days_since_completed"
+								]
+							}
+						}
+					},
+					"then": { "properties": { "value": { "$ref": "#/definitions/comparison" } } }
+				},
+				{
+					"if": { "properties": { "type": { "const": "temperature" } } },
+					"then": {
+						"properties": {
+							"value": { "$ref": "#/definitions/temperatureComparison" }
+						}
+					}
+				}
+			]
+		},
+		"scoringCriterion": {
+			"type": "object",
+			"required": ["id", "weight", "ideal"],
+			"additionalProperties": false,
+			"properties": {
+				"id": { "type": "string", "minLength": 1 },
+				"weight": {
+					"type": "number",
+					"exclusiveMinimum": 0,
+					"maximum": 1,
+					"description": "Weights across the rubric must sum to exactly 1.0"
+				},
+				"ideal": {
+					"type": "string",
+					"minLength": 1,
+					"description": "An ideal answer. The user's text is scored by cosine similarity against this."
+				}
+			}
+		},
+		"threshold": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100,
+			"description": "0-1 fraction or 0-100 percentage. Note: unrelated text scores ~0.5, so useful values sit between 0.55 and 0.85."
+		},
+		"textValidation": {
+			"type": "object",
+			"required": ["rubric", "threshold"],
+			"additionalProperties": false,
+			"properties": {
+				"rubric": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "$ref": "#/definitions/scoringCriterion" }
+				},
+				"threshold": { "$ref": "#/definitions/threshold" },
+				"min_length": { "type": "integer", "minimum": 50, "maximum": 2048, "default": 120 },
+				"max_length": { "type": "integer", "minimum": 50, "maximum": 2048, "default": 2048 }
+			}
+		},
+		"photoValidation": {
+			"type": "object",
+			"required": ["labels", "threshold"],
+			"additionalProperties": false,
+			"properties": {
+				"labels": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "type": "string", "minLength": 1 },
+					"description": "CLIP prompts, ALWAYS in English in every locale. Phrase as \"a photo of ...\"."
+				},
+				"negative_labels": {
+					"type": "array",
+					"items": { "type": "string", "minLength": 1 },
+					"description": "What a wrong photo would look like. Without these the score has nothing to compete against."
+				},
+				"threshold": { "$ref": "#/definitions/threshold" },
+				"require_fresh_exif": {
+					"type": "boolean",
+					"description": "Reject photos older than 30 minutes or produced by an editor. Absent EXIF still passes."
+				}
+			}
+		},
+		"audioValidation": {
+			"type": "object",
+			"required": ["rubric", "threshold"],
+			"additionalProperties": false,
+			"properties": {
+				"rubric": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "$ref": "#/definitions/scoringCriterion" }
+				},
+				"threshold": { "$ref": "#/definitions/threshold" },
+				"min_seconds": { "type": "integer", "minimum": 1, "maximum": 300 }
+			}
+		},
+		"barcodeValidation": {
+			"type": "object",
+			"required": ["kind"],
+			"additionalProperties": false,
+			"properties": {
+				"kind": { "enum": ["retail", "book", "vehicle", "boarding_pass"] },
+				"require_checksum": { "type": "boolean", "default": true }
+			}
+		},
+		"countValidation": {
+			"type": "object",
+			"required": ["min", "max"],
+			"additionalProperties": false,
+			"properties": {
+				"min": { "type": "integer", "minimum": 0 },
+				"max": { "type": "integer", "minimum": 0 }
+			}
+		},
+		"base": {
+			"type": "object",
+			"required": ["id", "icon", "color", "points"],
+			"properties": {
+				"id": { "$ref": "#/definitions/slug" },
+				"icon": {
+					"type": "string",
+					"minLength": 1,
+					"description": "Iconify name, e.g. mdi:hand-wave"
+				},
+				"color": { "$ref": "#/definitions/color" },
+				"points": {
+					"type": "integer",
+					"minimum": 1,
+					"maximum": 100,
+					"description": "Signals difficulty. <=10 low, 11-19 mid, >=20 high. The picker spreads a day across bands."
+				},
+				"filters": { "type": "array", "items": { "$ref": "#/definitions/filter" } },
+				"tags": {
+					"type": "array",
+					"items": { "type": "string", "minLength": 1 },
+					"description": "Variety axis inside a category; two nudges sharing a tag rarely land on the same day."
+				},
+				"duration_minutes": { "type": "integer", "minimum": 1, "maximum": 240 },
+				"locales": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "type": "string" },
+					"description": "Restrict to specific locales without needing an overlay file."
+				}
+			}
+		}
+	}
+}

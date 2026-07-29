@@ -1,0 +1,26 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Recess create nudges",
+	"type": "array",
+	"items": {
+		"allOf": [
+			{
+				"$ref": "./defs.schema.json#/definitions/base"
+			}
+		],
+		"type": "object",
+		"required": ["id", "icon", "color", "points", "prompt", "validation_type", "validation_data"],
+		"properties": {
+			"prompt": {
+				"type": "string",
+				"minLength": 1
+			},
+			"validation_type": {
+				"const": "photo"
+			},
+			"validation_data": {
+				"$ref": "./defs.schema.json#/definitions/photoValidation"
+			}
+		}
+	}
+}

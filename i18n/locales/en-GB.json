@@ -1,0 +1,16 @@
+{
+	"nudge": {
+		"category": {
+			"errands": "Errands"
+		}
+	},
+	"settings": {
+		"units": "Units",
+		"unitsImperial": "Imperial (Miles)",
+		"favourites": "Favourites",
+		"colourTheme": "Colour Theme"
+	},
+	"week": {
+		"minutes": "Minutes"
+	}
+}

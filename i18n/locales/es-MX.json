@@ -1,0 +1,22 @@
+{
+	"nav": {
+		"playground": "Recreo"
+	},
+	"playground": {
+		"title": "Recreo",
+		"tapHint": "Pícale por Ahí"
+	},
+	"nudge": {
+		"category": {
+			"errands": "Mandados",
+			"cooking": "Cocinar"
+		}
+	},
+	"today": {
+		"skipped": "Saltado. Ya Regresará."
+	},
+	"settings": {
+		"unitsMetric": "Métrico",
+		"font": "Letra"
+	}
+}

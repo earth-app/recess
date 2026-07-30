@@ -1,0 +1,59 @@
+[
+	{
+		"id": "what_has_not_moved",
+		"question": "Which part of you has not moved yet today?",
+		"icon": "mdi:human",
+		"color": "@red",
+		"points": 8,
+		"tags": ["reflect"],
+		"actions": [
+			{
+				"label": "My Legs",
+				"color": "@coral",
+				"icon": "mdi:shoe-print",
+				"leads_to": "exercise.task.walk_until_a_song_ends"
+			},
+			{
+				"label": "My Shoulders",
+				"color": "@teal",
+				"icon": "mdi:yoga",
+				"leads_to": "exercise.task.stretch_what_aches"
+			},
+			{
+				"label": "All of It",
+				"color": "@pink",
+				"icon": "mdi:dance-ballroom",
+				"leads_to": "exercise.task.dance_badly_in_the_kitchen"
+			}
+		]
+	},
+	{
+		"id": "how_far_before_bored",
+		"question": "If you walked out the door right now and kept going straight, how far before you got bored?",
+		"icon": "mdi:map-marker-distance",
+		"color": "@blue",
+		"points": 10,
+		"tags": ["hypothetical"],
+		"actions": [
+			{
+				"label": "Two Streets",
+				"color": "@gray"
+			},
+			{
+				"label": "About an Hour",
+				"color": "@teal"
+			},
+			{
+				"label": "I Do Not Get Bored",
+				"color": "@indigo",
+				"icon": "mdi:infinity"
+			},
+			{
+				"label": "Let's Find Out",
+				"color": "@red",
+				"icon": "mdi:door-open",
+				"leads_to": "exercise.task.walk_until_a_song_ends"
+			}
+		]
+	}
+]

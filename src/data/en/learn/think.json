@@ -1,0 +1,26 @@
+[
+	{
+		"id": "learned_wrong",
+		"prompt": "Think of something you learned as a kid and later found out was flatly wrong. Somebody told you that with total confidence.",
+		"icon": "mdi:head-question-outline",
+		"color": "@indigo",
+		"points": 8,
+		"tags": ["facts"]
+	},
+	{
+		"id": "who_named_this",
+		"prompt": "Look at the least important object within reach. Somebody sat in a meeting and argued about what to call it.",
+		"icon": "mdi:label-outline",
+		"color": "@gold",
+		"points": 5,
+		"tags": ["words"]
+	},
+	{
+		"id": "no_one_taught_you",
+		"prompt": "Pick something you are good at that nobody ever taught you. Retrace how you actually picked it up; there was a first day.",
+		"icon": "mdi:stairs-up",
+		"color": "@purple",
+		"points": 10,
+		"tags": ["teach"]
+	}
+]

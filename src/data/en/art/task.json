@@ -1,0 +1,76 @@
+[
+	{
+		"id": "describe_a_color",
+		"title": "Describe a Color",
+		"description": "Pick a color you can see and describe it to someone who has never seen it. You are not allowed to name any color.",
+		"icon": "mdi:palette",
+		"color": "@purple",
+		"points": 15,
+		"duration_minutes": 10,
+		"tags": ["writing"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "sensory",
+					"weight": 0.4,
+					"ideal": "It feels like the inside of a cold pipe, or biting foil, or the ten seconds before a thunderstorm lands."
+				},
+				{
+					"id": "specific",
+					"weight": 0.35,
+					"ideal": "It is the shade of the plastic chairs in an old waiting room, dull and slightly greasy under a flickering tube light."
+				},
+				{
+					"id": "no_color_words",
+					"weight": 0.25,
+					"ideal": "I never say the name of the color; I describe its temperature, its texture, its weight and the sound it would make."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 120
+		}
+	},
+	{
+		"id": "finish_the_abandoned_thing",
+		"title": "Finish the Abandoned Thing",
+		"description": "Dig out a project you quit on and work it until it is done, or until 45 minutes runs out.",
+		"icon": "mdi:progress-check",
+		"color": "@brown",
+		"points": 24,
+		"duration_minutes": 45,
+		"tags": ["unfinished"],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "scan_an_art_book",
+		"title": "Scan an Art Book",
+		"description": "Find a book with art in it and scan the barcode on the back. Then open it to a random page and look for one full minute.",
+		"icon": "mdi:barcode-scan",
+		"color": "@gold",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["looking"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "book",
+			"require_checksum": true
+		}
+	}
+]

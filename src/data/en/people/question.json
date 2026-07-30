@@ -1,0 +1,93 @@
+[
+	{
+		"id": "last_time_outside",
+		"question": "When was the last time you went outside?",
+		"icon": "mdi:weather-sunny",
+		"color": "@gold",
+		"points": 10,
+		"tags": ["outside"],
+		"actions": [
+			{
+				"label": "Don't Know",
+				"color": "@gray"
+			},
+			{
+				"label": "Recently",
+				"color": "@green"
+			},
+			{
+				"label": "I'm Going Outside Now",
+				"color": "@green",
+				"icon": "mdi:door-open",
+				"leads_to": "people.task.go_for_a_walk"
+			}
+		]
+	},
+	{
+		"id": "who_do_you_miss",
+		"question": "Who have you been meaning to call for three weeks?",
+		"icon": "mdi:calendar-clock",
+		"color": "@gold",
+		"points": 12,
+		"tags": ["voice"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"greater_than_or_eq": 9,
+					"less_than": 21
+				}
+			}
+		],
+		"actions": [
+			{
+				"label": "Nobody",
+				"color": "@gray"
+			},
+			{
+				"label": "One Specific Person",
+				"color": "@gold"
+			},
+			{
+				"label": "A Whole List",
+				"color": "@coral"
+			},
+			{
+				"label": "Calling Now",
+				"color": "@blue",
+				"icon": "mdi:phone",
+				"leads_to": "people.task.call_someone"
+			}
+		]
+	},
+	{
+		"id": "who_is_nearby",
+		"question": "How many people are within earshot of you right now?",
+		"icon": "mdi:ear-hearing",
+		"color": "@yellow",
+		"points": 8,
+		"tags": ["strangers"],
+		"actions": [
+			{
+				"label": "Zero",
+				"color": "@gray",
+				"icon": "mdi:account-off"
+			},
+			{
+				"label": "One or Two",
+				"color": "@yellow"
+			},
+			{
+				"label": "A Crowd",
+				"color": "@coral",
+				"icon": "mdi:account-group"
+			},
+			{
+				"label": "Going to Go Find Some",
+				"color": "@blue",
+				"icon": "mdi:door-open",
+				"leads_to": "people.task.say_hi"
+			}
+		]
+	}
+]

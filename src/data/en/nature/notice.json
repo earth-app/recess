@@ -1,0 +1,226 @@
+[
+	{
+		"id": "chewed_leaf",
+		"prompt": "Find a leaf with a hole chewed through it. Something ate that; photograph the evidence.",
+		"icon": "mdi:leaf",
+		"color": "@lime",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["plants"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is_not": ["winter"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a leaf with holes chewed in it",
+				"a photo of a green leaf eaten by insects",
+				"a photo of a damaged leaf up close"
+			],
+			"negative_labels": [
+				"a photo of an empty room",
+				"a screenshot of a screen",
+				"a photo of a plastic artificial plant",
+				"a photo of bare pavement"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "first_bird",
+		"prompt": "Find the first bird awake and record it. Then say out loud which direction it is coming from.",
+		"icon": "mdi:bird",
+		"color": "@teal",
+		"points": 20,
+		"duration_minutes": 10,
+		"tags": ["birds"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dawn"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "names_the_bird_or_call",
+					"weight": 0.4,
+					"ideal": "A robin is singing from the top of the fence and a crow keeps answering it from further off."
+				},
+				{
+					"id": "gives_a_direction",
+					"weight": 0.3,
+					"ideal": "The loud one is behind me and to the left, high up in the tree by the road."
+				},
+				{
+					"id": "notes_what_is_missing",
+					"weight": 0.3,
+					"ideal": "Nothing else is awake yet; no cars, no voices, just the one bird and some wind."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
+	},
+	{
+		"id": "sky_right_now",
+		"prompt": "Point the camera straight up. Whatever the sky is doing, it will not be doing it in ten minutes.",
+		"icon": "mdi:weather-partly-cloudy",
+		"color": "@blue",
+		"points": 5,
+		"tags": ["sky"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of the sky",
+				"a photo of clouds seen from below",
+				"a photo of an overcast grey sky"
+			],
+			"negative_labels": [
+				"a photo of a ceiling",
+				"a photo of the ground",
+				"a screenshot of a weather app",
+				"a photo of an indoor room"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "water_moving",
+		"prompt": "Find water that is moving without your help. A gutter counts; a puddle with wind on it counts.",
+		"icon": "mdi:waves",
+		"color": "@teal",
+		"points": 12,
+		"duration_minutes": 10,
+		"tags": ["water"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of running water outdoors",
+				"a photo of a stream of water",
+				"a photo of rain water flowing along a curb"
+			],
+			"negative_labels": [
+				"a photo of a kitchen sink",
+				"a photo of a glass of water on a table",
+				"a screenshot of a screen",
+				"a photo of dry ground"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "rain_sound",
+		"prompt": "It is raining. Record thirty seconds of it, then say what the rain is landing on.",
+		"icon": "mdi:weather-pouring",
+		"color": "@blue",
+		"points": 12,
+		"tags": ["weather"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is": ["any_precipitation"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "names_the_surface",
+					"weight": 0.5,
+					"ideal": "The rain is hitting a metal gutter and a plastic bin lid, so it sounds like two different rains at once."
+				},
+				{
+					"id": "describes_the_rhythm",
+					"weight": 0.5,
+					"ideal": "It comes in bursts; heavy for a few seconds, then almost nothing, then heavy again."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 15
+		}
+	}
+]

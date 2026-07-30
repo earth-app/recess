@@ -1,0 +1,97 @@
+[
+	{
+		"id": "breathe",
+		"title": "Respira",
+		"description": "Concéntrate en tu respiración un rato y relájate.",
+		"icon": "mdi:lungs",
+		"color": "@blue",
+		"validation_type": "confirm",
+		"points": 5,
+		"duration_minutes": 2,
+		"tags": ["rest"]
+	},
+	{
+		"id": "open_a_window",
+		"title": "Abre una ventana",
+		"description": "Abre una ventana que lleve tiempo cerrada. Escucha lo que entra.",
+		"icon": "mdi:window-open-variant",
+		"color": "@teal",
+		"validation_type": "confirm",
+		"points": 8,
+		"duration_minutes": 3,
+		"tags": ["air"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dawn", "day", "dusk"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "cold"]
+				}
+			}
+		]
+	},
+	{
+		"id": "clear_one_surface",
+		"title": "Despeja una superficie",
+		"description": "Elige la superficie más plana y más sepultada que tengas y vacíala. Una superficie; no el cuarto.",
+		"icon": "mdi:table",
+		"color": "@coral",
+		"validation_type": "photo",
+		"points": 20,
+		"duration_minutes": 10,
+		"tags": ["tidy"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_data": {
+			"labels": [
+				"a photo of a clear empty tabletop",
+				"a photo of a tidy uncluttered kitchen counter",
+				"a photo of an empty desk with nothing on it"
+			],
+			"negative_labels": [
+				"a photo of a cluttered table covered in objects",
+				"a photo of a pile of papers and dishes",
+				"a photo of an outdoor landscape",
+				"a screenshot of a phone screen"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "fix_the_rattle",
+		"title": "Arregla lo que vibra",
+		"description": "Algo aquí chirría, se traba o se tambalea. Apriétalo, engrásalo o cálzalo con un recibo doblado.",
+		"icon": "mdi:screwdriver",
+		"color": "@brown",
+		"validation_type": "confirm",
+		"points": 25,
+		"duration_minutes": 20,
+		"tags": ["repair"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 21]
+				}
+			}
+		]
+	}
+]

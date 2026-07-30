@@ -1,0 +1,10 @@
+[
+	{
+		"id": "the_meal_you_cannot_get_again",
+		"prompt": "Piensa en una comida que ya no puedes volver a tener; la cocinó otra persona, en una cocina que ya no existe. ¿Qué había en el plato exactamente?",
+		"icon": "mdi:bread-slice",
+		"color": "@gold",
+		"points": 8,
+		"tags": ["memory"]
+	}
+]

@@ -1,0 +1,28 @@
+[
+	{
+		"id": "when_did_you_open_a_window",
+		"question": "¿Cuánto tiempo llevas sin abrir una ventana aquí dentro?",
+		"icon": "mdi:window-closed-variant",
+		"color": "@teal",
+		"points": 10,
+		"tags": ["air"],
+		"actions": [
+			{
+				"label": "Ni idea",
+				"color": "@gray",
+				"icon": "mdi:help-circle-outline"
+			},
+			{
+				"label": "Alguna vez esta semana",
+				"color": "@green",
+				"icon": "mdi:check"
+			},
+			{
+				"label": "Abro una ahora",
+				"color": "@teal",
+				"icon": "mdi:window-open-variant",
+				"leads_to": "home.task.open_a_window"
+			}
+		]
+	}
+]

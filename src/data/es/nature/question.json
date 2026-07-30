@@ -1,0 +1,51 @@
+[
+	{
+		"id": "wind_direction_guess",
+		"question": "Sin mirar afuera: ¿hacia dónde va el viento?",
+		"icon": "mdi:weather-windy",
+		"color": "@teal",
+		"points": 5,
+		"tags": ["weather"],
+		"actions": [
+			{
+				"label": "Ni idea",
+				"color": "@gray"
+			},
+			{
+				"label": "Puedo adivinar",
+				"color": "@teal",
+				"icon": "mdi:compass-outline"
+			},
+			{
+				"label": "Voy a asomarme",
+				"color": "@green",
+				"icon": "mdi:door-open",
+				"leads_to": "nature.notice.sky_right_now"
+			}
+		]
+	},
+	{
+		"id": "last_saw_stars",
+		"question": "¿Cuándo viste estrellas de verdad por última vez, no solo las cuatro más brillantes?",
+		"icon": "mdi:star",
+		"color": "@gold",
+		"points": 10,
+		"tags": ["night"],
+		"actions": [
+			{
+				"label": "No me acuerdo",
+				"color": "@gray"
+			},
+			{
+				"label": "Esta semana",
+				"color": "@indigo"
+			},
+			{
+				"label": "Salgo esta noche",
+				"color": "@gold",
+				"icon": "mdi:weather-night",
+				"leads_to": "nature.task.night_walk_no_phone"
+			}
+		]
+	}
+]

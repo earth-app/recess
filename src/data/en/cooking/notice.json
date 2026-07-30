@@ -1,0 +1,48 @@
+[
+	{
+		"id": "the_kitchen_at_full_tilt",
+		"prompt": "Get the kitchen going, then say out loud what you can hear over it: the fan, the sizzle, the knife on the board.",
+		"icon": "mdi:microphone",
+		"color": "@orange",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["senses"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [16, 21]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "inventory",
+					"weight": 0.6,
+					"ideal": "I can hear something sizzling in a hot pan, the extractor fan, and a knife hitting a wooden board."
+				},
+				{
+					"id": "attention",
+					"weight": 0.4,
+					"ideal": "The pan is the loudest thing; behind it the fan is droning and a lid keeps rattling on a pot."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 15
+		}
+	}
+]

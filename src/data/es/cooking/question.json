@@ -1,0 +1,62 @@
+[
+	{
+		"id": "dinner_tonight",
+		"question": "¿Sabes qué vas a cenar hoy?",
+		"icon": "mdi:food-variant",
+		"color": "@orange",
+		"points": 6,
+		"tags": ["dinner"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [14, 20]
+				}
+			}
+		],
+		"actions": [
+			{
+				"label": "Ya está planeado",
+				"color": "@green"
+			},
+			{
+				"label": "Todavía ni idea",
+				"color": "@gray"
+			},
+			{
+				"label": "Lo resuelvo ahora",
+				"color": "@orange",
+				"icon": "mdi:pot-steam",
+				"leads_to": "cooking.create.something_from_nothing"
+			}
+		]
+	},
+	{
+		"id": "what_does_it_smell_like",
+		"question": "¿A qué huele tu cocina ahora mismo?",
+		"icon": "mdi:scent",
+		"color": "@coral",
+		"points": 9,
+		"tags": ["senses"],
+		"actions": [
+			{
+				"label": "A nada",
+				"color": "@gray",
+				"icon": "mdi:pot-steam",
+				"leads_to": "cooking.create.something_from_nothing"
+			},
+			{
+				"label": "A la cena de anoche",
+				"color": "@brown"
+			},
+			{
+				"label": "A pan quemado",
+				"color": "@red"
+			},
+			{
+				"label": "A algo bueno",
+				"color": "@gold"
+			}
+		]
+	}
+]

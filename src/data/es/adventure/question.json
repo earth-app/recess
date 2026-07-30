@@ -1,0 +1,68 @@
+[
+	{
+		"id": "street_you_never_walked",
+		"question": "Hay una calle a diez minutos de tu puerta por la que nunca has caminado. ¿Sabes cuál es?",
+		"icon": "mdi:sign-direction",
+		"color": "@blue",
+		"points": 15,
+		"tags": ["unfamiliar"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [7, 20]
+				}
+			}
+		],
+		"actions": [
+			{
+				"label": "Sé exactamente cuál",
+				"color": "@indigo",
+				"icon": "mdi:map-marker-question"
+			},
+			{
+				"label": "Deben ser docenas",
+				"color": "@teal"
+			},
+			{
+				"label": "Voy ahora",
+				"color": "@blue",
+				"icon": "mdi:walk",
+				"leads_to": "adventure.task.new_street"
+			}
+		]
+	},
+	{
+		"id": "where_does_that_bus_go",
+		"question": "El autobús que para más cerca de ti va a algún lado. ¿Sabes a dónde?",
+		"icon": "mdi:bus-stop",
+		"color": "@indigo",
+		"points": 12,
+		"tags": ["transit"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [7, 19]
+				}
+			}
+		],
+		"actions": [
+			{
+				"label": "Ni idea",
+				"color": "@gray",
+				"icon": "mdi:help-circle-outline"
+			},
+			{
+				"label": "Más o menos, sí",
+				"color": "@teal"
+			},
+			{
+				"label": "Lo averiguo ahora",
+				"color": "@indigo",
+				"icon": "mdi:bus",
+				"leads_to": "adventure.task.end_of_the_line"
+			}
+		]
+	}
+]

@@ -1,0 +1,226 @@
+[
+	{
+		"id": "chewed_leaf",
+		"prompt": "Busca una hoja con un agujero mordido. Alguien se comió eso; fotografía la evidencia.",
+		"icon": "mdi:leaf",
+		"color": "@lime",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["plants"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is_not": ["winter"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a leaf with holes chewed in it",
+				"a photo of a green leaf eaten by insects",
+				"a photo of a damaged leaf up close"
+			],
+			"negative_labels": [
+				"a photo of an empty room",
+				"a screenshot of a screen",
+				"a photo of a plastic artificial plant",
+				"a photo of bare pavement"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "first_bird",
+		"prompt": "Encuentra la primera ave despierta y grábala. Después di en voz alta de qué dirección viene.",
+		"icon": "mdi:bird",
+		"color": "@teal",
+		"points": 20,
+		"duration_minutes": 10,
+		"tags": ["birds"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dawn"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "names_the_bird_or_call",
+					"weight": 0.4,
+					"ideal": "Hay un petirrojo cantando desde lo alto de la reja y un cuervo que le contesta desde más lejos."
+				},
+				{
+					"id": "gives_a_direction",
+					"weight": 0.3,
+					"ideal": "El que canta fuerte está detrás de mí y a la izquierda, bien arriba en el árbol junto a la calle."
+				},
+				{
+					"id": "notes_what_is_missing",
+					"weight": 0.3,
+					"ideal": "No hay nada más despierto todavía; ni autos, ni voces, solo esa ave y algo de viento."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
+	},
+	{
+		"id": "sky_right_now",
+		"prompt": "Apunta la cámara directo hacia arriba. Lo que sea que esté haciendo el cielo, en diez minutos ya no lo hará.",
+		"icon": "mdi:weather-partly-cloudy",
+		"color": "@blue",
+		"points": 5,
+		"tags": ["sky"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of the sky",
+				"a photo of clouds seen from below",
+				"a photo of an overcast grey sky"
+			],
+			"negative_labels": [
+				"a photo of a ceiling",
+				"a photo of the ground",
+				"a screenshot of a weather app",
+				"a photo of an indoor room"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "water_moving",
+		"prompt": "Busca agua que se mueva sin tu ayuda. Una canaleta cuenta; un charco con viento encima cuenta.",
+		"icon": "mdi:waves",
+		"color": "@teal",
+		"points": 12,
+		"duration_minutes": 10,
+		"tags": ["water"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of running water outdoors",
+				"a photo of a stream of water",
+				"a photo of rain water flowing along a curb"
+			],
+			"negative_labels": [
+				"a photo of a kitchen sink",
+				"a photo of a glass of water on a table",
+				"a screenshot of a screen",
+				"a photo of dry ground"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "rain_sound",
+		"prompt": "Está lloviendo. Graba treinta segundos y luego di sobre qué está cayendo la lluvia.",
+		"icon": "mdi:weather-pouring",
+		"color": "@blue",
+		"points": 12,
+		"tags": ["weather"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is": ["any_precipitation"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "names_the_surface",
+					"weight": 0.5,
+					"ideal": "La lluvia pega en una canaleta de metal y en la tapa plástica de un bote, así que suenan dos lluvias distintas a la vez."
+				},
+				{
+					"id": "describes_the_rhythm",
+					"weight": 0.5,
+					"ideal": "Viene por rachas; fuerte unos segundos, después casi nada, y otra vez fuerte."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 15
+		}
+	}
+]

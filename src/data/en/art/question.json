@@ -1,0 +1,28 @@
+[
+	{
+		"id": "made_anything_today",
+		"question": "Have you made anything today?",
+		"icon": "mdi:brush",
+		"color": "@purple",
+		"points": 5,
+		"tags": ["making"],
+		"actions": [
+			{
+				"label": "Yes, Something",
+				"color": "@green",
+				"icon": "mdi:check"
+			},
+			{
+				"label": "Does a Sandwich Count",
+				"color": "@gold",
+				"icon": "mdi:food"
+			},
+			{
+				"label": "Not Yet; Fixing That Now",
+				"color": "@purple",
+				"icon": "mdi:hand-back-right",
+				"leads_to": "art.create.draw_your_hand"
+			}
+		]
+	}
+]

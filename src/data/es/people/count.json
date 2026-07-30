@@ -1,0 +1,16 @@
+[
+	{
+		"id": "greetings",
+		"prompt": "Cuenta a todos los que saludes hoy. Un gesto con la cabeza cuenta; un grupo de chat no.",
+		"unit": "saludos",
+		"icon": "mdi:hand-wave-outline",
+		"color": "@gold",
+		"points": 15,
+		"tags": ["strangers"],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 1,
+			"max": 50
+		}
+	}
+]

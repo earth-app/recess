@@ -1,0 +1,97 @@
+[
+	{
+		"id": "breathe",
+		"title": "Breathe",
+		"description": "Take a moment to focus on your breath and relax.",
+		"icon": "mdi:lungs",
+		"color": "@blue",
+		"validation_type": "confirm",
+		"points": 5,
+		"duration_minutes": 2,
+		"tags": ["rest"]
+	},
+	{
+		"id": "open_a_window",
+		"title": "Open a Window",
+		"description": "Open a window that hasn't been opened in a while. Listen to what comes in.",
+		"icon": "mdi:window-open-variant",
+		"color": "@teal",
+		"validation_type": "confirm",
+		"points": 8,
+		"duration_minutes": 3,
+		"tags": ["air"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dawn", "day", "dusk"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "cold"]
+				}
+			}
+		]
+	},
+	{
+		"id": "clear_one_surface",
+		"title": "Clear One Surface",
+		"description": "Pick the flattest, most buried thing you own and empty it. One surface; not the room.",
+		"icon": "mdi:table",
+		"color": "@coral",
+		"validation_type": "photo",
+		"points": 20,
+		"duration_minutes": 10,
+		"tags": ["tidy"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_data": {
+			"labels": [
+				"a photo of a clear empty tabletop",
+				"a photo of a tidy uncluttered kitchen counter",
+				"a photo of an empty desk with nothing on it"
+			],
+			"negative_labels": [
+				"a photo of a cluttered table covered in objects",
+				"a photo of a pile of papers and dishes",
+				"a photo of an outdoor landscape",
+				"a screenshot of a phone screen"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "fix_the_rattle",
+		"title": "Fix the Thing That Rattles",
+		"description": "Something here squeaks, sticks, or wobbles. Tighten it, oil it, or shim it with a folded receipt.",
+		"icon": "mdi:screwdriver",
+		"color": "@brown",
+		"validation_type": "confirm",
+		"points": 25,
+		"duration_minutes": 20,
+		"tags": ["repair"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 21]
+				}
+			}
+		]
+	}
+]

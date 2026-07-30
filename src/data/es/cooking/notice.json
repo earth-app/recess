@@ -1,0 +1,48 @@
+[
+	{
+		"id": "the_kitchen_at_full_tilt",
+		"prompt": "Pon la cocina a trabajar y luego di en voz alta lo que oyes encima de todo: el extractor, el chisporroteo, el cuchillo en la tabla.",
+		"icon": "mdi:microphone",
+		"color": "@orange",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["senses"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [16, 21]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "inventory",
+					"weight": 0.6,
+					"ideal": "Oigo algo chisporroteando en una sartén caliente, el extractor y un cuchillo golpeando una tabla de madera."
+				},
+				{
+					"id": "attention",
+					"weight": 0.4,
+					"ideal": "La sartén es lo más fuerte; detrás el extractor zumba y una tapa no deja de sonar sobre una olla."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 15
+		}
+	}
+]

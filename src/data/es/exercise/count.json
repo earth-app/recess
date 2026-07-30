@@ -1,0 +1,45 @@
+[
+	{
+		"id": "flights_of_stairs",
+		"prompt": "Hoy usa las escaleras en todas partes y cuenta los tramos. El ascensor se las arregla sin ti.",
+		"unit": "tramos",
+		"icon": "mdi:stairs-up",
+		"color": "@orange",
+		"validation_type": "count",
+		"validation_data": {
+			"min": 1,
+			"max": 40
+		},
+		"points": 14,
+		"tags": ["stairs", "counting"]
+	},
+	{
+		"id": "dogs_on_a_walk",
+		"prompt": "Sal a caminar y cuenta los perros con los que te cruces. Los gatos también cuentan, pero solo en tu corazón.",
+		"unit": "perros",
+		"icon": "mdi:dog-side",
+		"color": "@coral",
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 30
+		},
+		"points": 20,
+		"duration_minutes": 25,
+		"tags": ["walk", "counting"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than": 30
+				}
+			}
+		]
+	}
+]

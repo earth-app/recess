@@ -1,0 +1,42 @@
+[
+	{
+		"id": "sound_of_your_home",
+		"prompt": "Stand still in the middle of your home, listen for twenty seconds, then say out loud everything you can hear. Something in here is always running.",
+		"icon": "mdi:waveform",
+		"color": "@teal",
+		"points": 15,
+		"duration_minutes": 2,
+		"tags": ["sound"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "inventory",
+					"weight": 0.6,
+					"ideal": "I can hear the fridge humming, a clock ticking somewhere, water moving in a pipe, and a fan running in another room."
+				},
+				{
+					"id": "attention",
+					"weight": 0.4,
+					"ideal": "The loudest one is the fridge; underneath it there is a floorboard settling and something faint outside."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 15
+		}
+	}
+]

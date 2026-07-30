@@ -1,0 +1,28 @@
+[
+	{
+		"id": "room_you_live_in",
+		"prompt": "¿En qué cuarto de aquí vives de verdad? No el que le mostrarías a un invitado.",
+		"icon": "mdi:sofa",
+		"color": "@coral",
+		"points": 5,
+		"tags": ["place"]
+	},
+	{
+		"id": "oldest_thing_here",
+		"prompt": "Encuentra el objeto más viejo de tu casa. No el más valioso; el más viejo. Averigua cómo llegó hasta aquí.",
+		"icon": "mdi:archive-outline",
+		"color": "@brown",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["stuff"]
+	},
+	{
+		"id": "doing_nothing_on_purpose",
+		"prompt": "No hagas nada a propósito durante tres minutos. No descansar, no mirar el teléfono; nada. Fíjate en lo largos que son tres minutos.",
+		"icon": "mdi:timer-sand",
+		"color": "@purple",
+		"points": 8,
+		"duration_minutes": 3,
+		"tags": ["rest"]
+	}
+]

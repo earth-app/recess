@@ -1,0 +1,10 @@
+[
+	{
+		"id": "last_time_you_ran",
+		"prompt": "Piensa en la última vez que corriste de verdad. No trotar; correr. ¿Detrás de qué ibas?",
+		"icon": "mdi:run-fast",
+		"color": "@orange",
+		"points": 5,
+		"tags": ["reflect"]
+	}
+]

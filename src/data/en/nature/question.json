@@ -1,0 +1,51 @@
+[
+	{
+		"id": "wind_direction_guess",
+		"question": "Without looking outside: which way is the wind going?",
+		"icon": "mdi:weather-windy",
+		"color": "@teal",
+		"points": 5,
+		"tags": ["weather"],
+		"actions": [
+			{
+				"label": "No Idea",
+				"color": "@gray"
+			},
+			{
+				"label": "I Can Guess",
+				"color": "@teal",
+				"icon": "mdi:compass-outline"
+			},
+			{
+				"label": "I'll Go Check",
+				"color": "@green",
+				"icon": "mdi:door-open",
+				"leads_to": "nature.notice.sky_right_now"
+			}
+		]
+	},
+	{
+		"id": "last_saw_stars",
+		"question": "When did you last see actual stars, not just the four bright ones?",
+		"icon": "mdi:star",
+		"color": "@gold",
+		"points": 10,
+		"tags": ["night"],
+		"actions": [
+			{
+				"label": "Can't Remember",
+				"color": "@gray"
+			},
+			{
+				"label": "This Week",
+				"color": "@indigo"
+			},
+			{
+				"label": "I'm Going Out Tonight",
+				"color": "@gold",
+				"icon": "mdi:weather-night",
+				"leads_to": "nature.task.night_walk_no_phone"
+			}
+		]
+	}
+]

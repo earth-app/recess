@@ -1,0 +1,10 @@
+[
+	{
+		"id": "place_you_have_opinions_about",
+		"prompt": "Piensa en un lugar cerca de ti sobre el que tienes opiniones y al que nunca has ido. ¿De dónde salieron esas opiniones?",
+		"icon": "mdi:thought-bubble-outline",
+		"color": "@gold",
+		"points": 8,
+		"tags": ["reflect"]
+	}
+]

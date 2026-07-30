@@ -1,0 +1,240 @@
+[
+	{
+		"id": "woodworking_project",
+		"prompt": "Haz un proyecto de carpintería. Puede ser lo que sea, de una casita para pájaros a un mueble.",
+		"icon": "mdi:hammer",
+		"color": "@brown",
+		"points": 20,
+		"duration_minutes": 120,
+		"tags": ["build"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a handmade wooden object",
+				"a photo of a woodworking project on a workbench"
+			],
+			"negative_labels": [
+				"a photo of an empty room",
+				"a screenshot of a screen",
+				"a photo of a store shelf"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "draw_your_hand",
+		"prompt": "Dibuja tu propia mano sin mirar el papel. Va a quedar mal. Guárdalo igual.",
+		"icon": "mdi:hand-back-right",
+		"color": "@purple",
+		"points": 8,
+		"duration_minutes": 10,
+		"tags": ["drawing"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a drawing of a hand on paper",
+				"a photo of a pencil sketch of a hand in a sketchbook"
+			],
+			"negative_labels": [
+				"a photo of a bare hand",
+				"a photo of a printed page",
+				"a screenshot of a screen",
+				"a photo of a blank sheet of paper"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "fold_a_paper_animal",
+		"prompt": "Dobla una hoja de papel hasta que sea un animal. Una grulla muy mal hecha cuenta. Un perro con una sola oreja también.",
+		"icon": "mdi:bird",
+		"color": "@indigo",
+		"points": 10,
+		"duration_minutes": 15,
+		"tags": ["build"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of an origami paper figure",
+				"a photo of a folded paper animal on a table"
+			],
+			"negative_labels": [
+				"a photo of a flat sheet of paper",
+				"a photo of a crumpled ball of paper",
+				"a photo of a printed page",
+				"a screenshot of a screen"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "handwritten_poem",
+		"prompt": "Escribe a mano un poema de cuatro versos. Tiene que rimar y tiene permiso de ser malísimo.",
+		"icon": "mdi:fountain-pen-tip",
+		"color": "@pink",
+		"points": 12,
+		"duration_minutes": 15,
+		"tags": ["writing"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of handwritten text on paper",
+				"a photo of a handwritten poem in a notebook"
+			],
+			"negative_labels": [
+				"a photo of a printed page",
+				"a photo of a typed document",
+				"a screenshot of a screen",
+				"a photo of a blank notebook page"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "desk_junk_sculpture",
+		"prompt": "Arma una escultura con lo que tengas al alcance del brazo. Bolígrafos, cinta, un tenedor, una taza; sin pegamento.",
+		"icon": "mdi:shape-outline",
+		"color": "@coral",
+		"points": 14,
+		"duration_minutes": 20,
+		"tags": ["build", "indoors"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a small sculpture made from household objects",
+				"a photo of everyday objects stacked into a tower on a table"
+			],
+			"negative_labels": [
+				"a photo of a tidy empty desk",
+				"a photo of a store shelf",
+				"a screenshot of a screen"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "rainy_window_still_life",
+		"prompt": "Está lloviendo, así que dibuja la vista desde una ventana; con la lluvia incluida. Sin borrar y sin regla.",
+		"icon": "mdi:weather-rainy",
+		"color": "@indigo",
+		"points": 20,
+		"duration_minutes": 30,
+		"tags": ["drawing", "indoors"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is": ["any_precipitation"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than": 45
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a drawing of a window and the view outside",
+				"a photo of a sketch of a rainy window in a sketchbook"
+			],
+			"negative_labels": [
+				"a photo of a rainy window",
+				"a photo of a printed page",
+				"a screenshot of a screen",
+				"a photo of a blank sheet of paper"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	}
+]

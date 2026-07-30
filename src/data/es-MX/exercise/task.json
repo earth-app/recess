@@ -1,0 +1,21 @@
+[
+	{
+		"id": "dance_badly_in_the_kitchen",
+		"title": "Baila mal en la cocina",
+		"description": "Una cumbia, los peores pasos que tengas, nadie grabando. Sentado moviendo los brazos también cuenta.",
+		"icon": "mdi:dance-ballroom",
+		"color": "@pink",
+		"validation_type": "confirm",
+		"points": 9,
+		"duration_minutes": 4,
+		"tags": ["dance"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 22]
+				}
+			}
+		]
+	}
+]

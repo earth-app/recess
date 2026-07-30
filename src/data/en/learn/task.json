@@ -1,0 +1,165 @@
+[
+	{
+		"id": "look_up_one_word",
+		"title": "Look Up One Word",
+		"description": "Pick a word you have been nodding along to for years, find out what it actually means, then write it down in your own words. The metal ring that holds the eraser onto a pencil has a name too, if you need somewhere to start.",
+		"icon": "mdi:book-alphabet",
+		"color": "@gold",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["words"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "definition",
+					"weight": 0.45,
+					"ideal": "The word I looked up was ferrule, and it turns out to mean the metal band on the end of a pencil that holds the eraser on; plumbers use the same word for the ring that clamps a pipe."
+				},
+				{
+					"id": "own_words",
+					"weight": 0.3,
+					"ideal": "I am writing the meaning in plain language instead of pasting the dictionary entry, close enough to how I would say it to a friend."
+				},
+				{
+					"id": "where_you_met_it",
+					"weight": 0.25,
+					"ideal": "I have been reading past this word for years and guessing it from context; I first noticed it printed on a label and never stopped to check."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 120,
+			"max_length": 600
+		}
+	},
+	{
+		"id": "how_does_it_work",
+		"title": "Find Out How One Thing in This Room Works",
+		"description": "Pick an object within arm's reach and find out what is actually happening inside it. Write down the part that surprised you.",
+		"icon": "mdi:cog-outline",
+		"color": "@teal",
+		"points": 20,
+		"duration_minutes": 20,
+		"tags": ["how_things_work"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			},
+			{
+				"type": "points",
+				"value": {
+					"greater_than_or_eq": 150
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "mechanism",
+					"weight": 0.5,
+					"ideal": "A fridge squeezes a refrigerant until it turns hot, dumps that heat out through the coils on the back, then lets it expand inside the box, where it gets cold and pulls the heat out of the food."
+				},
+				{
+					"id": "specific_object",
+					"weight": 0.25,
+					"ideal": "The thing I picked is the refrigerator humming in the corner of my kitchen, not appliances in general."
+				},
+				{
+					"id": "surprise",
+					"weight": 0.25,
+					"ideal": "The part I did not expect is that it never makes cold at all; it only moves heat out of the box and into the room, which is why the back is warm."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 150,
+			"max_length": 800
+		}
+	},
+	{
+		"id": "explain_it_out_loud",
+		"title": "Explain It Out Loud",
+		"description": "Say out loud how something you learned recently works, start to finish, to a room with nobody in it. No notes, and no skipping the part you are fuzzy on.",
+		"icon": "mdi:human-male-board",
+		"color": "@purple",
+		"points": 18,
+		"duration_minutes": 3,
+		"tags": ["teach"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			},
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "explanation",
+					"weight": 0.5,
+					"ideal": "Here is how the whole thing works, in order, from the first step to the last, with nothing quietly left out in the middle."
+				},
+				{
+					"id": "plain_language",
+					"weight": 0.3,
+					"ideal": "I am dropping the jargon and using everyday comparisons so somebody who has never heard of this can follow along."
+				},
+				{
+					"id": "own_understanding",
+					"weight": 0.2,
+					"ideal": "I am saying this from memory in my own words, and here is the one part I still do not really understand."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 45
+		}
+	},
+	{
+		"id": "scan_the_next_book",
+		"title": "Scan the Next Book You'll Read",
+		"description": "Find the book you keep meaning to start, turn it over, and scan the barcode on the back. Now it is on the record.",
+		"icon": "mdi:barcode-scan",
+		"color": "@indigo",
+		"points": 12,
+		"duration_minutes": 2,
+		"tags": ["books"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "book",
+			"require_checksum": true
+		}
+	}
+]

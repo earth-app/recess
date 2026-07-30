@@ -1,0 +1,62 @@
+[
+	{
+		"id": "dinner_tonight",
+		"question": "Do you know what you are eating tonight?",
+		"icon": "mdi:food-variant",
+		"color": "@orange",
+		"points": 6,
+		"tags": ["dinner"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [14, 20]
+				}
+			}
+		],
+		"actions": [
+			{
+				"label": "It's Already Planned",
+				"color": "@green"
+			},
+			{
+				"label": "No Idea Yet",
+				"color": "@gray"
+			},
+			{
+				"label": "I'll Work It Out Now",
+				"color": "@orange",
+				"icon": "mdi:pot-steam",
+				"leads_to": "cooking.create.something_from_nothing"
+			}
+		]
+	},
+	{
+		"id": "what_does_it_smell_like",
+		"question": "What does your kitchen smell like right now?",
+		"icon": "mdi:scent",
+		"color": "@coral",
+		"points": 9,
+		"tags": ["senses"],
+		"actions": [
+			{
+				"label": "Nothing at All",
+				"color": "@gray",
+				"icon": "mdi:pot-steam",
+				"leads_to": "cooking.create.something_from_nothing"
+			},
+			{
+				"label": "Last Night's Dinner",
+				"color": "@brown"
+			},
+			{
+				"label": "Burnt Toast",
+				"color": "@red"
+			},
+			{
+				"label": "Something Good",
+				"color": "@gold"
+			}
+		]
+	}
+]

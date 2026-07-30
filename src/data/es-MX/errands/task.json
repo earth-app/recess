@@ -1,0 +1,30 @@
+[
+	{
+		"id": "scan_something_youre_buying",
+		"title": "Escanea algo que estés comprando",
+		"description": "En la tiendita, apunta la cámara al código de barras de lo que ya traes en la mano. Solo revisamos que el código sea real, no qué es.",
+		"icon": "mdi:barcode-scan",
+		"color": "@teal",
+		"validation_type": "barcode",
+		"points": 10,
+		"tags": ["store"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 21]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_data": {
+			"kind": "retail",
+			"require_checksum": true
+		}
+	}
+]

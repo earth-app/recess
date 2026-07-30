@@ -1,0 +1,42 @@
+[
+	{
+		"id": "sound_of_your_home",
+		"prompt": "Quédate quieto en medio de tu casa, escucha veinte segundos y luego di en voz alta todo lo que oyes. Aquí dentro siempre hay algo funcionando.",
+		"icon": "mdi:waveform",
+		"color": "@teal",
+		"points": 15,
+		"duration_minutes": 2,
+		"tags": ["sound"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "inventory",
+					"weight": 0.6,
+					"ideal": "Oigo el refrigerador zumbando, un reloj que hace tic en algún lado, agua moviéndose en una tubería y un ventilador en otro cuarto."
+				},
+				{
+					"id": "attention",
+					"weight": 0.4,
+					"ideal": "Lo más fuerte es el refrigerador; debajo hay una tabla del piso que cruje y algo apenas audible afuera."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 15
+		}
+	}
+]

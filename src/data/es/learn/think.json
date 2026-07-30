@@ -1,0 +1,26 @@
+[
+	{
+		"id": "learned_wrong",
+		"prompt": "Piensa en algo que aprendiste de niño y que después resultó ser rotundamente falso. Alguien te lo dijo con total seguridad.",
+		"icon": "mdi:head-question-outline",
+		"color": "@indigo",
+		"points": 8,
+		"tags": ["facts"]
+	},
+	{
+		"id": "who_named_this",
+		"prompt": "Mira el objeto menos importante que tengas al alcance. Alguien se sentó en una reunión y discutió cómo llamarlo.",
+		"icon": "mdi:label-outline",
+		"color": "@gold",
+		"points": 5,
+		"tags": ["words"]
+	},
+	{
+		"id": "no_one_taught_you",
+		"prompt": "Elige algo que se te da bien y que nadie te enseñó. Reconstruye cómo lo aprendiste en realidad; hubo un primer día.",
+		"icon": "mdi:stairs-up",
+		"color": "@purple",
+		"points": 10,
+		"tags": ["teach"]
+	}
+]

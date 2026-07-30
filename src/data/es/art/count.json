@@ -1,0 +1,17 @@
+[
+	{
+		"id": "count_the_colors",
+		"prompt": "Cuenta los colores distintos que ves sin mover los pies. El beige y el blanco roto son dos colores.",
+		"unit": "colores",
+		"icon": "mdi:palette-swatch",
+		"color": "@purple",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["looking"],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 4,
+			"max": 60
+		}
+	}
+]

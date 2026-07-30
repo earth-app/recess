@@ -1,0 +1,17 @@
+[
+	{
+		"id": "things_you_cannot_name",
+		"prompt": "Look around wherever you are and count the objects you cannot name.",
+		"unit": "objects",
+		"icon": "mdi:help-circle-outline",
+		"color": "@gold",
+		"points": 12,
+		"duration_minutes": 3,
+		"tags": ["objects"],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 1,
+			"max": 40
+		}
+	}
+]

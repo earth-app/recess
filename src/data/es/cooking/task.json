@@ -1,0 +1,85 @@
+[
+	{
+		"id": "scan_the_mystery_tin",
+		"title": "Escanea la lata que no reconoces",
+		"description": "Ve a la despensa, busca la lata o el frasco que no recuerdas haber comprado y escanea su código de barras.",
+		"icon": "mdi:barcode-scan",
+		"color": "@brown",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["cupboard"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "retail",
+			"require_checksum": true
+		}
+	},
+	{
+		"id": "feed_someone_else",
+		"title": "Cocina para una persona más",
+		"description": "Haz suficiente para alguien que no lo esperaba y pásale un plato.",
+		"icon": "mdi:silverware-fork-knife",
+		"color": "@coral",
+		"points": 20,
+		"duration_minutes": 60,
+		"tags": ["feeding"],
+		"filters": [
+			{
+				"type": "weekday",
+				"value": {
+					"is": ["fri", "sat", "sun"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "write_down_the_recipe",
+		"title": "Escribe la receta que nunca escribiste",
+		"description": "La que cocinas de memoria. Cantidades, orden y la parte que siempre te sale mal.",
+		"icon": "mdi:notebook",
+		"color": "@orange",
+		"points": 14,
+		"duration_minutes": 15,
+		"tags": ["memory"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "ingredients",
+					"weight": 0.4,
+					"ideal": "Nombra los ingredientes con cantidades de verdad: dos latas de tomate, dos cebollas, una cabeza entera de ajo, una buena pizca de sal, aceite de oliva suficiente para cubrir el fondo de la olla."
+				},
+				{
+					"id": "steps_in_order",
+					"weight": 0.4,
+					"ideal": "Da los pasos en el orden en que los haces de verdad: primero ablandar las cebollas, agregar el ajo cuando se pongan translúcidas, después el tomate y luego cocer a fuego lento cuarenta minutos hasta que se oscurezca."
+				},
+				{
+					"id": "the_bit_you_get_wrong",
+					"weight": 0.2,
+					"ideal": "Admite la parte que sale mal: siempre echo el ajo demasiado pronto y se me quema, así que espera hasta que las cebollas estén blandas y dulces."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 160,
+			"max_length": 1200
+		}
+	}
+]

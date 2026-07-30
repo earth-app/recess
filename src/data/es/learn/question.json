@@ -1,0 +1,105 @@
+[
+	{
+		"id": "word_you_nod_at",
+		"question": "¿Cuál es una palabra a la que asientes y que nunca has buscado?",
+		"icon": "mdi:text-search",
+		"color": "@gold",
+		"points": 8,
+		"tags": ["words"],
+		"actions": [
+			{
+				"label": "Tengo una",
+				"color": "@gold",
+				"icon": "mdi:book-alphabet",
+				"leads_to": "learn.task.look_up_one_word"
+			},
+			{
+				"label": "Me sé todas",
+				"color": "@gray",
+				"icon": "mdi:emoticon-cool-outline"
+			},
+			{
+				"label": "Sospechosamente muchas",
+				"color": "@purple",
+				"icon": "mdi:help-circle-outline"
+			}
+		]
+	},
+	{
+		"id": "last_thing_you_looked_up",
+		"question": "¿Qué fue lo último que buscaste solo porque no lo sabías?",
+		"icon": "mdi:magnify",
+		"color": "@yellow",
+		"points": 5,
+		"tags": ["curiosity"],
+		"actions": [
+			{
+				"label": "Algo inútil",
+				"color": "@yellow",
+				"icon": "mdi:comment-question"
+			},
+			{
+				"label": "Algo práctico",
+				"color": "@teal",
+				"icon": "mdi:wrench"
+			},
+			{
+				"label": "No me viene nada",
+				"color": "@gray",
+				"icon": "mdi:cloud-question"
+			}
+		]
+	},
+	{
+		"id": "trust_the_fridge",
+		"question": "¿Sabes cómo hace frío tu refrigerador, o simplemente confías en él?",
+		"icon": "mdi:fridge-outline",
+		"color": "@teal",
+		"points": 10,
+		"tags": ["how_things_work"],
+		"actions": [
+			{
+				"label": "Lo podría explicar",
+				"color": "@teal",
+				"icon": "mdi:snowflake"
+			},
+			{
+				"label": "Confianza pura",
+				"color": "@indigo",
+				"icon": "mdi:hand-heart"
+			},
+			{
+				"label": "Lo averiguo ahora",
+				"color": "@gold",
+				"icon": "mdi:magnify",
+				"leads_to": "learn.task.how_does_it_work"
+			}
+		]
+	},
+	{
+		"id": "explain_without_notes",
+		"question": "¿Podrías explicar en voz alta, sin apuntes, algo que dices que entiendes?",
+		"icon": "mdi:comment-alert-outline",
+		"color": "@purple",
+		"points": 12,
+		"tags": ["teach"],
+		"actions": [
+			{
+				"label": "Sin problema",
+				"color": "@teal",
+				"icon": "mdi:emoticon-cool-outline"
+			},
+			{
+				"label": "Lo intento ahora",
+				"color": "@gold",
+				"icon": "mdi:microphone",
+				"leads_to": "learn.task.explain_it_out_loud"
+			},
+			{
+				"label": "Para nada",
+				"color": "@red",
+				"icon": "mdi:close-circle-outline"
+			}
+		]
+	}
+]

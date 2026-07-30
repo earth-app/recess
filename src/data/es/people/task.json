@@ -1,0 +1,107 @@
+[
+	{
+		"id": "say_hi",
+		"title": "¡Saluda!",
+		"description": "Saluda a alguien del barrio que no conozcas.",
+		"icon": "mdi:hand-wave",
+		"color": "@yellow",
+		"validation_type": "confirm",
+		"points": 10,
+		"tags": ["strangers"]
+	},
+	{
+		"id": "go_for_a_walk",
+		"title": "Sal a caminar",
+		"description": "Camina un rato afuera y respira aire fresco.",
+		"icon": "mdi:walk",
+		"color": "@green",
+		"validation_type": "confirm",
+		"points": 15,
+		"duration_minutes": 20,
+		"tags": ["outside"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dawn", "day", "dusk"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			}
+		]
+	},
+	{
+		"id": "help_someone",
+		"title": "Ayuda a alguien",
+		"description": "Ayuda a alguien con algo que tiene entre manos.",
+		"icon": "mdi:hand-heart",
+		"color": "@blue",
+		"validation_type": "confirm",
+		"points": 20,
+		"tags": ["kindness"]
+	},
+	{
+		"id": "call_someone",
+		"title": "Llama a alguien",
+		"description": "Elige a una persona, marca su número y usa tu voz de verdad. Escribir no cuenta.",
+		"icon": "mdi:phone",
+		"color": "@coral",
+		"validation_type": "confirm",
+		"points": 20,
+		"duration_minutes": 10,
+		"tags": ["voice"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"greater_than_or_eq": 9,
+					"less_than": 21
+				}
+			}
+		]
+	},
+	{
+		"id": "ask_about_nine",
+		"title": "Pregunta cómo era a los nueve",
+		"description": "Pregúntale a alguien cómo era a los nueve años y anota la parte que no te esperabas.",
+		"icon": "mdi:balloon",
+		"color": "@pink",
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "who",
+					"weight": 0.3,
+					"ideal": "Le pregunté a una compañera de trabajo cómo era a los nueve y habló diez minutos sin parar."
+				},
+				{
+					"id": "answer",
+					"weight": 0.4,
+					"ideal": "Me dijo que estaba obsesionada con los caballos, que se ponía la misma chaqueta roja todos los días y que le decía a todo el mundo que iba a ser veterinaria."
+				},
+				{
+					"id": "surprise",
+					"weight": 0.3,
+					"ideal": "Lo que no me esperaba es lo ruidosa que suena esa niña. La persona que conozco ahora es callada y mide cada cosa que hace."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 90
+		},
+		"points": 25,
+		"duration_minutes": 15,
+		"tags": ["conversation"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		]
+	}
+]

@@ -1,0 +1,52 @@
+[
+	{
+		"id": "crow_or_goose",
+		"prompt": "Who wins: a crow that has seen you before, or a goose that has not?",
+		"icon": "mdi:bird",
+		"color": "@brown",
+		"points": 5,
+		"tags": ["animals"],
+		"options": [
+			{
+				"text": "The Crow",
+				"color": "@gray",
+				"icon": "mdi:bird"
+			},
+			{
+				"text": "The Goose",
+				"color": "@lime",
+				"icon": "mdi:duck"
+			}
+		]
+	},
+	{
+		"id": "one_season_forever",
+		"prompt": "You get one season for the rest of your life. The other three are gone.",
+		"icon": "mdi:leaf-maple",
+		"color": "@gold",
+		"points": 8,
+		"tags": ["seasons"],
+		"options": [
+			{
+				"text": "Spring",
+				"color": "@lime",
+				"icon": "mdi:flower"
+			},
+			{
+				"text": "Summer",
+				"color": "@gold",
+				"icon": "mdi:white-balance-sunny"
+			},
+			{
+				"text": "Autumn",
+				"color": "@brown",
+				"icon": "mdi:leaf-maple"
+			},
+			{
+				"text": "Winter",
+				"color": "@blue",
+				"icon": "mdi:snowflake"
+			}
+		]
+	}
+]

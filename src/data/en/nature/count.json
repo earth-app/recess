@@ -1,0 +1,39 @@
+[
+	{
+		"id": "birds_in_five",
+		"prompt": "Stand still for five minutes and count every bird you see. One that flies past twice counts twice.",
+		"unit": "birds",
+		"icon": "mdi:binoculars",
+		"color": "@teal",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["birds"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			}
+		],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 40
+		}
+	},
+	{
+		"id": "green_from_here",
+		"prompt": "Count the living green things you can see from where you are standing. Weeds count. Plastic ones do not.",
+		"unit": "plants",
+		"icon": "mdi:sprout",
+		"color": "@lime",
+		"points": 5,
+		"tags": ["plants"],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 60
+		}
+	}
+]

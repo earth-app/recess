@@ -1,0 +1,118 @@
+[
+	{
+		"id": "say_what_you_hear",
+		"prompt": "Párate en un punto de tu propia ciudad donde nunca te hayas parado y di en voz alta lo que oyes. Treinta segundos; sigue incluso cuando se vuelva aburrido.",
+		"icon": "mdi:ear-hearing",
+		"color": "@purple",
+		"points": 18,
+		"duration_minutes": 15,
+		"tags": ["listen"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "sounds",
+					"weight": 0.45,
+					"ideal": "Oigo el tráfico pasando, un autobús frenando en algún punto detrás de mí, dos personas hablando y un ventilador zumbando en una rejilla encima de mi cabeza."
+				},
+				{
+					"id": "place",
+					"weight": 0.35,
+					"ideal": "Estoy parado en una esquina, al final de una calle por la que nunca había pasado, junto a un muro y una fila de autos estacionados."
+				},
+				{
+					"id": "unfamiliar",
+					"weight": 0.2,
+					"ideal": "Nunca vengo por aquí; he pasado en auto por el final de esta calle pero nunca me había parado en ella."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
+	},
+	{
+		"id": "view_from_new_spot",
+		"prompt": "Busca un punto desde el que nunca hayas tomado una foto y fotografía lo que tienes delante. No el cielo, no tus zapatos; la vista de verdad.",
+		"icon": "mdi:camera",
+		"color": "@lime",
+		"points": 22,
+		"duration_minutes": 30,
+		"tags": ["look"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dawn", "day", "dusk"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 45
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a street seen from the end of it",
+				"a photo of an outdoor view over rooftops",
+				"a photo of a road stretching into the distance",
+				"a photo of a town seen from a high spot"
+			],
+			"negative_labels": [
+				"a photo of the inside of a house",
+				"a photo of a person posing for a selfie",
+				"a screenshot of a map",
+				"a photo of a computer screen",
+				"a photo of the sky with nothing in it"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	}
+]

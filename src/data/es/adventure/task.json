@@ -1,0 +1,169 @@
+[
+	{
+		"id": "new_street",
+		"title": "Camina por una calle nueva",
+		"description": "Camina por una calle por la que nunca has caminado. Seguro está más cerca de lo que crees. Cuando vuelvas, anota dónde acabaste.",
+		"icon": "mdi:road-variant",
+		"color": "@blue",
+		"points": 20,
+		"duration_minutes": 25,
+		"tags": ["walk", "unfamiliar"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 40
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "where",
+					"weight": 0.45,
+					"ideal": "Me metí en una calle a dos calles de la mía por la que no había entrado nunca; dobla a la izquierda y termina sin salida detrás de un supermercado."
+				},
+				{
+					"id": "detail",
+					"weight": 0.35,
+					"ideal": "Había un porche con unos nueve carillones de viento colgados, un taller de reparaciones que no sabía que existía y una subida empinada a mitad de camino que no me esperaba."
+				},
+				{
+					"id": "unfamiliar",
+					"weight": 0.2,
+					"ideal": "Se me hizo raro estar tan cerca de mi propia puerta en un sitio que nunca había visto a pie."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 90
+		}
+	},
+	{
+		"id": "end_of_the_line",
+		"title": "Viaja hasta el final de la línea",
+		"description": "Súbete al autobús o al tren que para más cerca de ti y no te bajes hasta que deje de ir a ningún lado. Mira alrededor diez minutos, fotografía la última parada y vuelve.",
+		"icon": "mdi:bus",
+		"color": "@indigo",
+		"points": 30,
+		"duration_minutes": 120,
+		"tags": ["transit"],
+		"filters": [
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 180
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm", "any_snow"]
+				}
+			},
+			{
+				"type": "points",
+				"value": {
+					"greater_than_or_eq": 200
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a bus stop",
+				"a photo of a train station platform",
+				"a photo of a transit shelter beside a road",
+				"a photo of a parked bus at the end of its route"
+			],
+			"negative_labels": [
+				"a photo of the inside of a house",
+				"a screenshot of a map",
+				"a photo of a computer screen",
+				"a photo of a car dashboard"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "wrong_turn",
+		"title": "Da tres giros equivocados",
+		"description": "Sal por tu puerta y en las tres primeras esquinas gira hacia donde nunca giras. Después encuentra el camino de vuelta sin preguntarle al teléfono.",
+		"icon": "mdi:arrow-decision",
+		"color": "@teal",
+		"points": 16,
+		"duration_minutes": 30,
+		"tags": ["walk", "lost"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm", "heavy_rain"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 45
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "shop_you_always_pass",
+		"title": "Entra a la tienda por la que siempre pasas",
+		"description": "Esa por la que has pasado cien veces y a la que nunca has entrado. Entra. No tienes que comprar nada; solo tienes que averiguar qué hay dentro.",
+		"icon": "mdi:storefront",
+		"color": "@gold",
+		"points": 10,
+		"duration_minutes": 15,
+		"tags": ["unfamiliar", "doorway"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [9, 18]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	}
+]

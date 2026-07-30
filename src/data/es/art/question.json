@@ -1,0 +1,28 @@
+[
+	{
+		"id": "made_anything_today",
+		"question": "¿Has hecho algo hoy?",
+		"icon": "mdi:brush",
+		"color": "@purple",
+		"points": 5,
+		"tags": ["making"],
+		"actions": [
+			{
+				"label": "Sí, algo",
+				"color": "@green",
+				"icon": "mdi:check"
+			},
+			{
+				"label": "¿Cuenta un sándwich?",
+				"color": "@gold",
+				"icon": "mdi:food"
+			},
+			{
+				"label": "Todavía no; lo arreglo ahora",
+				"color": "@purple",
+				"icon": "mdi:hand-back-right",
+				"leads_to": "art.create.draw_your_hand"
+			}
+		]
+	}
+]

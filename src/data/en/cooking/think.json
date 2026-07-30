@@ -1,0 +1,10 @@
+[
+	{
+		"id": "the_meal_you_cannot_get_again",
+		"prompt": "Think about a meal you cannot get again; someone else cooked it, in a kitchen that is not there anymore. What was actually on the plate?",
+		"icon": "mdi:bread-slice",
+		"color": "@gold",
+		"points": 8,
+		"tags": ["memory"]
+	}
+]

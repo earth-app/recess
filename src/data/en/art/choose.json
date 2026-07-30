@@ -1,0 +1,47 @@
+[
+	{
+		"id": "pencil_or_pen",
+		"prompt": "One tool for the rest of your life: a pencil that never dulls, or a pen that never runs out.",
+		"icon": "mdi:pencil",
+		"color": "@purple",
+		"points": 5,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "The Endless Pencil",
+				"color": "@gold",
+				"icon": "mdi:pencil-outline"
+			},
+			{
+				"text": "The Endless Pen",
+				"color": "@indigo",
+				"icon": "mdi:pen"
+			}
+		]
+	},
+	{
+		"id": "museum_or_hardware_store",
+		"prompt": "Which building has more art in it: a museum or a hardware store?",
+		"icon": "mdi:bank",
+		"color": "@coral",
+		"points": 8,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "The Museum",
+				"color": "@purple",
+				"icon": "mdi:bank"
+			},
+			{
+				"text": "The Hardware Store",
+				"color": "@brown",
+				"icon": "mdi:screwdriver"
+			},
+			{
+				"text": "Depends on the Hardware Store",
+				"color": "@gray",
+				"icon": "mdi:help"
+			}
+		]
+	}
+]

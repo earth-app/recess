@@ -1,0 +1,169 @@
+[
+	{
+		"id": "new_street",
+		"title": "Walk Down a New Street",
+		"description": "Walk down a street you have never walked down. It is probably closer than you think. When you get back, write down where you ended up.",
+		"icon": "mdi:road-variant",
+		"color": "@blue",
+		"points": 20,
+		"duration_minutes": 25,
+		"tags": ["walk", "unfamiliar"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 40
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "where",
+					"weight": 0.45,
+					"ideal": "I turned into a road two streets over from mine that I had never once walked into; it bends left and dead ends behind the back of a supermarket."
+				},
+				{
+					"id": "detail",
+					"weight": 0.35,
+					"ideal": "There was a porch with about nine wind chimes on it, a repair shop I never knew existed, and a steep bit halfway along that I did not expect."
+				},
+				{
+					"id": "unfamiliar",
+					"weight": 0.2,
+					"ideal": "It was odd being somewhere this close to my own door that I had never actually seen on foot before."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 90
+		}
+	},
+	{
+		"id": "end_of_the_line",
+		"title": "Ride to the End of the Line",
+		"description": "Get on the bus or train that stops nearest you and stay on until it stops going anywhere. Look around for ten minutes, photograph the last stop, then come back.",
+		"icon": "mdi:bus",
+		"color": "@indigo",
+		"points": 30,
+		"duration_minutes": 120,
+		"tags": ["transit"],
+		"filters": [
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 180
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm", "any_snow"]
+				}
+			},
+			{
+				"type": "points",
+				"value": {
+					"greater_than_or_eq": 200
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a bus stop",
+				"a photo of a train station platform",
+				"a photo of a transit shelter beside a road",
+				"a photo of a parked bus at the end of its route"
+			],
+			"negative_labels": [
+				"a photo of the inside of a house",
+				"a screenshot of a map",
+				"a photo of a computer screen",
+				"a photo of a car dashboard"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "wrong_turn",
+		"title": "Take Three Wrong Turns",
+		"description": "Leave your door, and at the first three corners turn the way you never turn. Then find your own way back without asking your phone.",
+		"icon": "mdi:arrow-decision",
+		"color": "@teal",
+		"points": 16,
+		"duration_minutes": 30,
+		"tags": ["walk", "lost"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm", "heavy_rain"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 45
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "shop_you_always_pass",
+		"title": "Go Into the Shop You Always Pass",
+		"description": "The one you have walked past a hundred times and never once entered. Go in. You do not have to buy anything; you just have to find out what is in there.",
+		"icon": "mdi:storefront",
+		"color": "@gold",
+		"points": 10,
+		"duration_minutes": 15,
+		"tags": ["unfamiliar", "doorway"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [9, 18]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	}
+]

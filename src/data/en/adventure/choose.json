@@ -1,0 +1,73 @@
+[
+	{
+		"id": "blind_direction",
+		"prompt": "Pick a direction and walk that way for fifteen minutes before you let yourself turn. Choose now, before you think about what is over there.",
+		"icon": "mdi:compass-outline",
+		"color": "@blue",
+		"points": 14,
+		"duration_minutes": 35,
+		"tags": ["walk", "decide"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 45
+				}
+			}
+		],
+		"options": [
+			{
+				"text": "North",
+				"color": "@blue",
+				"icon": "mdi:arrow-up-bold"
+			},
+			{
+				"text": "East",
+				"color": "@teal",
+				"icon": "mdi:arrow-right-bold"
+			},
+			{
+				"text": "South",
+				"color": "@gold",
+				"icon": "mdi:arrow-down-bold"
+			},
+			{
+				"text": "West",
+				"color": "@indigo",
+				"icon": "mdi:arrow-left-bold"
+			}
+		]
+	},
+	{
+		"id": "lost_or_late",
+		"prompt": "Would you rather be lost for an hour somewhere new, or forty minutes early to somewhere you have been a hundred times?",
+		"icon": "mdi:map-marker-off-outline",
+		"color": "@purple",
+		"points": 6,
+		"tags": ["lost", "hypothetical"],
+		"options": [
+			{
+				"text": "Lost for an Hour",
+				"color": "@purple",
+				"icon": "mdi:map-marker-question"
+			},
+			{
+				"text": "Early and Bored",
+				"color": "@gray",
+				"icon": "mdi:clock-alert-outline"
+			}
+		]
+	}
+]

@@ -1,0 +1,42 @@
+[
+	{
+		"id": "how_or_what",
+		"prompt": "¿Prefieres entender cómo funciona todo o memorizar todos los datos?",
+		"icon": "mdi:cog",
+		"color": "@teal",
+		"points": 8,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Entender cómo",
+				"color": "@teal",
+				"icon": "mdi:cog-outline"
+			},
+			{
+				"text": "Saberme todos los datos",
+				"color": "@gold",
+				"icon": "mdi:book-open-variant"
+			}
+		]
+	},
+	{
+		"id": "useless_expert",
+		"prompt": "¿Prefieres ser experto en una cosa que nunca vas a usar, o principiante eterno en todo?",
+		"icon": "mdi:trophy-outline",
+		"color": "@purple",
+		"points": 12,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Experto en algo inútil",
+				"color": "@purple",
+				"icon": "mdi:medal-outline"
+			},
+			{
+				"text": "Principiante en todo",
+				"color": "@lime",
+				"icon": "mdi:seed-outline"
+			}
+		]
+	}
+]

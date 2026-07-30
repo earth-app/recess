@@ -1,0 +1,47 @@
+[
+	{
+		"id": "describe_the_ugliest_thing",
+		"prompt": "Busca el objeto más feo que tengas al alcance del brazo y descríbelo en voz alta durante treinta segundos. Forma, textura, color, por qué.",
+		"icon": "mdi:microphone",
+		"color": "@coral",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["looking"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "object",
+					"weight": 0.35,
+					"ideal": "Lo que estoy viendo es un cargador de plástico rayado, con una patita doblada y una etiqueta que se despega de una esquina."
+				},
+				{
+					"id": "texture",
+					"weight": 0.35,
+					"ideal": "La superficie está áspera en unas partes y resbalosa en otras, los bordes están picados, y todo se puso amarillo con los años."
+				},
+				{
+					"id": "judgement",
+					"weight": 0.3,
+					"ideal": "Es feo porque nadie decidió cómo debía verse; la forma salió de la máquina que lo hizo, no de una persona."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
+	}
+]

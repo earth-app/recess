@@ -1,0 +1,146 @@
+[
+	{
+		"id": "barefoot_grass",
+		"title": "Quítate los zapatos afuera",
+		"description": "Párate sobre pasto, tierra o arena sin nada en medio. Con treinta segundos basta.",
+		"icon": "mdi:grass",
+		"color": "@lime",
+		"points": 8,
+		"duration_minutes": 2,
+		"tags": ["grass"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is_not": ["winter"]
+				}
+			},
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "temperature",
+				"value": {
+					"greater_than": 10
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "same_tree",
+		"title": "Adopta un árbol",
+		"description": "Elige un árbol al que puedas llegar caminando y fotografíalo. Ya es tu árbol; vuelve en un mes y habrá cambiado sin pedirte permiso.",
+		"icon": "mdi:tree",
+		"color": "@green",
+		"points": 15,
+		"duration_minutes": 10,
+		"tags": ["trees"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a single tree outdoors",
+				"a photo of a tree trunk and branches",
+				"a photo of a large tree in daylight"
+			],
+			"negative_labels": [
+				"a photo of an indoor houseplant",
+				"a screenshot of a screen",
+				"a photo of an empty street",
+				"a photo of a person posing"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "weather_report",
+		"title": "Reporta el clima sin un solo número",
+		"description": "Escribe qué está haciendo el día allá afuera sin usar un solo número. Sin grados, sin porcentajes, sin velocidad del viento; solo lo que te dicen la piel y los oídos.",
+		"icon": "mdi:weather-cloudy",
+		"color": "@gold",
+		"points": 20,
+		"duration_minutes": 10,
+		"tags": ["weather"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "evidence_from_the_body",
+					"weight": 0.5,
+					"ideal": "Sé que hace frío porque me arden las orejas y los charcos tienen una capa de hielo encima."
+				},
+				{
+					"id": "sky_and_wind",
+					"weight": 0.5,
+					"ideal": "Las nubes van bajas y rápido, y el viento no deja de empujar las copas de los árboles."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 120,
+			"max_length": 800
+		}
+	},
+	{
+		"id": "night_walk_no_phone",
+		"title": "Camina afuera ya de noche",
+		"description": "Deja el podcast en casa y camina con la pantalla apagada. Tus ojos tardan unos quince minutos en pasarse a visión nocturna, así que la primera mitad es la mitad aburrida.",
+		"icon": "mdi:weather-night",
+		"color": "@blue",
+		"points": 25,
+		"duration_minutes": 20,
+		"tags": ["night"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dusk", "night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm", "any_freezing"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	}
+]

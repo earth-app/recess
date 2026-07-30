@@ -1,0 +1,63 @@
+[
+	{
+		"id": "picnic_or_hike",
+		"prompt": "Would you rather have a picnic in the park or go for a hike in the mountains?",
+		"icon": "mdi:pine-tree",
+		"color": "@green",
+		"points": 5,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Picnic in the Park",
+				"color": "@yellow"
+			},
+			{
+				"text": "Hike in the Mountains",
+				"color": "@blue"
+			}
+		]
+	},
+	{
+		"id": "hundred_friends",
+		"prompt": "Is 100 friends too many or not enough?",
+		"icon": "mdi:account-group",
+		"color": "@blue",
+		"points": 10,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Too Many",
+				"color": "@red"
+			},
+			{
+				"text": "Not Enough",
+				"color": "@blue"
+			}
+		]
+	},
+	{
+		"id": "held_door",
+		"prompt": "A stranger holds a door for you and you are still six steps away. What do you do?",
+		"icon": "mdi:door",
+		"color": "@yellow",
+		"points": 5,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Jog the Six Steps",
+				"color": "@coral",
+				"icon": "mdi:run"
+			},
+			{
+				"text": "Walk Normally and Wave",
+				"color": "@yellow",
+				"icon": "mdi:hand-wave"
+			},
+			{
+				"text": "Speed Walk, No Eye Contact",
+				"color": "@blue",
+				"icon": "mdi:walk"
+			}
+		]
+	}
+]

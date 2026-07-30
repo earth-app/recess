@@ -1,0 +1,17 @@
+[
+	{
+		"id": "things_on_the_floor",
+		"prompt": "Walk one lap of your home and count the things on the floor that do not live on the floor.",
+		"unit": "things",
+		"icon": "mdi:counter",
+		"color": "@coral",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["stuff", "tidy"],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 60
+		}
+	}
+]

@@ -1,0 +1,22 @@
+[
+	{
+		"id": "stairs_or_lift",
+		"prompt": "The stairs and the lift are right next to each other. Which one gets you today?",
+		"icon": "mdi:stairs",
+		"color": "@orange",
+		"points": 5,
+		"tags": ["stairs"],
+		"options": [
+			{
+				"text": "The Stairs",
+				"color": "@lime",
+				"icon": "mdi:stairs-up"
+			},
+			{
+				"text": "The Lift, Honestly",
+				"color": "@gray",
+				"icon": "mdi:elevator"
+			}
+		]
+	}
+]

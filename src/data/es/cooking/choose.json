@@ -1,0 +1,51 @@
+[
+	{
+		"id": "salt_the_water",
+		"prompt": "El agua de la pasta: ¿la salas antes de que hierva o después?",
+		"icon": "mdi:shaker-outline",
+		"color": "@lime",
+		"points": 4,
+		"tags": ["opinion"],
+		"options": [
+			{
+				"text": "Antes",
+				"color": "@lime"
+			},
+			{
+				"text": "Después",
+				"color": "@teal"
+			},
+			{
+				"text": "Nunca la he salado",
+				"color": "@gray"
+			}
+		]
+	},
+	{
+		"id": "one_condiment_forever",
+		"prompt": "Un solo condimento para el resto de tu vida. ¿Cuál bajas de la estantería?",
+		"icon": "mdi:soy-sauce",
+		"color": "@red",
+		"points": 6,
+		"tags": ["opinion"],
+		"options": [
+			{
+				"text": "Salsa picante",
+				"color": "@red",
+				"icon": "mdi:chili-mild"
+			},
+			{
+				"text": "Salsa de soya",
+				"color": "@brown"
+			},
+			{
+				"text": "Mostaza",
+				"color": "@gold"
+			},
+			{
+				"text": "Mayonesa",
+				"color": "@yellow"
+			}
+		]
+	}
+]

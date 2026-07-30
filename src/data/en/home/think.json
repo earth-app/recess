@@ -1,0 +1,28 @@
+[
+	{
+		"id": "room_you_live_in",
+		"prompt": "Which room in here do you actually live in? Not the one you would show a guest.",
+		"icon": "mdi:sofa",
+		"color": "@coral",
+		"points": 5,
+		"tags": ["place"]
+	},
+	{
+		"id": "oldest_thing_here",
+		"prompt": "Find the oldest object in your home. Not the most valuable; the oldest. Work out how it got here.",
+		"icon": "mdi:archive-outline",
+		"color": "@brown",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["stuff"]
+	},
+	{
+		"id": "doing_nothing_on_purpose",
+		"prompt": "Do nothing on purpose for three minutes. Not resting, not scrolling; nothing. Notice how long three minutes is.",
+		"icon": "mdi:timer-sand",
+		"color": "@purple",
+		"points": 8,
+		"duration_minutes": 3,
+		"tags": ["rest"]
+	}
+]

@@ -1,0 +1,18 @@
+[
+	{
+		"id": "bad_art_you_love",
+		"prompt": "Think of a song or a movie everyone agrees is bad that you like anyway. Do not build a defense for it. Just like it.",
+		"icon": "mdi:music-note",
+		"color": "@pink",
+		"points": 6,
+		"tags": ["taste"]
+	},
+	{
+		"id": "the_unfinished_pile",
+		"prompt": "Count the projects you quit on. Pick the one you would actually finish, and pick the day you would do it.",
+		"icon": "mdi:tray-full",
+		"color": "@brown",
+		"points": 8,
+		"tags": ["unfinished"]
+	}
+]

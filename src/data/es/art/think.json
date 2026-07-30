@@ -1,0 +1,18 @@
+[
+	{
+		"id": "bad_art_you_love",
+		"prompt": "Piensa en una canción o una película que todo el mundo coincide en que es mala y que a ti te gusta igual. No armes una defensa. Solo que te guste.",
+		"icon": "mdi:music-note",
+		"color": "@pink",
+		"points": 6,
+		"tags": ["taste"]
+	},
+	{
+		"id": "the_unfinished_pile",
+		"prompt": "Cuenta los proyectos que dejaste a medias. Elige el que sí terminarías, y elige el día en que lo harías.",
+		"icon": "mdi:tray-full",
+		"color": "@brown",
+		"points": 8,
+		"tags": ["unfinished"]
+	}
+]

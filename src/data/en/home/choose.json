@@ -1,0 +1,55 @@
+[
+	{
+		"id": "lamp_or_ceiling",
+		"prompt": "It is getting dark. The overhead light, or one lamp in the corner?",
+		"icon": "mdi:lamp",
+		"color": "@gold",
+		"points": 5,
+		"tags": ["light"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dusk", "night"]
+				}
+			}
+		],
+		"options": [
+			{
+				"text": "The Overhead Light",
+				"color": "@gold",
+				"icon": "mdi:ceiling-light"
+			},
+			{
+				"text": "One Lamp in the Corner",
+				"color": "@orange",
+				"icon": "mdi:lamp"
+			}
+		]
+	},
+	{
+		"id": "dishes_or_sit",
+		"prompt": "Ten free minutes at home. Do the dishes, or leave them and sit down?",
+		"icon": "mdi:dishwasher",
+		"color": "@teal",
+		"points": 10,
+		"tags": ["tidy"],
+		"options": [
+			{
+				"text": "Do the Dishes",
+				"color": "@teal",
+				"icon": "mdi:dishwasher"
+			},
+			{
+				"text": "Leave Them and Sit Down",
+				"color": "@coral",
+				"icon": "mdi:sofa-single"
+			},
+			{
+				"text": "Move Them to the Sink and Sit Down",
+				"color": "@orange",
+				"icon": "mdi:water-outline"
+			}
+		]
+	}
+]

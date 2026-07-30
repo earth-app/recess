@@ -1,0 +1,45 @@
+[
+	{
+		"id": "flights_of_stairs",
+		"prompt": "Take the stairs everywhere today and count the flights. The lift will manage without you.",
+		"unit": "flights",
+		"icon": "mdi:stairs-up",
+		"color": "@orange",
+		"validation_type": "count",
+		"validation_data": {
+			"min": 1,
+			"max": 40
+		},
+		"points": 14,
+		"tags": ["stairs", "counting"]
+	},
+	{
+		"id": "dogs_on_a_walk",
+		"prompt": "Go for a walk and count the dogs you pass. Cats count too, but only in your heart.",
+		"unit": "dogs",
+		"icon": "mdi:dog-side",
+		"color": "@coral",
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 30
+		},
+		"points": 20,
+		"duration_minutes": 25,
+		"tags": ["walk", "counting"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than": 30
+				}
+			}
+		]
+	}
+]

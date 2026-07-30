@@ -1,0 +1,29 @@
+[
+	{
+		"id": "one_condiment_forever",
+		"prompt": "Una salsa para el resto de tu vida. ¿Cuál se queda?",
+		"icon": "mdi:soy-sauce",
+		"color": "@red",
+		"points": 6,
+		"tags": ["opinion"],
+		"options": [
+			{
+				"text": "Valentina",
+				"color": "@red",
+				"icon": "mdi:chili-mild"
+			},
+			{
+				"text": "Salsa verde de molcajete",
+				"color": "@lime"
+			},
+			{
+				"text": "Chile de árbol",
+				"color": "@orange"
+			},
+			{
+				"text": "Limón y sal",
+				"color": "@gold"
+			}
+		]
+	}
+]

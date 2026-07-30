@@ -1,0 +1,47 @@
+[
+	{
+		"id": "pencil_or_pen",
+		"prompt": "Una sola herramienta para el resto de tu vida: un lápiz que nunca se despunta, o un bolígrafo que nunca se acaba.",
+		"icon": "mdi:pencil",
+		"color": "@purple",
+		"points": 5,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "El lápiz infinito",
+				"color": "@gold",
+				"icon": "mdi:pencil-outline"
+			},
+			{
+				"text": "El bolígrafo infinito",
+				"color": "@indigo",
+				"icon": "mdi:pen"
+			}
+		]
+	},
+	{
+		"id": "museum_or_hardware_store",
+		"prompt": "¿Qué edificio tiene más arte adentro: un museo o una ferretería?",
+		"icon": "mdi:bank",
+		"color": "@coral",
+		"points": 8,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "El museo",
+				"color": "@purple",
+				"icon": "mdi:bank"
+			},
+			{
+				"text": "La ferretería",
+				"color": "@brown",
+				"icon": "mdi:screwdriver"
+			},
+			{
+				"text": "Depende de la ferretería",
+				"color": "@gray",
+				"icon": "mdi:help"
+			}
+		]
+	}
+]

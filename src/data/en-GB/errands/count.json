@@ -1,0 +1,17 @@
+[
+	{
+		"id": "unopened_post",
+		"prompt": "Count the unopened post in your home. Envelopes only; the junk counts.",
+		"unit": "envelopes",
+		"icon": "mdi:email-multiple-outline",
+		"color": "@brown",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["mail"],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 40
+		}
+	}
+]

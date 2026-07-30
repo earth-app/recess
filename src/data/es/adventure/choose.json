@@ -1,0 +1,73 @@
+[
+	{
+		"id": "blind_direction",
+		"prompt": "Elige una dirección y camina hacia allá quince minutos antes de permitirte girar. Elige ya, antes de pensar en qué hay por ese lado.",
+		"icon": "mdi:compass-outline",
+		"color": "@blue",
+		"points": 14,
+		"duration_minutes": 35,
+		"tags": ["walk", "decide"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 45
+				}
+			}
+		],
+		"options": [
+			{
+				"text": "Norte",
+				"color": "@blue",
+				"icon": "mdi:arrow-up-bold"
+			},
+			{
+				"text": "Este",
+				"color": "@teal",
+				"icon": "mdi:arrow-right-bold"
+			},
+			{
+				"text": "Sur",
+				"color": "@gold",
+				"icon": "mdi:arrow-down-bold"
+			},
+			{
+				"text": "Oeste",
+				"color": "@indigo",
+				"icon": "mdi:arrow-left-bold"
+			}
+		]
+	},
+	{
+		"id": "lost_or_late",
+		"prompt": "¿Prefieres estar perdido una hora en un lugar nuevo, o llegar cuarenta minutos antes a un lugar donde ya estuviste cien veces?",
+		"icon": "mdi:map-marker-off-outline",
+		"color": "@purple",
+		"points": 6,
+		"tags": ["lost", "hypothetical"],
+		"options": [
+			{
+				"text": "Perdido una hora",
+				"color": "@purple",
+				"icon": "mdi:map-marker-question"
+			},
+			{
+				"text": "Temprano y aburrido",
+				"color": "@gray",
+				"icon": "mdi:clock-alert-outline"
+			}
+		]
+	}
+]

@@ -1,0 +1,61 @@
+[
+	{
+		"id": "what_are_you_putting_off",
+		"question": "What are you putting off right now?",
+		"icon": "mdi:timer-sand",
+		"color": "@gray",
+		"points": 12,
+		"tags": ["overdue"],
+		"actions": [
+			{
+				"label": "A Phone Call",
+				"color": "@gray",
+				"icon": "mdi:phone-outline",
+				"leads_to": "errands.task.moved_to_tomorrow"
+			},
+			{
+				"label": "Something at a Shop",
+				"color": "@teal",
+				"icon": "mdi:cart-outline",
+				"leads_to": "errands.task.scan_something_youre_buying"
+			},
+			{
+				"label": "Giving Something Back",
+				"color": "@indigo",
+				"icon": "mdi:package-variant-closed",
+				"leads_to": "errands.task.scan_the_book_you_owe"
+			},
+			{
+				"label": "Nothing, Genuinely",
+				"color": "@green",
+				"icon": "mdi:check-circle-outline"
+			}
+		]
+	},
+	{
+		"id": "the_returns_pile",
+		"question": "Is something in your home right now the property of a shop, a library, or a friend?",
+		"icon": "mdi:swap-horizontal",
+		"color": "@indigo",
+		"points": 10,
+		"tags": ["return"],
+		"actions": [
+			{
+				"label": "Yes, and I Know Where It Is",
+				"color": "@orange",
+				"icon": "mdi:package-variant-closed",
+				"leads_to": "errands.task.scan_the_book_you_owe"
+			},
+			{
+				"label": "Yes, Somewhere",
+				"color": "@gray",
+				"icon": "mdi:magnify"
+			},
+			{
+				"label": "Nothing; All Mine",
+				"color": "@green",
+				"icon": "mdi:check-circle-outline"
+			}
+		]
+	}
+]

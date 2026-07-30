@@ -1,0 +1,26 @@
+[
+	{
+		"id": "oldest_living_thing",
+		"prompt": "What is the oldest living thing you have ever stood next to? Trees do not mention it, and most of them outlive whoever planted them.",
+		"icon": "mdi:pine-tree",
+		"color": "@brown",
+		"points": 5,
+		"tags": ["trees"]
+	},
+	{
+		"id": "last_wild_animal",
+		"prompt": "Some animal saw you today before you saw it, and you will never find out which one. Sit with that for a minute.",
+		"icon": "mdi:paw",
+		"color": "@green",
+		"points": 10,
+		"tags": ["animals"]
+	},
+	{
+		"id": "weather_you_hate",
+		"prompt": "Pick the weather you complain about most. Something out there is having the best day of its life in it.",
+		"icon": "mdi:umbrella",
+		"color": "@teal",
+		"points": 8,
+		"tags": ["weather"]
+	}
+]

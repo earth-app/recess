@@ -1,0 +1,30 @@
+[
+	{
+		"id": "one_condiment_forever",
+		"prompt": "One condiment for the rest of your life. Which one comes off the shelf?",
+		"icon": "mdi:soy-sauce",
+		"color": "@red",
+		"points": 6,
+		"tags": ["opinion"],
+		"options": [
+			{
+				"text": "Brown Sauce",
+				"color": "@brown"
+			},
+			{
+				"text": "Salad Cream",
+				"color": "@yellow"
+			},
+			{
+				"text": "Marmite",
+				"color": "@brown",
+				"icon": "mdi:bread-slice"
+			},
+			{
+				"text": "Hot Sauce",
+				"color": "@red",
+				"icon": "mdi:chili-mild"
+			}
+		]
+	}
+]

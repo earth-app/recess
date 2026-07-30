@@ -1,0 +1,17 @@
+[
+	{
+		"id": "things_on_the_floor",
+		"prompt": "Da una vuelta por tu casa y cuenta las cosas que están en el suelo y no viven en el suelo.",
+		"unit": "cosas",
+		"icon": "mdi:counter",
+		"color": "@coral",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["stuff", "tidy"],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 60
+		}
+	}
+]

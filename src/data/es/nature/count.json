@@ -1,0 +1,39 @@
+[
+	{
+		"id": "birds_in_five",
+		"prompt": "Quédate quieto cinco minutos y cuenta cada ave que veas. Si una pasa dos veces, vale por dos.",
+		"unit": "aves",
+		"icon": "mdi:binoculars",
+		"color": "@teal",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["birds"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			}
+		],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 40
+		}
+	},
+	{
+		"id": "green_from_here",
+		"prompt": "Cuenta las cosas verdes y vivas que ves desde donde estás parado. La maleza cuenta. Las de plástico no.",
+		"unit": "plantas",
+		"icon": "mdi:sprout",
+		"color": "@lime",
+		"points": 5,
+		"tags": ["plants"],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 60
+		}
+	}
+]

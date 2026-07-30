@@ -1,0 +1,85 @@
+[
+	{
+		"id": "scan_the_mystery_tin",
+		"title": "Scan the Tin You Cannot Identify",
+		"description": "Go to the cupboard, find the tin or jar you do not remember buying, and scan its barcode.",
+		"icon": "mdi:barcode-scan",
+		"color": "@brown",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["cupboard"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "retail",
+			"require_checksum": true
+		}
+	},
+	{
+		"id": "feed_someone_else",
+		"title": "Cook for One More Person",
+		"description": "Make enough for someone who was not expecting it, then hand them a plate.",
+		"icon": "mdi:silverware-fork-knife",
+		"color": "@coral",
+		"points": 20,
+		"duration_minutes": 60,
+		"tags": ["feeding"],
+		"filters": [
+			{
+				"type": "weekday",
+				"value": {
+					"is": ["fri", "sat", "sun"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "write_down_the_recipe",
+		"title": "Write Down the Recipe You Never Wrote Down",
+		"description": "The one you cook from memory. Amounts, order, and the bit you always get wrong.",
+		"icon": "mdi:notebook",
+		"color": "@orange",
+		"points": 14,
+		"duration_minutes": 15,
+		"tags": ["memory"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "ingredients",
+					"weight": 0.4,
+					"ideal": "It names the ingredients with real amounts: two tins of tomatoes, two onions, a whole head of garlic, a big pinch of salt, enough olive oil to cover the bottom of the pan."
+				},
+				{
+					"id": "steps_in_order",
+					"weight": 0.4,
+					"ideal": "It gives the steps in the order you actually do them: soften the onions first, add the garlic once they turn translucent, then the tomatoes, then simmer for forty minutes until it goes dark."
+				},
+				{
+					"id": "the_bit_you_get_wrong",
+					"weight": 0.2,
+					"ideal": "It admits the part that goes wrong: I always put the garlic in too early and burn it, so wait until the onions have gone soft and sweet."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 160,
+			"max_length": 1200
+		}
+	}
+]

@@ -1,0 +1,76 @@
+[
+	{
+		"id": "describe_a_color",
+		"title": "Describe un color",
+		"description": "Elige un color que puedas ver y descríbelo a alguien que nunca lo ha visto. No tienes permiso de nombrar ningún color.",
+		"icon": "mdi:palette",
+		"color": "@purple",
+		"points": 15,
+		"duration_minutes": 10,
+		"tags": ["writing"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "sensory",
+					"weight": 0.4,
+					"ideal": "Se siente como el interior de un tubo frío, o como morder papel aluminio, o como los diez segundos antes de que caiga la tormenta."
+				},
+				{
+					"id": "specific",
+					"weight": 0.35,
+					"ideal": "Es el tono de las sillas de plástico de una sala de espera vieja, apagado y un poco grasoso bajo un tubo de luz que titila."
+				},
+				{
+					"id": "no_color_words",
+					"weight": 0.25,
+					"ideal": "Nunca digo el nombre del color; describo su temperatura, su textura, su peso y el sonido que haría."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 120
+		}
+	},
+	{
+		"id": "finish_the_abandoned_thing",
+		"title": "Termina lo que dejaste a medias",
+		"description": "Saca un proyecto que abandonaste y trabájalo hasta terminarlo, o hasta que se acaben los 45 minutos.",
+		"icon": "mdi:progress-check",
+		"color": "@brown",
+		"points": 24,
+		"duration_minutes": 45,
+		"tags": ["unfinished"],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "scan_an_art_book",
+		"title": "Escanea un libro de arte",
+		"description": "Busca un libro que tenga arte adentro y escanea el código de barras de la contraportada. Después ábrelo en una página al azar y mírala un minuto entero.",
+		"icon": "mdi:barcode-scan",
+		"color": "@gold",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["looking"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "book",
+			"require_checksum": true
+		}
+	}
+]

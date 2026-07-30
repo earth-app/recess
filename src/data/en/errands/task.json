@@ -1,0 +1,118 @@
+[
+	{
+		"id": "moved_to_tomorrow",
+		"title": "Do the Thing You Moved to Tomorrow",
+		"description": "You have pushed it to tomorrow three times now. It is probably eleven minutes long.",
+		"icon": "mdi:calendar-clock",
+		"color": "@brown",
+		"validation_type": "confirm",
+		"points": 25,
+		"duration_minutes": 20,
+		"tags": ["overdue"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 20]
+				}
+			}
+		]
+	},
+	{
+		"id": "scan_something_youre_buying",
+		"title": "Scan Something You're Buying",
+		"description": "At the store, point the camera at the barcode of whatever is already in your hand. We only check the barcode is real, not what it is.",
+		"icon": "mdi:barcode-scan",
+		"color": "@teal",
+		"validation_type": "barcode",
+		"points": 10,
+		"tags": ["store"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 21]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_data": {
+			"kind": "retail",
+			"require_checksum": true
+		}
+	},
+	{
+		"id": "scan_the_book_you_owe",
+		"title": "Scan the Book You Owe Someone",
+		"description": "The library copy, or the paperback a friend lent you in spring. Scan the barcode on the back, then put it by the door.",
+		"icon": "mdi:book-arrow-left",
+		"color": "@indigo",
+		"validation_type": "barcode",
+		"points": 15,
+		"duration_minutes": 5,
+		"tags": ["return"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_data": {
+			"kind": "book",
+			"require_checksum": true
+		}
+	},
+	{
+		"id": "put_it_by_the_door",
+		"title": "Put It by the Door",
+		"description": "Whatever has to leave the house tomorrow, set it on the floor in front of the door and photograph it there.",
+		"icon": "mdi:door-closed",
+		"color": "@orange",
+		"validation_type": "photo",
+		"points": 20,
+		"duration_minutes": 5,
+		"tags": ["post"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dusk", "night"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_data": {
+			"labels": [
+				"a photo of a parcel and a bag on the floor by a front door",
+				"a photo of an addressed envelope in front of a door",
+				"a photo of items stacked in a doorway ready to leave"
+			],
+			"negative_labels": [
+				"a photo of an empty hallway with a bare floor",
+				"a photo of a person posing indoors",
+				"a photo of a shop shelf",
+				"a screenshot of a phone screen"
+			],
+			"threshold": 0.58,
+			"require_fresh_exif": true
+		}
+	}
+]

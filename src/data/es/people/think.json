@@ -1,0 +1,26 @@
+[
+	{
+		"id": "made_someone_happy",
+		"prompt": "Piensa en una vez que hiciste feliz a otra persona. ¿Cómo te sentiste?",
+		"icon": "mdi:star",
+		"color": "@gold",
+		"points": 5,
+		"tags": ["kindness"]
+	},
+	{
+		"id": "name_the_neighbors",
+		"prompt": "Di en voz alta los nombres de tus vecinos, puerta por puerta. Fíjate en dónde te quedas sin nombres.",
+		"icon": "mdi:home-group",
+		"color": "@coral",
+		"points": 15,
+		"tags": ["neighbors"]
+	},
+	{
+		"id": "who_taught_you",
+		"prompt": "Alguien te enseñó algo que usas cada semana y no tiene ni idea de que lo hizo. ¿Quién fue y qué te enseñó?",
+		"icon": "mdi:school-outline",
+		"color": "@pink",
+		"points": 12,
+		"tags": ["memory"]
+	}
+]

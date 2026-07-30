@@ -1,0 +1,52 @@
+[
+	{
+		"id": "crow_or_goose",
+		"prompt": "¿Quién gana: un cuervo que ya te vio antes, o un ganso que todavía no?",
+		"icon": "mdi:bird",
+		"color": "@brown",
+		"points": 5,
+		"tags": ["animals"],
+		"options": [
+			{
+				"text": "El cuervo",
+				"color": "@gray",
+				"icon": "mdi:bird"
+			},
+			{
+				"text": "El ganso",
+				"color": "@lime",
+				"icon": "mdi:duck"
+			}
+		]
+	},
+	{
+		"id": "one_season_forever",
+		"prompt": "Te queda una sola estación para el resto de tu vida. Las otras tres desaparecen.",
+		"icon": "mdi:leaf-maple",
+		"color": "@gold",
+		"points": 8,
+		"tags": ["seasons"],
+		"options": [
+			{
+				"text": "Primavera",
+				"color": "@lime",
+				"icon": "mdi:flower"
+			},
+			{
+				"text": "Verano",
+				"color": "@gold",
+				"icon": "mdi:white-balance-sunny"
+			},
+			{
+				"text": "Otoño",
+				"color": "@brown",
+				"icon": "mdi:leaf-maple"
+			},
+			{
+				"text": "Invierno",
+				"color": "@blue",
+				"icon": "mdi:snowflake"
+			}
+		]
+	}
+]

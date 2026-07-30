@@ -1,0 +1,30 @@
+[
+	{
+		"id": "scan_something_youre_buying",
+		"title": "Scan Something You're Buying",
+		"description": "At the shop, point the camera at the barcode of whatever is already in your hand. We only check the barcode is real, not what it is.",
+		"icon": "mdi:barcode-scan",
+		"color": "@teal",
+		"validation_type": "barcode",
+		"points": 10,
+		"tags": ["store"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 21]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_data": {
+			"kind": "retail",
+			"require_checksum": true
+		}
+	}
+]

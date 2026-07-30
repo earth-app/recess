@@ -1,0 +1,132 @@
+[
+	{
+		"id": "walk_until_a_song_ends",
+		"title": "Camina hasta que se acabe una canción",
+		"description": "Elige la canción más larga que tengas, empieza a caminar y date la vuelta cuando termine.",
+		"icon": "mdi:headphones",
+		"color": "@coral",
+		"validation_type": "confirm",
+		"points": 12,
+		"duration_minutes": 10,
+		"tags": ["walk"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than": 20
+				}
+			}
+		]
+	},
+	{
+		"id": "stretch_what_aches",
+		"title": "Estira lo que te duela",
+		"description": "Busca la parte más tiesa de tu cuerpo y estírala despacio un minuto. Sin heroísmos; no hace falta bajar al piso.",
+		"icon": "mdi:yoga",
+		"color": "@teal",
+		"validation_type": "confirm",
+		"points": 6,
+		"duration_minutes": 5,
+		"tags": ["stretch"]
+	},
+	{
+		"id": "dance_badly_in_the_kitchen",
+		"title": "Baila mal en la cocina",
+		"description": "Una canción, los peores pasos que tengas, nadie grabando. Sentado moviendo los brazos también cuenta.",
+		"icon": "mdi:dance-ballroom",
+		"color": "@pink",
+		"validation_type": "confirm",
+		"points": 9,
+		"duration_minutes": 4,
+		"tags": ["dance"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 22]
+				}
+			}
+		]
+	},
+	{
+		"id": "carry_it_all_at_once",
+		"title": "Llévalo todo de una vez",
+		"description": "Lo que tengas que pasar a otro cuarto, llévalo en un solo viaje; se permite caminar como pato.",
+		"icon": "mdi:package-variant-closed",
+		"color": "@brown",
+		"validation_type": "confirm",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["carry"]
+	},
+	{
+		"id": "sit_on_the_floor",
+		"title": "Siéntate en el piso diez minutos",
+		"description": "Sin silla. Cambia de postura cada vez que te incomode; cambiar de postura es el ejercicio.",
+		"icon": "mdi:meditation",
+		"color": "@indigo",
+		"validation_type": "confirm",
+		"points": 13,
+		"duration_minutes": 10,
+		"tags": ["stretch", "floor"]
+	},
+	{
+		"id": "walk_uphill_for_the_view",
+		"title": "Sube algo y mira hacia abajo",
+		"description": "Busca el punto más alto al que puedas llegar a pie, sube hasta arriba y fotografía lo que se vea desde ahí. Párate antes si tus piernas lo piden; la vista desde la mitad también es una vista.",
+		"icon": "mdi:terrain",
+		"color": "@lime",
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a view from the top of a hill",
+				"a photo of a landscape seen from high ground",
+				"a photo of a town seen from above"
+			],
+			"negative_labels": [
+				"a photo of an indoor room",
+				"a photo of a ceiling",
+				"a screenshot of a screen",
+				"a photo of a person",
+				"a photo of a wall"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		},
+		"points": 26,
+		"duration_minutes": 45,
+		"tags": ["walk"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "any_thunderstorm", "foggy"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than": 75
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		]
+	}
+]

@@ -1,0 +1,165 @@
+[
+	{
+		"id": "look_up_one_word",
+		"title": "Busca una palabra",
+		"description": "Elige una palabra a la que llevas años asintiendo, averigua qué significa de verdad y escríbelo con tus propias palabras. El anillo de metal que sujeta la goma al lápiz también tiene nombre, si necesitas por dónde empezar.",
+		"icon": "mdi:book-alphabet",
+		"color": "@gold",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["words"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "definition",
+					"weight": 0.45,
+					"ideal": "La palabra que busqué fue virola, y resulta que significa la banda de metal en la punta del lápiz que sujeta la goma; los plomeros usan la misma palabra para el anillo que aprieta un tubo."
+				},
+				{
+					"id": "own_words",
+					"weight": 0.3,
+					"ideal": "Estoy escribiendo el significado en lenguaje llano en vez de pegar la entrada del diccionario, más o menos como se lo diría a un amigo."
+				},
+				{
+					"id": "where_you_met_it",
+					"weight": 0.25,
+					"ideal": "Llevo años leyendo esta palabra de pasada y adivinándola por el contexto; la vi por primera vez impresa en una etiqueta y nunca me detuve a comprobarla."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 120,
+			"max_length": 600
+		}
+	},
+	{
+		"id": "how_does_it_work",
+		"title": "Averigua cómo funciona una cosa de este cuarto",
+		"description": "Elige un objeto que tengas al alcance de la mano y averigua qué pasa de verdad dentro de él. Anota la parte que te sorprendió.",
+		"icon": "mdi:cog-outline",
+		"color": "@teal",
+		"points": 20,
+		"duration_minutes": 20,
+		"tags": ["how_things_work"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			},
+			{
+				"type": "points",
+				"value": {
+					"greater_than_or_eq": 150
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "mechanism",
+					"weight": 0.5,
+					"ideal": "Un refrigerador comprime un refrigerante hasta que se calienta, suelta ese calor por los serpentines de atrás y luego lo deja expandirse dentro de la caja, donde se enfría y le saca el calor a la comida."
+				},
+				{
+					"id": "specific_object",
+					"weight": 0.25,
+					"ideal": "La cosa que elegí es el refrigerador que zumba en la esquina de mi cocina, no los electrodomésticos en general."
+				},
+				{
+					"id": "surprise",
+					"weight": 0.25,
+					"ideal": "Lo que no me esperaba es que no hace frío en ningún momento; solo mueve el calor de la caja al cuarto, y por eso la parte de atrás está tibia."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 150,
+			"max_length": 800
+		}
+	},
+	{
+		"id": "explain_it_out_loud",
+		"title": "Explícalo en voz alta",
+		"description": "Di en voz alta cómo funciona algo que aprendiste hace poco, de principio a fin, a un cuarto donde no hay nadie. Sin apuntes y sin saltarte la parte que no tienes clara.",
+		"icon": "mdi:human-male-board",
+		"color": "@purple",
+		"points": 18,
+		"duration_minutes": 3,
+		"tags": ["teach"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			},
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "explanation",
+					"weight": 0.5,
+					"ideal": "Así funciona todo, en orden, del primer paso al último, sin dejarme nada por el camino."
+				},
+				{
+					"id": "plain_language",
+					"weight": 0.3,
+					"ideal": "Estoy dejando la jerga de lado y usando comparaciones de todos los días para que alguien que nunca ha oído de esto lo pueda seguir."
+				},
+				{
+					"id": "own_understanding",
+					"weight": 0.2,
+					"ideal": "Lo estoy diciendo de memoria y con mis propias palabras, y esta es la parte que todavía no entiendo bien."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 45
+		}
+	},
+	{
+		"id": "scan_the_next_book",
+		"title": "Escanea el próximo libro que vas a leer",
+		"description": "Busca el libro que llevas queriendo empezar, dale la vuelta y escanea el código de barras de la parte de atrás. Ya queda registrado.",
+		"icon": "mdi:barcode-scan",
+		"color": "@indigo",
+		"points": 12,
+		"duration_minutes": 2,
+		"tags": ["books"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "book",
+			"require_checksum": true
+		}
+	}
+]

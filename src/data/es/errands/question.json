@@ -1,0 +1,61 @@
+[
+	{
+		"id": "what_are_you_putting_off",
+		"question": "¿Qué estás postergando ahora mismo?",
+		"icon": "mdi:timer-sand",
+		"color": "@gray",
+		"points": 12,
+		"tags": ["overdue"],
+		"actions": [
+			{
+				"label": "Una llamada",
+				"color": "@gray",
+				"icon": "mdi:phone-outline",
+				"leads_to": "errands.task.moved_to_tomorrow"
+			},
+			{
+				"label": "Algo en una tienda",
+				"color": "@teal",
+				"icon": "mdi:cart-outline",
+				"leads_to": "errands.task.scan_something_youre_buying"
+			},
+			{
+				"label": "Devolver algo",
+				"color": "@indigo",
+				"icon": "mdi:package-variant-closed",
+				"leads_to": "errands.task.scan_the_book_you_owe"
+			},
+			{
+				"label": "Nada, en serio",
+				"color": "@green",
+				"icon": "mdi:check-circle-outline"
+			}
+		]
+	},
+	{
+		"id": "the_returns_pile",
+		"question": "¿Hay algo en tu casa ahora mismo que sea de una tienda, de una biblioteca o de un amigo?",
+		"icon": "mdi:swap-horizontal",
+		"color": "@indigo",
+		"points": 10,
+		"tags": ["return"],
+		"actions": [
+			{
+				"label": "Sí, y sé dónde está",
+				"color": "@orange",
+				"icon": "mdi:package-variant-closed",
+				"leads_to": "errands.task.scan_the_book_you_owe"
+			},
+			{
+				"label": "Sí, en algún lugar",
+				"color": "@gray",
+				"icon": "mdi:magnify"
+			},
+			{
+				"label": "Nada; todo es mío",
+				"color": "@green",
+				"icon": "mdi:check-circle-outline"
+			}
+		]
+	}
+]

@@ -1,0 +1,47 @@
+[
+	{
+		"id": "stairs_or_lift",
+		"prompt": "The stairs and the elevator are right next to each other. Which one gets you today?",
+		"icon": "mdi:stairs",
+		"color": "@orange",
+		"points": 5,
+		"tags": ["stairs"],
+		"options": [
+			{
+				"text": "The Stairs",
+				"color": "@lime",
+				"icon": "mdi:stairs-up"
+			},
+			{
+				"text": "The Elevator, Honestly",
+				"color": "@gray",
+				"icon": "mdi:elevator"
+			}
+		]
+	},
+	{
+		"id": "swim_or_dance",
+		"prompt": "One length of a pool, or one whole song of dancing. Which sounds worse?",
+		"icon": "mdi:swim",
+		"color": "@blue",
+		"points": 5,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Swimming a Length",
+				"color": "@blue",
+				"icon": "mdi:swim"
+			},
+			{
+				"text": "Dancing a Song",
+				"color": "@pink",
+				"icon": "mdi:music-note"
+			},
+			{
+				"text": "Both, Same Amount",
+				"color": "@gray",
+				"icon": "mdi:scale-balance"
+			}
+		]
+	}
+]

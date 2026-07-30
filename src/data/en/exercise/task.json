@@ -1,0 +1,132 @@
+[
+	{
+		"id": "walk_until_a_song_ends",
+		"title": "Walk Until a Song Ends",
+		"description": "Pick the longest song you own, start walking, and turn back when it stops.",
+		"icon": "mdi:headphones",
+		"color": "@coral",
+		"validation_type": "confirm",
+		"points": 12,
+		"duration_minutes": 10,
+		"tags": ["walk"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than": 20
+				}
+			}
+		]
+	},
+	{
+		"id": "stretch_what_aches",
+		"title": "Stretch Whatever Aches",
+		"description": "Find the stiffest part of you and lean into it slowly for a minute. No heroics, no floor required.",
+		"icon": "mdi:yoga",
+		"color": "@teal",
+		"validation_type": "confirm",
+		"points": 6,
+		"duration_minutes": 5,
+		"tags": ["stretch"]
+	},
+	{
+		"id": "dance_badly_in_the_kitchen",
+		"title": "Dance Badly in the Kitchen",
+		"description": "One song, the worst moves you have, nobody filming. Sitting down and moving your arms counts.",
+		"icon": "mdi:dance-ballroom",
+		"color": "@pink",
+		"validation_type": "confirm",
+		"points": 9,
+		"duration_minutes": 4,
+		"tags": ["dance"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 22]
+				}
+			}
+		]
+	},
+	{
+		"id": "carry_it_all_at_once",
+		"title": "Carry It All at Once",
+		"description": "Whatever needs moving to another room, take it in one trip; waddling is allowed.",
+		"icon": "mdi:package-variant-closed",
+		"color": "@brown",
+		"validation_type": "confirm",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["carry"]
+	},
+	{
+		"id": "sit_on_the_floor",
+		"title": "Sit on the Floor for Ten Minutes",
+		"description": "No chair. Shift position whenever it gets uncomfortable; the shifting is the exercise.",
+		"icon": "mdi:meditation",
+		"color": "@indigo",
+		"validation_type": "confirm",
+		"points": 13,
+		"duration_minutes": 10,
+		"tags": ["stretch", "floor"]
+	},
+	{
+		"id": "walk_uphill_for_the_view",
+		"title": "Walk Up Something and Look Down",
+		"description": "Find the highest ground you can reach on foot, get to the top of it, and photograph whatever you can see from there. Stop early if your legs say so; the view from halfway is also a view.",
+		"icon": "mdi:terrain",
+		"color": "@lime",
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a view from the top of a hill",
+				"a photo of a landscape seen from high ground",
+				"a photo of a town seen from above"
+			],
+			"negative_labels": [
+				"a photo of an indoor room",
+				"a photo of a ceiling",
+				"a screenshot of a screen",
+				"a photo of a person",
+				"a photo of a wall"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		},
+		"points": 26,
+		"duration_minutes": 45,
+		"tags": ["walk"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "any_thunderstorm", "foggy"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than": 75
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		]
+	}
+]

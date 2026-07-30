@@ -1,0 +1,118 @@
+[
+	{
+		"id": "say_what_you_hear",
+		"prompt": "Stand somewhere in your own town you have never stood before and say out loud what you can hear. Thirty seconds; keep going after it gets boring.",
+		"icon": "mdi:ear-hearing",
+		"color": "@purple",
+		"points": 18,
+		"duration_minutes": 15,
+		"tags": ["listen"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "sounds",
+					"weight": 0.45,
+					"ideal": "I can hear traffic going past, a bus braking somewhere behind me, two people talking, and a fan humming out of a vent above my head."
+				},
+				{
+					"id": "place",
+					"weight": 0.35,
+					"ideal": "I am standing on a corner at the far end of a street I have never been down, next to a wall and a row of parked cars."
+				},
+				{
+					"id": "unfamiliar",
+					"weight": 0.2,
+					"ideal": "This is not somewhere I ever come; I have driven past the end of this road but never stood on it."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
+	},
+	{
+		"id": "view_from_new_spot",
+		"prompt": "Find a spot you have never taken a photo from and photograph what is in front of you. Not the sky, not your shoes; the actual view.",
+		"icon": "mdi:camera",
+		"color": "@lime",
+		"points": 22,
+		"duration_minutes": 30,
+		"tags": ["look"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dawn", "day", "dusk"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 45
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a street seen from the end of it",
+				"a photo of an outdoor view over rooftops",
+				"a photo of a road stretching into the distance",
+				"a photo of a town seen from a high spot"
+			],
+			"negative_labels": [
+				"a photo of the inside of a house",
+				"a photo of a person posing for a selfie",
+				"a screenshot of a map",
+				"a photo of a computer screen",
+				"a photo of the sky with nothing in it"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	}
+]

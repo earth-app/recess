@@ -1,0 +1,41 @@
+[
+	{
+		"id": "call_or_walk_in",
+		"prompt": "Ese asunto que tienes que resolver: ¿les llamas o te apareces en persona?",
+		"icon": "mdi:phone-outline",
+		"color": "@gray",
+		"points": 8,
+		"tags": ["appointment"],
+		"filters": [
+			{
+				"type": "weekday",
+				"value": {
+					"is": ["weekday"]
+				}
+			},
+			{
+				"type": "hour",
+				"value": {
+					"between": [9, 17]
+				}
+			}
+		],
+		"options": [
+			{
+				"text": "Llamarles",
+				"color": "@gray",
+				"icon": "mdi:phone-outline"
+			},
+			{
+				"text": "Aparecerme en persona",
+				"color": "@brown",
+				"icon": "mdi:shoe-print"
+			},
+			{
+				"text": "Mandar un correo y rezar",
+				"color": "@orange",
+				"icon": "mdi:email-outline"
+			}
+		]
+	}
+]

@@ -1,0 +1,176 @@
+[
+	{
+		"id": "something_from_nothing",
+		"prompt": "Cook a real meal out of only what is already in the kitchen. No shop run, no substitute you have to go buy.",
+		"icon": "mdi:pot-steam",
+		"color": "@orange",
+		"points": 22,
+		"duration_minutes": 45,
+		"tags": ["improvise"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [11, 21]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a home cooked meal on a plate",
+				"a photo of a finished dish in a pan on a stove"
+			],
+			"negative_labels": [
+				"a photo of an empty plate",
+				"a photo of a takeaway container",
+				"a photo of a restaurant menu",
+				"a photo of a supermarket shelf",
+				"a screenshot of a screen"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "back_of_the_cupboard",
+		"prompt": "Cook the thing at the back of the cupboard. The one you keep moving aside to reach the pasta.",
+		"icon": "mdi:cupboard",
+		"color": "@brown",
+		"points": 16,
+		"duration_minutes": 30,
+		"tags": ["cupboard"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a cooked dish made from tinned and dried ingredients",
+				"a photo of a bowl of food next to an opened tin"
+			],
+			"negative_labels": [
+				"a photo of an unopened tin on a shelf",
+				"a photo of a full kitchen cupboard",
+				"a photo of an empty bowl",
+				"a screenshot of a screen"
+			],
+			"threshold": 0.58,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "breakfast_you_sit_down_for",
+		"prompt": "Make a breakfast you have to sit down for. Hot, on a plate, at a table; not standing over the sink.",
+		"icon": "mdi:egg-fried",
+		"color": "@gold",
+		"points": 12,
+		"duration_minutes": 25,
+		"tags": ["breakfast"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [5, 10]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a cooked breakfast on a plate",
+				"a photo of fried eggs and toast on a table"
+			],
+			"negative_labels": [
+				"a photo of an empty plate",
+				"a photo of a cereal box",
+				"a photo of a coffee shop counter",
+				"a screenshot of a screen"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "cold_thing_hot_day",
+		"prompt": "Make something cold and sharp: gazpacho, a cucumber salad with too much vinegar, a granita scraped out of a freezer tray.",
+		"icon": "mdi:bowl-mix",
+		"color": "@lime",
+		"points": 18,
+		"duration_minutes": 30,
+		"tags": ["seasonal"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is": ["summer"]
+				}
+			},
+			{
+				"type": "temperature",
+				"value": {
+					"greater_than_or_eq": 26
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": ["a photo of a bowl of cold soup", "a photo of a fresh vegetable salad in a bowl"],
+			"negative_labels": [
+				"a photo of a hot cooked meal steaming",
+				"a photo of an empty bowl",
+				"a photo of a supermarket shelf",
+				"a screenshot of a screen"
+			],
+			"threshold": 0.58,
+			"require_fresh_exif": true
+		}
+	}
+]

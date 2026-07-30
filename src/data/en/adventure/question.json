@@ -1,0 +1,68 @@
+[
+	{
+		"id": "street_you_never_walked",
+		"question": "There is a street within ten minutes of your door that you have never walked down. Do you know which one it is?",
+		"icon": "mdi:sign-direction",
+		"color": "@blue",
+		"points": 15,
+		"tags": ["unfamiliar"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [7, 20]
+				}
+			}
+		],
+		"actions": [
+			{
+				"label": "I Know Exactly Which",
+				"color": "@indigo",
+				"icon": "mdi:map-marker-question"
+			},
+			{
+				"label": "There Must Be Dozens",
+				"color": "@teal"
+			},
+			{
+				"label": "I'll Go Now",
+				"color": "@blue",
+				"icon": "mdi:walk",
+				"leads_to": "adventure.task.new_street"
+			}
+		]
+	},
+	{
+		"id": "where_does_that_bus_go",
+		"question": "The bus that stops nearest to you goes somewhere. Do you know where?",
+		"icon": "mdi:bus-stop",
+		"color": "@indigo",
+		"points": 12,
+		"tags": ["transit"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [7, 19]
+				}
+			}
+		],
+		"actions": [
+			{
+				"label": "No Idea",
+				"color": "@gray",
+				"icon": "mdi:help-circle-outline"
+			},
+			{
+				"label": "Roughly, Yes",
+				"color": "@teal"
+			},
+			{
+				"label": "I'll Find Out Now",
+				"color": "@indigo",
+				"icon": "mdi:bus",
+				"leads_to": "adventure.task.end_of_the_line"
+			}
+		]
+	}
+]

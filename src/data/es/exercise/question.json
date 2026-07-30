@@ -1,0 +1,59 @@
+[
+	{
+		"id": "what_has_not_moved",
+		"question": "¿Qué parte de ti todavía no se ha movido hoy?",
+		"icon": "mdi:human",
+		"color": "@red",
+		"points": 8,
+		"tags": ["reflect"],
+		"actions": [
+			{
+				"label": "Las piernas",
+				"color": "@coral",
+				"icon": "mdi:shoe-print",
+				"leads_to": "exercise.task.walk_until_a_song_ends"
+			},
+			{
+				"label": "Los hombros",
+				"color": "@teal",
+				"icon": "mdi:yoga",
+				"leads_to": "exercise.task.stretch_what_aches"
+			},
+			{
+				"label": "Todo, en general",
+				"color": "@pink",
+				"icon": "mdi:dance-ballroom",
+				"leads_to": "exercise.task.dance_badly_in_the_kitchen"
+			}
+		]
+	},
+	{
+		"id": "how_far_before_bored",
+		"question": "Si salieras por la puerta ahora mismo y siguieras derecho, ¿cuánto aguantarías antes de aburrirte?",
+		"icon": "mdi:map-marker-distance",
+		"color": "@blue",
+		"points": 10,
+		"tags": ["hypothetical"],
+		"actions": [
+			{
+				"label": "Dos calles",
+				"color": "@gray"
+			},
+			{
+				"label": "Como una hora",
+				"color": "@teal"
+			},
+			{
+				"label": "Yo no me aburro",
+				"color": "@indigo",
+				"icon": "mdi:infinity"
+			},
+			{
+				"label": "Vamos a averiguarlo",
+				"color": "@red",
+				"icon": "mdi:door-open",
+				"leads_to": "exercise.task.walk_until_a_song_ends"
+			}
+		]
+	}
+]

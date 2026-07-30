@@ -1,0 +1,10 @@
+[
+	{
+		"id": "place_you_have_opinions_about",
+		"prompt": "Think of a place near you that you have opinions about but have never actually been to. Where did the opinions come from?",
+		"icon": "mdi:thought-bubble-outline",
+		"color": "@gold",
+		"points": 8,
+		"tags": ["reflect"]
+	}
+]

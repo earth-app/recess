@@ -1,0 +1,63 @@
+[
+	{
+		"id": "picnic_or_hike",
+		"prompt": "¿Prefieres un picnic en el parque o una caminata por la montaña?",
+		"icon": "mdi:pine-tree",
+		"color": "@green",
+		"points": 5,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Picnic en el parque",
+				"color": "@yellow"
+			},
+			{
+				"text": "Caminata por la montaña",
+				"color": "@blue"
+			}
+		]
+	},
+	{
+		"id": "hundred_friends",
+		"prompt": "¿100 amigos son demasiados o no alcanzan?",
+		"icon": "mdi:account-group",
+		"color": "@blue",
+		"points": 10,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Demasiados",
+				"color": "@red"
+			},
+			{
+				"text": "No alcanzan",
+				"color": "@blue"
+			}
+		]
+	},
+	{
+		"id": "held_door",
+		"prompt": "Un desconocido te sostiene la puerta y todavía te faltan seis pasos. ¿Qué haces?",
+		"icon": "mdi:door",
+		"color": "@yellow",
+		"points": 5,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Trotar los seis pasos",
+				"color": "@coral",
+				"icon": "mdi:run"
+			},
+			{
+				"text": "Caminar normal y saludar con la mano",
+				"color": "@yellow",
+				"icon": "mdi:hand-wave"
+			},
+			{
+				"text": "Acelerar el paso sin mirarlo",
+				"color": "@blue",
+				"icon": "mdi:walk"
+			}
+		]
+	}
+]

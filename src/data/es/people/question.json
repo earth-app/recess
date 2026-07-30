@@ -1,0 +1,93 @@
+[
+	{
+		"id": "last_time_outside",
+		"question": "¿Cuándo fue la última vez que saliste a la calle?",
+		"icon": "mdi:weather-sunny",
+		"color": "@gold",
+		"points": 10,
+		"tags": ["outside"],
+		"actions": [
+			{
+				"label": "No sé",
+				"color": "@gray"
+			},
+			{
+				"label": "Hace poco",
+				"color": "@green"
+			},
+			{
+				"label": "Salgo ahora mismo",
+				"color": "@green",
+				"icon": "mdi:door-open",
+				"leads_to": "people.task.go_for_a_walk"
+			}
+		]
+	},
+	{
+		"id": "who_do_you_miss",
+		"question": "¿A quién llevas tres semanas queriendo llamar?",
+		"icon": "mdi:calendar-clock",
+		"color": "@gold",
+		"points": 12,
+		"tags": ["voice"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"greater_than_or_eq": 9,
+					"less_than": 21
+				}
+			}
+		],
+		"actions": [
+			{
+				"label": "A nadie",
+				"color": "@gray"
+			},
+			{
+				"label": "A una persona en particular",
+				"color": "@gold"
+			},
+			{
+				"label": "A una lista entera",
+				"color": "@coral"
+			},
+			{
+				"label": "La llamo ahora",
+				"color": "@blue",
+				"icon": "mdi:phone",
+				"leads_to": "people.task.call_someone"
+			}
+		]
+	},
+	{
+		"id": "who_is_nearby",
+		"question": "¿Cuántas personas están lo suficientemente cerca para oírte ahora mismo?",
+		"icon": "mdi:ear-hearing",
+		"color": "@yellow",
+		"points": 8,
+		"tags": ["strangers"],
+		"actions": [
+			{
+				"label": "Cero",
+				"color": "@gray",
+				"icon": "mdi:account-off"
+			},
+			{
+				"label": "Una o dos",
+				"color": "@yellow"
+			},
+			{
+				"label": "Un gentío",
+				"color": "@coral",
+				"icon": "mdi:account-group"
+			},
+			{
+				"label": "Voy a buscar a alguien",
+				"color": "@blue",
+				"icon": "mdi:door-open",
+				"leads_to": "people.task.say_hi"
+			}
+		]
+	}
+]

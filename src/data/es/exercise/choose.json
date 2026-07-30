@@ -1,0 +1,47 @@
+[
+	{
+		"id": "stairs_or_lift",
+		"prompt": "Las escaleras y el ascensor están uno al lado del otro. ¿Cuál te gana hoy?",
+		"icon": "mdi:stairs",
+		"color": "@orange",
+		"points": 5,
+		"tags": ["stairs"],
+		"options": [
+			{
+				"text": "Las escaleras",
+				"color": "@lime",
+				"icon": "mdi:stairs-up"
+			},
+			{
+				"text": "El ascensor, sinceramente",
+				"color": "@gray",
+				"icon": "mdi:elevator"
+			}
+		]
+	},
+	{
+		"id": "swim_or_dance",
+		"prompt": "Un largo de piscina, o una canción entera bailando. ¿Qué suena peor?",
+		"icon": "mdi:swim",
+		"color": "@blue",
+		"points": 5,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Nadar un largo",
+				"color": "@blue",
+				"icon": "mdi:swim"
+			},
+			{
+				"text": "Bailar una canción",
+				"color": "@pink",
+				"icon": "mdi:music-note"
+			},
+			{
+				"text": "Las dos, exactamente igual",
+				"color": "@gray",
+				"icon": "mdi:scale-balance"
+			}
+		]
+	}
+]

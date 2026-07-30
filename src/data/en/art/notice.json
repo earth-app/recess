@@ -1,0 +1,47 @@
+[
+	{
+		"id": "describe_the_ugliest_thing",
+		"prompt": "Find the ugliest object within arm's reach and describe it out loud for thirty seconds. Shape, texture, color, why.",
+		"icon": "mdi:microphone",
+		"color": "@coral",
+		"points": 12,
+		"duration_minutes": 5,
+		"tags": ["looking"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "object",
+					"weight": 0.35,
+					"ideal": "The thing I am looking at is a scuffed plastic charger brick with a bent prong and a sticker peeling off one corner."
+				},
+				{
+					"id": "texture",
+					"weight": 0.35,
+					"ideal": "The surface is rough in some spots and slick in others, the edges are chipped, and the whole thing has gone yellow with age."
+				},
+				{
+					"id": "judgement",
+					"weight": 0.3,
+					"ideal": "It is ugly because nobody decided how it should look; the shape came out of the machine that made it, not out of a person."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
+	}
+]

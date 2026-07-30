@@ -1,0 +1,10 @@
+[
+	{
+		"id": "last_time_you_ran",
+		"prompt": "Think about the last time you actually ran. Not jogged; ran. What were you running for?",
+		"icon": "mdi:run-fast",
+		"color": "@orange",
+		"points": 5,
+		"tags": ["reflect"]
+	}
+]

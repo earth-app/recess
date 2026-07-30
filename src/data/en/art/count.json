@@ -1,0 +1,17 @@
+[
+	{
+		"id": "count_the_colors",
+		"prompt": "Count the distinct colors you can see without moving your feet. Beige and off-white are two colors.",
+		"unit": "colors",
+		"icon": "mdi:palette-swatch",
+		"color": "@purple",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["looking"],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 4,
+			"max": 60
+		}
+	}
+]

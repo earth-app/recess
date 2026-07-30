@@ -1,0 +1,42 @@
+[
+	{
+		"id": "how_or_what",
+		"prompt": "Would you rather understand how everything works or memorize every fact?",
+		"icon": "mdi:cog",
+		"color": "@teal",
+		"points": 8,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Understand How",
+				"color": "@teal",
+				"icon": "mdi:cog-outline"
+			},
+			{
+				"text": "Know Every Fact",
+				"color": "@gold",
+				"icon": "mdi:book-open-variant"
+			}
+		]
+	},
+	{
+		"id": "useless_expert",
+		"prompt": "Would you rather be an expert in one thing you will never use, or a permanent beginner at everything?",
+		"icon": "mdi:trophy-outline",
+		"color": "@purple",
+		"points": 12,
+		"tags": ["hypothetical"],
+		"options": [
+			{
+				"text": "Expert at Something Useless",
+				"color": "@purple",
+				"icon": "mdi:medal-outline"
+			},
+			{
+				"text": "Beginner at Everything",
+				"color": "@lime",
+				"icon": "mdi:seed-outline"
+			}
+		]
+	}
+]

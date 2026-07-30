@@ -1,0 +1,35 @@
+[
+	{
+		"id": "where_does_that_bus_go",
+		"question": "El camión que pasa más cerca de tu casa va a algún lado. ¿Sabes a dónde?",
+		"icon": "mdi:bus-stop",
+		"color": "@indigo",
+		"points": 12,
+		"tags": ["transit"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [7, 19]
+				}
+			}
+		],
+		"actions": [
+			{
+				"label": "Ni idea",
+				"color": "@gray",
+				"icon": "mdi:help-circle-outline"
+			},
+			{
+				"label": "Más o menos",
+				"color": "@teal"
+			},
+			{
+				"label": "Voy a averiguarlo",
+				"color": "@indigo",
+				"icon": "mdi:bus",
+				"leads_to": "adventure.task.end_of_the_line"
+			}
+		]
+	}
+]

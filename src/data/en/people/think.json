@@ -1,0 +1,26 @@
+[
+	{
+		"id": "made_someone_happy",
+		"prompt": "Think about a time you made someone else happy. How did it make you feel?",
+		"icon": "mdi:star",
+		"color": "@gold",
+		"points": 5,
+		"tags": ["kindness"]
+	},
+	{
+		"id": "name_the_neighbors",
+		"prompt": "Name your neighbors out loud, one door at a time. Notice where you run out.",
+		"icon": "mdi:home-group",
+		"color": "@coral",
+		"points": 15,
+		"tags": ["neighbors"]
+	},
+	{
+		"id": "who_taught_you",
+		"prompt": "Someone taught you a thing you use every week and has no idea they did it. Who, and what was the thing?",
+		"icon": "mdi:school-outline",
+		"color": "@pink",
+		"points": 12,
+		"tags": ["memory"]
+	}
+]

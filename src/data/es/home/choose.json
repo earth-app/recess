@@ -1,0 +1,55 @@
+[
+	{
+		"id": "lamp_or_ceiling",
+		"prompt": "Está oscureciendo. ¿La luz del techo o una lámpara en la esquina?",
+		"icon": "mdi:lamp",
+		"color": "@gold",
+		"points": 5,
+		"tags": ["light"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dusk", "night"]
+				}
+			}
+		],
+		"options": [
+			{
+				"text": "La luz del techo",
+				"color": "@gold",
+				"icon": "mdi:ceiling-light"
+			},
+			{
+				"text": "Una lámpara en la esquina",
+				"color": "@orange",
+				"icon": "mdi:lamp"
+			}
+		]
+	},
+	{
+		"id": "dishes_or_sit",
+		"prompt": "Diez minutos libres en casa. ¿Lavas los platos o los dejas y te sientas?",
+		"icon": "mdi:dishwasher",
+		"color": "@teal",
+		"points": 10,
+		"tags": ["tidy"],
+		"options": [
+			{
+				"text": "Lavar los platos",
+				"color": "@teal",
+				"icon": "mdi:dishwasher"
+			},
+			{
+				"text": "Dejarlos y sentarme",
+				"color": "@coral",
+				"icon": "mdi:sofa-single"
+			},
+			{
+				"text": "Pasarlos al fregadero y sentarme",
+				"color": "@orange",
+				"icon": "mdi:water-outline"
+			}
+		]
+	}
+]

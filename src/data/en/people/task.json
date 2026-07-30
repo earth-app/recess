@@ -1,0 +1,107 @@
+[
+	{
+		"id": "say_hi",
+		"title": "Say Hi!",
+		"description": "Say hi to someone new in the community.",
+		"icon": "mdi:hand-wave",
+		"color": "@yellow",
+		"validation_type": "confirm",
+		"points": 10,
+		"tags": ["strangers"]
+	},
+	{
+		"id": "go_for_a_walk",
+		"title": "Go for a Walk",
+		"description": "Take a walk outside and enjoy the fresh air.",
+		"icon": "mdi:walk",
+		"color": "@green",
+		"validation_type": "confirm",
+		"points": 15,
+		"duration_minutes": 20,
+		"tags": ["outside"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is": ["dawn", "day", "dusk"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			}
+		]
+	},
+	{
+		"id": "help_someone",
+		"title": "Help Someone",
+		"description": "Help someone with a task or problem they are facing.",
+		"icon": "mdi:hand-heart",
+		"color": "@blue",
+		"validation_type": "confirm",
+		"points": 20,
+		"tags": ["kindness"]
+	},
+	{
+		"id": "call_someone",
+		"title": "Call Someone",
+		"description": "Pick a person, ring them, use your actual voice. Texting does not count.",
+		"icon": "mdi:phone",
+		"color": "@coral",
+		"validation_type": "confirm",
+		"points": 20,
+		"duration_minutes": 10,
+		"tags": ["voice"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"greater_than_or_eq": 9,
+					"less_than": 21
+				}
+			}
+		]
+	},
+	{
+		"id": "ask_about_nine",
+		"title": "Ask About Being Nine",
+		"description": "Ask someone what they were like at nine years old, then write down the part you did not expect.",
+		"icon": "mdi:balloon",
+		"color": "@pink",
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "who",
+					"weight": 0.3,
+					"ideal": "I asked a coworker what she was like at nine and she talked for ten minutes without stopping."
+				},
+				{
+					"id": "answer",
+					"weight": 0.4,
+					"ideal": "She said she was obsessed with horses, wore the same red jacket every single day, and told everyone she was going to be a vet."
+				},
+				{
+					"id": "surprise",
+					"weight": 0.3,
+					"ideal": "The part I did not expect was how loud that kid sounds. The person I know now is quiet and careful about everything."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 90
+		},
+		"points": 25,
+		"duration_minutes": 15,
+		"tags": ["conversation"],
+		"filters": [
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		]
+	}
+]

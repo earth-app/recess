@@ -1,0 +1,17 @@
+{
+	"extends": "./.nuxt/tsconfig.app.json",
+	"comment": "Nuxt's generated app config includes ../tests/nuxt/**/* only, but this repo's tests live in tests/{unit,e2e,eval,setup} - so before this project existed vue-tsc typechecked zero test files. `include` replaces rather than merges when extending, so Nuxt's own entries are restated here: without .nuxt/nuxt.d.ts every auto-import in src/ reads as an undefined global.",
+	"compilerOptions": {
+		"types": ["node", "vitest/globals"],
+		"noEmit": true
+	},
+	"include": [
+		".nuxt/nuxt.d.ts",
+		"i18n/**/*",
+		"src/**/*",
+		"tests/**/*",
+		"vitest.config.ts",
+		"playwright.config.ts"
+	],
+	"exclude": ["node_modules", "dist", ".output", "src/server"]
+}

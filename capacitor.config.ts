@@ -1,6 +1,9 @@
 /// <reference types="@capacitor/splash-screen" />
+/// <reference types="@capacitor/local-notifications" />
+/// <reference types="@capacitor/keyboard" />
 
 import type { CapacitorConfig } from '@capacitor/cli';
+import { KeyboardResize } from '@capacitor/keyboard';
 
 const config: CapacitorConfig = {
 	appId: 'com.earthapp.recess',
@@ -24,6 +27,14 @@ const config: CapacitorConfig = {
 			splashImmersive: true,
 			iosSpinnerStyle: 'small',
 			androidSpinnerStyle: 'large'
+		},
+		LocalNotifications: {
+			smallIcon: 'ic_stat_recess',
+			iconColor: '#3498db'
+		},
+		Keyboard: {
+			resize: KeyboardResize.Native,
+			resizeOnFullScreen: true
 		}
 	}
 };

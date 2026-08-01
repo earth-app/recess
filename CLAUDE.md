@@ -188,7 +188,7 @@ Casual, second person, specific, a little strange. The bar is "Is 100 friends to
 
 ## Rewards are informational, never transactional
 
-Grounded in the cited evidence base in `../crust`'s memory (`reference_engagement_psychology_evidence`). Expected tangible rewards for an already-enjoyed act _undermine_ intrinsic motivation (Deci/Koestner/Ryan 1999, d=-0.34); verbal feedback _enhances_ it (+0.33).
+Grounded in the `behavior-design-evidence` skill (`~/.claude/skills/`), which supersedes the older charter in `../crust`'s memory - that version carried eleven wrong figures and one paper that does not exist. Tangible rewards for an already-enjoyed act _undermine_ intrinsic motivation (Deci/Koestner/Ryan 1999, all tangible d=-0.34; expected tangible d=-0.36); verbal feedback _enhances_ it (d=+0.33 in adults, d=0.11 ns in children). The worst contingency is rewarding mere participation (d=-0.40).
 
 - Points buy **nothing**. No shop, no cosmetics, no currency. They scale the Playground and unlock capability ("You Can Now …"), never goods.
 - No levels, no ranks, no titles — those smuggle comparison into a single-player app.

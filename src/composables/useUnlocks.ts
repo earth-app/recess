@@ -3,7 +3,7 @@ import { devUnlockEverything } from '~/utils/dev';
 import { BIOMES, BIOME_THRESHOLDS, nextBiome } from '~/utils/playground';
 
 // Points buy NOTHING. Expected tangible rewards for an already-enjoyed act
-// undermine intrinsic motivation (Deci/Koestner/Ryan 1999, d=-0.34), so crossing
+// undermine intrinsic motivation (Deci/Koestner/Ryan 1999, all tangible d=-0.34), so crossing
 // a threshold reveals a capability - "You Can Now ..." - and never a purchase.
 // The ledger is derived from lifetime points, so it can never desync.
 

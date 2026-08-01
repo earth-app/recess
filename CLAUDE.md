@@ -221,10 +221,11 @@ Three lanes, different budgets.
 
 **Unit** (`tests/unit/{utils,stores,composables}/`) — deterministic, local, free, under ~2s. `environment: 'nuxt'`, `globals: true`. Idioms, copied from sky:
 
-- `vi.hoisted` + `vi.mock` declared **above** the subject import. No `mockNuxtImport`.
+- `vi.hoisted` + `vi.mock` declared **above** the subject import. `mockNuxtImport` also works and is what crust uses for component specs; `vi.mock` is simply what most of these files already do.
 - Pure functions take `now` as an explicit parameter instead of reading the clock, so most tests need no fake timers at all.
 - Local factory helpers with `Partial<T>` overrides rather than shared fixtures.
-- No component-mount tests — component behavior belongs in e2e.
+- **Component tests are welcome**, following crust's pattern in `tests/unit/components/`: `mountSuspended` from `@nuxt/test-utils/runtime`, `mockNuxtImport` where a composable needs replacing. `@nuxt/test-utils`, `@vue/test-utils` and `happy-dom` are installed.
+- The one real caveat: **Ionic custom elements render as stubs** in happy-dom, so `ion-chip` and friends never appear in the output. Assert on what the component itself decides — computed classes, inline styles, `aria-*`, slot text, emitted events — and leave Ionic's own rendering and gestures to e2e.
 
 **E2E** (`tests/e2e/`) — `*.mobile.spec.ts` runs on Pixel 7, everything else Desktop Chrome, `webkit` opt-in. Full journeys, not smoke tests. `native-mock.ts` fakes the Capacitor surface via init script.
 

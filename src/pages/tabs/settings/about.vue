@@ -109,6 +109,10 @@
 				</IonItem>
 			</IonList>
 
+			<p class="px-8 pt-6 text-center text-xs text-(--ion-text-color-step-400)">
+				{{ t('settings.credit') }}
+			</p>
+
 			<div class="h-10" />
 		</IonContent>
 	</IonPage>

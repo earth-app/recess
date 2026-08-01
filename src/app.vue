@@ -24,6 +24,18 @@ const DevLauncher = DEV_MODE
 	? defineAsyncComponent(() => import('./components/dev/Launcher.vue'))
 	: null;
 
+const app = useAppConfig();
+
+// credit is the org, not a person: recess ships as a free spin-off of The Earth App
+useSeoMeta({
+	title: app.name,
+	description: app.description,
+	themeColor: app.themeColor,
+	author: 'The Earth App',
+	creator: 'The Earth App',
+	publisher: 'The Earth App'
+});
+
 const router = useIonRouter();
 const isNative = Capacitor.isNativePlatform();
 

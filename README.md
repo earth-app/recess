@@ -164,7 +164,7 @@ crust and sky's client moderation fails _open_ because their server is the real 
 
 ## Rewards
 
-Grounded in the cited psychology evidence base built for crust. Expected tangible rewards for an already-enjoyed act _undermine_ intrinsic motivation (Deci/Koestner/Ryan 1999, d=-0.34); verbal, specific feedback _enhances_ it (+0.33).
+Grounded in the `behavior-design-evidence` skill. Tangible rewards for an already-enjoyed act _undermine_ intrinsic motivation (Deci/Koestner/Ryan 1999, all tangible d=-0.34; expected tangible d=-0.36); verbal feedback _enhances_ it (d=+0.33 in adults, d=0.11 ns in children). The worst contingency is rewarding mere participation (d=-0.40).
 
 So points buy nothing. No shop, no cosmetics, no currency, no levels, no ranks, no titles. Crossing a threshold reveals a capability ("You Can Now...") and grows the Playground. Every progress cue is self-referential - "Your Longest Yet", never a number beside someone else's.
 
@@ -184,7 +184,7 @@ Full conventions are in [CLAUDE.md](CLAUDE.md).
 
 Three lanes, different budgets.
 
-- **Unit** (`tests/unit/`) - deterministic, local, free, a few seconds. `vi.hoisted` plus `vi.mock` above the subject import; no component-mount tests.
+- **Unit** (`tests/unit/`) - deterministic, local, free, a few seconds. `vi.hoisted` plus `vi.mock` above the subject import. Component tests live in `tests/unit/components/` and use `mountSuspended` from `@nuxt/test-utils/runtime`; the one caveat is that Ionic custom elements render as stubs under happy-dom, so assert on what the component itself decides and leave Ionic's own rendering to e2e.
 - **E2E** (`tests/e2e/`) - Playwright against the static build. `native-mock.ts` fakes the whole Capacitor bridge via an init script, which is the only way these journeys are drivable in a browser given there is no backend to intercept. `*.mobile.spec.ts` runs on Pixel 7; `webkit` is opt-in and is the closest engine to the shipped WKWebView.
 - **Eval** (`tests/eval/`) - validator precision and recall against labeled fixtures, with a threshold sweep that recommends the value to ship. Never hand-tune a threshold without re-running it.
 
@@ -195,3 +195,11 @@ Three lanes, different budgets.
 ## License
 
 See [LICENSE](LICENSE).
+
+## Credits
+
+- **Framework**: [Nuxt](https://nuxt.com/) by the Nuxt team
+- **UI**: [Ionic](https://ionicframework.com/) for structure, [@nuxt/ui](https://ui.nuxt.com/) for decoration
+- **On-device models**: [transformers.js](https://huggingface.co/docs/transformers.js) by Hugging Face
+- **Icons**: [Iconify](https://iconify.design/)
+- **Developed by**: [The Earth App](https://github.com/earth-app)

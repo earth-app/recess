@@ -21,6 +21,7 @@
 	"nav": {
 		"today": "Today",
 		"playground": "Playground",
+		"outThere": "Out There",
 		"week": "Week",
 		"settings": "Settings"
 	},
@@ -342,6 +343,62 @@
 		"channelReminders": "Nudge Reminders",
 		"channelRemindersDescription": "Reminders for nudges you started but haven't finished."
 	},
+	"outThere": {
+		"title": "Out There",
+		"description": "What's around you, and what you could do there.",
+		"needLocation": "Where are you?",
+		"needLocationBody": "Recess looks up what is around you on this device. Your location never leaves it, and it is rounded to the nearest block before anything is stored.",
+		"useLocation": "Use my Location",
+		"pinArea": "Pin my Area Instead",
+		"blocked": "Location is off for Recess. Turn it on in Settings, or pin your area by hand.",
+		"openSettings": "Open Settings",
+		"locating": "Finding you",
+		"noPack": "No Map for Here Yet",
+		"noPackBody": "Download the area around you once and it works offline from then on.",
+		"download": "Download {size}",
+		"downloading": "Downloading",
+		"thin": "This Area is Thinly Mapped",
+		"thinBody": "OpenStreetMap does not have much detail here yet. Every nudge still works; there is just nothing to point at.",
+		"nothingNearby": "Nothing within a {minutes} Minute Walk",
+		"nothingNearbyBody": "Try widening the radius, or just pick a direction.",
+		"placeCount": "{count} place | {count} places",
+		"withinWalk": "Within a {minutes} Minute Walk",
+		"walkMinutes": "{count} min",
+		"unnamed": "Unnamed",
+		"radius": "How Far",
+		"resolvedHere": "you have done something here",
+		"attribution": "Map data from OpenStreetMap",
+		"attributionLink": "openstreetmap.org/copyright",
+		"lastKnown": "Last Known Area",
+		"youAreHere": "You are Here",
+		"forNudge": "For {title}",
+		"affordance": {
+			"sit": "Somewhere to Sit",
+			"green": "Something Green",
+			"water": "Water",
+			"drink": "Drinking Water",
+			"quiet": "Somewhere Quiet",
+			"view": "A Long View",
+			"shelter": "Shelter",
+			"people": "Other People",
+			"art": "Something Made",
+			"read": "Something to Read",
+			"move": "Somewhere to Move",
+			"grow": "Something Growing",
+			"food": "Food",
+			"old": "Something Old"
+		},
+		"compass": {
+			"n": "north",
+			"ne": "north-east",
+			"e": "east",
+			"se": "south-east",
+			"s": "south",
+			"sw": "south-west",
+			"w": "west",
+			"nw": "north-west"
+		}
+	},
 	"settings": {
 		"title": "Settings",
 		"appearance": "Appearance",
@@ -453,7 +510,8 @@
 		"license": "License",
 		"licenseValue": "Apache License 2.0",
 		"storedOnDevice": "Stored on this device only.",
-		"privacyTitle": "On This Device Only"
+		"privacyTitle": "On This Device Only",
+		"credit": "Made by The Earth App"
 	},
 	"permissions": {
 		"cameraTitle": "Camera Needed",

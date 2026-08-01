@@ -21,6 +21,7 @@
 	"nav": {
 		"today": "Hoy",
 		"playground": "Patio",
+		"outThere": "Por Ahí",
 		"week": "Semana",
 		"settings": "Ajustes"
 	},
@@ -337,6 +338,62 @@
 		"channelReminders": "Recordatorios de Avisos",
 		"channelRemindersDescription": "Recordatorios de avisos que empezaste pero no terminaste."
 	},
+	"outThere": {
+		"title": "Por Ahí",
+		"description": "Lo que hay a tu alrededor, y qué podrías hacer ahí.",
+		"needLocation": "¿Dónde Estás?",
+		"needLocationBody": "Recess busca lo que hay a tu alrededor en este dispositivo. Tu ubicación nunca sale de él, y se redondea a la manzana más cercana antes de guardar nada.",
+		"useLocation": "Usar mi Ubicación",
+		"pinArea": "Marcar mi Zona en su Lugar",
+		"blocked": "La ubicación está desactivada para Recess. Actívala en Ajustes, o marca tu zona a mano.",
+		"openSettings": "Abrir Ajustes",
+		"locating": "Buscándote",
+		"noPack": "Aún no hay Mapa de Aquí",
+		"noPackBody": "Descarga tu zona una vez y funciona sin conexión a partir de entonces.",
+		"download": "Descargar {size}",
+		"downloading": "Descargando",
+		"thin": "Esta Zona está poco Cartografiada",
+		"thinBody": "OpenStreetMap todavía no tiene mucho detalle aquí. Todos los avisos siguen funcionando; simplemente no hay nada que señalar.",
+		"nothingNearby": "Nada a {minutes} Minutos a Pie",
+		"nothingNearbyBody": "Prueba a ampliar el radio, o elige una dirección sin más.",
+		"placeCount": "{count} lugar | {count} lugares",
+		"withinWalk": "A {minutes} Minutos a Pie",
+		"walkMinutes": "{count} min",
+		"unnamed": "Sin nombre",
+		"radius": "Qué tan Lejos",
+		"resolvedHere": "ya hiciste algo aquí",
+		"attribution": "Datos de mapa de OpenStreetMap",
+		"attributionLink": "openstreetmap.org/copyright",
+		"lastKnown": "Última Zona Conocida",
+		"youAreHere": "Estás Aquí",
+		"forNudge": "Para {title}",
+		"affordance": {
+			"sit": "Un Lugar para Sentarse",
+			"green": "Algo Verde",
+			"water": "Agua",
+			"drink": "Agua Potable",
+			"quiet": "Un Lugar Tranquilo",
+			"view": "Una Vista Larga",
+			"shelter": "Refugio",
+			"people": "Otras Personas",
+			"art": "Algo Hecho",
+			"read": "Algo que Leer",
+			"move": "Un Lugar para Moverse",
+			"grow": "Algo que Crece",
+			"food": "Comida",
+			"old": "Algo Antiguo"
+		},
+		"compass": {
+			"n": "norte",
+			"ne": "noreste",
+			"e": "este",
+			"se": "sureste",
+			"s": "sur",
+			"sw": "suroeste",
+			"w": "oeste",
+			"nw": "noroeste"
+		}
+	},
 	"settings": {
 		"title": "Ajustes",
 		"appearance": "Apariencia",
@@ -448,7 +505,8 @@
 		"license": "Licencia",
 		"licenseValue": "Apache License 2.0",
 		"storedOnDevice": "Guardado solo en este dispositivo.",
-		"privacyTitle": "Solo en Este Dispositivo"
+		"privacyTitle": "Solo en Este Dispositivo",
+		"credit": "Hecho por The Earth App"
 	},
 	"permissions": {
 		"cameraTitle": "Se Necesita la Cámara",

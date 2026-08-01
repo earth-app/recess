@@ -1,3 +1,4 @@
+import type { Page } from '@playwright/test';
 import {
 	expect,
 	frontCard,
@@ -8,6 +9,22 @@ import {
 	waitForDeck
 } from './utils/fixtures';
 import { readMockState } from './utils/native-mock';
+
+/** the day's chosen ids, which are the contract; a rendered title is only its consequence */
+interface StoredPick {
+	day?: string;
+	ids?: string[];
+	bonusId?: string | null;
+}
+
+const readPick = async (page: Page): Promise<StoredPick> => {
+	const stored = await page.evaluate(() => {
+		const key = Object.keys(localStorage).find((name) => name.includes('today-pick'));
+		return key ? String(localStorage.getItem(key)) : null;
+	});
+	// an absent pick reads as an empty one, so a caller asserts on ids rather than on null
+	return stored ? (JSON.parse(stored) as StoredPick) : {};
+};
 
 test.describe('the today deck', () => {
 	test('shows the day and its ring once the store hydrates', async ({ bootToday, page }) => {
@@ -32,39 +49,46 @@ test.describe('the today deck', () => {
 		bootToday,
 		page
 	}) => {
-		const readPick = () =>
-			page.evaluate(() => {
-				const key = Object.keys(localStorage).find((name) => name.includes('today-pick'));
-				return key ? JSON.parse(String(localStorage.getItem(key))) : null;
-			});
-
 		await bootToday();
 		await waitForDeck(page);
 		// the deck paints in the same tick as the ready marker, but under load the read can
 		// still land mid-render; a settled front card is exactly one titled card
 		await expect(page.getByTestId('nudge-title')).toHaveCount(1);
 
-		const before = await readPick();
-		expect(before?.ids?.length, 'the day pick was not persisted').toBeGreaterThan(0);
+		const before = await readPick(page);
+		expect(before.ids?.length, 'the day pick was not persisted').toBeGreaterThan(0);
 		const firstTitle = await frontCard(page).textContent();
 
 		await page.reload();
 		await waitForDeck(page);
 		await expect(page.getByTestId('nudge-title')).toHaveCount(1);
 
-		const after = await readPick();
+		const after = await readPick(page);
 		expect(after.ids).toEqual(before.ids);
 		expect(after.bonusId).toBe(before.bonusId);
 		expect(await frontCard(page).textContent()).toBe(firstTitle);
 	});
 
+	/**
+	 * The clock is pinned, and the assertion is on the whole set rather than the front card.
+	 *
+	 * Both seeds are fixed, but the pick is a function of `(seed, dayKey)` - so on any given real
+	 * date the two installs can legitimately agree on the first of their four nudges, and this
+	 * failed on exactly one day's date while passing on the one before it. Comparing the sets makes
+	 * a collision astronomically unlikely rather than merely uncommon; pinning the day makes it
+	 * impossible, and the same date is what the assertion was verified against.
+	 */
 	test('a different install gets a different day, which is the point of the seed', async ({
 		bootToday,
 		page
 	}) => {
+		// midday local, so the local day key is the same wherever this runs
+		await page.clock.setFixedTime(new Date('2026-03-17T12:00:00'));
+
 		await bootToday();
 		await waitForDeck(page);
-		const mine = await frontCard(page).textContent();
+		const mine = await readPick(page);
+		expect(mine.ids?.length, 'the first install persisted no pick').toBeGreaterThan(0);
 
 		// a second device would not carry the first one's stored pick, and the stored pick
 		// deliberately outranks the seed - so drop it to actually exercise the seed
@@ -78,10 +102,10 @@ test.describe('the today deck', () => {
 			preferences: { 'recess:install-seed': JSON.stringify('ffffffffffffffffffffffffffffffff') }
 		});
 		await waitForDeck(page);
-		const theirs = await frontCard(page).textContent();
+		const theirs = await readPick(page);
 
 		// two people starting the same day should not be handed the same four nudges
-		expect(theirs).not.toBe(mine);
+		expect(theirs.ids, 'two installs drew an identical day').not.toEqual(mine.ids);
 	});
 
 	test('tapping a card opens its sheet', async ({ bootToday, page }) => {

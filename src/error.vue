@@ -1,0 +1,25 @@
+<template>
+	<IonApp>
+		<div class="flex flex-col items-center py-24 min-h-screen">
+			<UIcon
+				name="mdi:seesaw"
+				class="text-6xl text-red-500 mb-4"
+			/>
+			<h1 class="text-4xl font-bold mb-4">Oops! Something went wrong.</h1>
+			<p class="text-lg mb-8 px-4">
+				{{ error?.message || "We're sorry, but we couldn't find the page you were looking for." }}
+			</p>
+			<IonButton
+				class="hover:cursor-pointer"
+				color="primary"
+				@click="navigateTo('/tabs/dashboard')"
+			>
+				Go Back Home
+			</IonButton>
+		</div>
+	</IonApp>
+</template>
+
+<script setup lang="ts">
+const error = useError();
+</script>

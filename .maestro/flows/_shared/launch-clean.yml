@@ -1,0 +1,48 @@
+appId: com.earthapp.recess
+name: Clean Launch
+tags:
+  - gate
+---
+# a system alert left by an earlier flow covers the whole accessibility tree, which would
+# cascade one flake into every later flow. nothing of ours is on screen yet, so any Cancel
+# here belongs to the OS
+- runFlow:
+    when:
+      visible:
+        text: Cancel
+    commands:
+      - tapOn:
+          text: Cancel
+      - waitForAnimationToEnd:
+          timeout: 5000
+
+# Granted BEFORE launch, so no OS prompt ever appears mid-flow. Onboarding's times step
+# requests notifications, and an iOS prompt arrives asynchronously - a `when: visible` check
+# races it and skips, and then the prompt owns the whole accessibility tree, so every later tap
+# fails while the screenshot still shows the app underneath. Flows that test a grant state
+# (permissions-notifications.yml) set their own afterwards.
+- setPermissions:
+    appId: com.earthapp.recess
+    permissions:
+      notifications: allow
+      camera: allow
+      microphone: allow
+
+- launchApp:
+    appId: com.earthapp.recess
+    clearState: true
+    clearKeychain: true
+    stopApp: true
+    label: Cold launch onto a wiped app container
+
+# launchAutoHide is false, so the splash only clears once the boot chain calls hide(); any
+# content at all is therefore a real assertion that boot completed. the first onboarding
+# slide also proves the Preferences prefix was cleared - onboarding state is a Preferences
+# key, so it survives a plain localStorage wipe
+- extendedWaitUntil:
+    visible: Small Nudges. Real Life.
+    timeout: 40000
+    label: Splash cleared and the first onboarding slide rendered
+- assertVisible:
+    text: A few small things a day. Some take a minute, some take an afternoon.
+    label: Webview actually painted, not a blank shell

@@ -1,0 +1,39 @@
+appId: com.earthapp.recess
+name: Cold Relaunch Keeps The Same Day
+tags:
+  - gate
+---
+# The regression this exists for: the day's four nudges are drawn from a seeded stream, but
+# the weather snapshot that feeds the filters arrives asynchronously and is cached - so a
+# relaunch re-picked the day against a different context and served a different set. It is
+# only reproducible across a real process death, which is exactly what an e2e reload is not.
+- runFlow:
+    file: ../_shared/onboarded.yml
+
+- stopApp:
+    appId: com.earthapp.recess
+- launchApp:
+    appId: com.earthapp.recess
+    clearState: false
+    label: Second cold launch on the same container
+
+# the splash has to clear on every launch, not only the first: hide() sits behind the boot
+# chain, so a slow Preferences read is enough to hang it forever
+- extendedWaitUntil:
+    visible: Start Something Today
+    timeout: 40000
+    label: Splash cleared on the second launch and Today rendered again
+- assertNotVisible:
+    text: Small Nudges. Real Life.
+    label: Onboarding state survived in Preferences, so the slides did not replay
+
+# What this proves and what it does not: the count is derived from the ledger, so four here
+# means the relaunch neither resolved nor dropped anything. It does NOT prove the same four
+# cards came back - the front card's accessible name is the nudge title, which a flow cannot
+# select without already knowing the draw. The identity of the set is asserted in the unit
+# lane against a fixed seed; this flow covers the half that needs a real process death.
+- assertVisible:
+    text: 4 Left Today
+    label: The day still holds four unresolved nudges after a real process death
+- assertNotVisible:
+    text: Today is Done

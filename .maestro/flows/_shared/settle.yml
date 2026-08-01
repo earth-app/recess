@@ -1,0 +1,39 @@
+appId: com.earthapp.recess
+name: Settle Stray Overlays
+tags:
+  - gate
+---
+# Clears any system overlay sitting on top of the app.
+#
+# Three shapes have to be handled by one flow, which is why this is a bounded retry rather than
+# a condition or a wait. A `runFlow: when: visible:` races an overlay that arrives
+# asynchronously and skips before it lands. A hard `extendedWaitUntil` fails on the common case
+# where no overlay ever comes. And overlays stack, so one dismissal is not always enough - the
+# dismissal pair is repeated inside a single pass for that reason.
+#
+# It matters because a system dialog owns the ENTIRE accessibility tree: everything behind it
+# reports not-visible even when a screenshot plainly shows it, so the next tap in any flow fails
+# with no indication that an overlay was the cause.
+#
+# `retry.maxRetries` caps at 3; above that maestro rejects the schema.
+- retry:
+    maxRetries: 3
+    commands:
+      - runFlow:
+          when:
+            visible:
+              text: 'Allow|OK|Continue'
+          commands:
+            - tapOn:
+                text: 'Allow|OK|Continue'
+            - waitForAnimationToEnd:
+                timeout: 5000
+      - runFlow:
+          when:
+            visible:
+              text: 'Allow|OK|Continue|Cancel'
+          commands:
+            - tapOn:
+                text: 'Allow|OK|Continue|Cancel'
+            - waitForAnimationToEnd:
+                timeout: 5000

@@ -1,0 +1,83 @@
+appId: com.earthapp.recess
+name: Onboarded Onto Today
+tags:
+  - gate
+---
+# recess has no account, so this is the analogue of a sign-in fixture: the shortest honest
+# path from a wiped container to the Today deck. Every native flow starts here rather than
+# seeding Preferences, because the seeded path is not the path a user takes
+- runFlow:
+    file: ./launch-clean.yml
+
+- tapOn:
+    text: Next
+- extendedWaitUntil:
+    visible: A Few a Day. Then you're Done.
+    timeout: 20000
+- tapOn:
+    text: Next
+- extendedWaitUntil:
+    visible: Nothing Leaves this Phone.
+    timeout: 20000
+
+# the third slide's button is Get Started, not Next
+- tapOn:
+    text: Get Started
+- extendedWaitUntil:
+    visible: What are you Drawn to?
+    timeout: 20000
+
+# interests are optional and skipping them is a supported state, so pick exactly one to
+# prove the chip is reachable without making the deck depend on which one
+- tapOn:
+    text: Nature
+- tapOn:
+    text: Next
+- extendedWaitUntil:
+    visible: When should we Nudge?
+    timeout: 20000
+
+# the times step primes the notification permission. launch-clean.yml already granted it before
+# launch so no prompt should appear, and settle.yml is the bounded backstop for one that does -
+# a bare `when: visible` check here raced the async prompt and skipped
+- runFlow:
+    file: ./settle.yml
+- tapOn:
+    text: Next
+- extendedWaitUntil:
+    visible: Smart Validation
+    timeout: 30000
+
+# declining the packs is the fast path and the one that exercises fail-closed validation;
+# model-pack-decline.yml is what asserts the consequence
+- tapOn:
+    text: Not Now
+- extendedWaitUntil:
+    visible: Skip the Models?
+    timeout: 20000
+    label: Not Now asks before giving up on-device checking
+- tapOn:
+    text: Skip for Now
+
+- extendedWaitUntil:
+    visible: Start Something Today
+    timeout: 40000
+    label: Onboarding completed onto a painted Today page
+
+# Relaunched before handing over to the caller, which is also what a real second session is.
+# Note this does NOT work around the open Maestro-only problem where taps stop landing after a
+# session walks onboarding - an in-flow relaunch was measured and does not restore them. It is
+# kept because a relaunch is the honest starting state for these flows either way.
+- stopApp:
+    appId: com.earthapp.recess
+- launchApp:
+    appId: com.earthapp.recess
+    clearState: false
+    label: Relaunch onto a fully wired tab shell
+- extendedWaitUntil:
+    visible: Start Something Today
+    timeout: 40000
+    label: Today painted again on the second launch
+- assertNotVisible:
+    text: Small Nudges. Real Life.
+    label: Onboarding state persisted, so the slides did not replay

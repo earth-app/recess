@@ -1,0 +1,24 @@
+appId: com.earthapp.recess
+name: Cold Launch Clears The Splash
+tags:
+  - gate
+---
+- runFlow:
+    file: ../_shared/launch-clean.yml
+
+# a webview that boots and then goes blank on the first route change is the other half of
+# this bug class, so push a route and come back
+- tapOn:
+    text: Next
+- extendedWaitUntil:
+    visible: A Few a Day. Then you're Done.
+    timeout: 20000
+    label: First in-app route rendered
+- tapOn:
+    text: Back
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible: Small Nudges. Real Life.
+    timeout: 20000
+    label: Returned to a painted slide, not a blank webview

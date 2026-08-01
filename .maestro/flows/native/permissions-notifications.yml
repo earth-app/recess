@@ -1,0 +1,54 @@
+appId: com.earthapp.recess
+name: Notification Permission Deny Then Grant
+tags:
+  - gate
+---
+# the deterministic permission surface. camera and microphone only appear on a nudge that
+# asks for a photo or a recording, and which nudges the day serves is a function of the
+# install seed - so those are covered by resolve-a-nudge.yml's branch instead of by a flow
+# that would depend on the draw
+- runFlow:
+    file: ../_shared/onboarded.yml
+
+- setPermissions:
+    appId: com.earthapp.recess
+    permissions:
+      notifications: deny
+
+- tapOn:
+    text: Settings
+- extendedWaitUntil:
+    visible: Notifications
+    timeout: 20000
+- tapOn:
+    text: Notifications
+- waitForAnimationToEnd:
+    timeout: 5000
+
+- extendedWaitUntil:
+    visible: Notifications Off
+    timeout: 30000
+    label: A denied grant surfaces the recovery alert rather than silently scheduling nothing
+- assertVisible:
+    text: Turn Notifications on
+
+# the app re-reads the native permission rather than trusting its own setting, so a grant
+# made outside the app has to recover in place. that promise is only testable against a
+# real permission store
+- setPermissions:
+    appId: com.earthapp.recess
+    permissions:
+      notifications: allow
+- tapOn:
+    text: Turn Notifications on
+- waitForAnimationToEnd:
+    timeout: 5000
+
+- extendedWaitUntil:
+    notVisible:
+      text: Notifications Off
+    timeout: 30000
+    label: Re-checking the grant cleared the alert without a relaunch
+- assertVisible:
+    text: Daily Nudges
+    label: The toggle row is still there, so the page recovered rather than emptied

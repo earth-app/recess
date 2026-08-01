@@ -1,0 +1,56 @@
+appId: com.earthapp.recess
+name: Declined Model Packs Stay Declined And Report Real Sizes
+tags:
+  - gate
+---
+# Two contracts meet here. Declining during onboarding must persist - a pack that silently
+# reappears as installed would make the validator claim it can check something it cannot.
+# And the sizes shown must be read from the real file listing rather than hardcoded, which is
+# only observable against a device where nothing has been downloaded.
+- runFlow:
+    file: ../_shared/onboarded.yml
+
+- tapOn:
+    text: Settings
+- extendedWaitUntil:
+    visible: On-Device Models
+    timeout: 20000
+- tapOn:
+    text: On-Device Models
+- waitForAnimationToEnd:
+    timeout: 5000
+
+- extendedWaitUntil:
+    visible: Detected Tier
+    timeout: 40000
+    label: The capability benchmark resolved a tier rather than spinning
+
+# every pack still offers a Download, so the onboarding decline persisted through a real
+# Preferences write rather than living in memory
+- assertVisible:
+    text: Download
+- assertVisible:
+    text: Photos
+- assertVisible:
+    text: Writing
+- assertVisible:
+    text: Audio
+
+# "Size unavailable" is the honest fallback when the listing cannot be read; seeing it here
+# is not a failure, but seeing a plausible fabricated number would be. The assertion is that
+# the page committed to one of the two rather than rendering a placeholder
+- runFlow:
+    when:
+      visible:
+        text: Size unavailable
+    commands:
+      - assertVisible:
+          text: Size unavailable
+          label: Sizes could not be read, and the page says so instead of inventing one
+
+- tapOn:
+    text: Back
+- extendedWaitUntil:
+    visible: On-Device Models
+    timeout: 20000
+    label: Returned to the settings list

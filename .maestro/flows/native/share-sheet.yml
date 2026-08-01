@@ -1,0 +1,38 @@
+appId: com.earthapp.recess
+name: Playground QR And The System Share Sheet
+tags:
+  - eval
+---
+# `eval` rather than `gate`: the iOS share sheet is a system surface whose element names move
+# between OS versions, so a red here is as likely to be an OS change as a regression.
+# The QR half is deterministic and could be promoted once it has run on more than one runtime.
+- runFlow:
+    file: ../_shared/onboarded.yml
+
+- tapOn:
+    text: Playground
+- extendedWaitUntil:
+    visible: Grown from 0 Nudges
+    timeout: 20000
+
+# both toolbar buttons are icon-only, so they are reachable only by their aria-label
+- tapOn:
+    text: Show a Friend
+- extendedWaitUntil:
+    visible: Someone Else's Playground
+    timeout: 20000
+    label: The share sheet opened on its scan/show surface
+- takeScreenshot:
+    path: playground-share
+
+- tapOn:
+    text: Close
+- waitForAnimationToEnd:
+    timeout: 5000
+
+- tapOn:
+    text: Show a Friend
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot:
+    path: playground-qr

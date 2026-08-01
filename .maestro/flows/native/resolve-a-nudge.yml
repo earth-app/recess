@@ -1,0 +1,72 @@
+appId: com.earthapp.recess
+name: Resolve A Nudge And Advance The Day
+tags:
+  - gate
+---
+# Branches on what the day actually drew rather than assuming a type. The four nudges come
+# from a seeded stream keyed on the install seed, which is generated with
+# crypto.getRandomValues on first launch, so no flow can know whether today's front card
+# wants a photo, a sentence, or just a yes.
+- runFlow:
+    file: ../_shared/onboarded.yml
+
+- assertVisible:
+    text: 4 Left Today
+    label: A full day to start from
+
+# the front card, not the hint row below it. `Open this Nudge` on its own also matches that
+# hint label, which is a plain span - tapping it did nothing while the flow believed it had
+# opened the sheet, because `Not Now` is in that same hint row
+- tapOn:
+    text: 'Open this Nudge: .*'
+# `Close` is the sheet's own toolbar button and the only marker every type shares - the bodies
+# differ per type, and `Not Now` is also in the hint row behind the sheet
+- extendedWaitUntil:
+    visible: Close
+    timeout: 20000
+    label: The nudge sheet opened, whatever type the day drew
+
+# The fail-closed contract, and the reason this flow matters on a device: the model packs
+# were declined during onboarding, so any nudge needing one MUST offer self-attestation
+# rather than block. Never a silent pass.
+- runFlow:
+    when:
+      visible:
+        text: Mark it Done Myself
+    commands:
+      - assertVisible:
+          text: Mark it Done Myself
+          label: A model-backed nudge degraded to explicit self-attestation
+      - tapOn:
+          text: Mark it Done Myself
+
+# the instant types (confirm / think / choose) resolve straight from the sheet
+- runFlow:
+    when:
+      visible:
+        text: Mark it Done
+    commands:
+      - tapOn:
+          text: Mark it Done
+
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# whichever branch ran, the ledger gained an entry, so the day's count has to have moved
+- extendedWaitUntil:
+    visible: 3 Left Today
+    timeout: 30000
+    label: The ring and the count advanced off a real resolution
+- assertNotVisible:
+    text: 4 Left Today
+
+# points are derived from the ledger too, and the playground scene is a pure function of it
+- tapOn:
+    text: Playground
+- extendedWaitUntil:
+    visible: Grown from 1 Nudge
+    timeout: 20000
+    label: One completion reached the playground, so the ledger really persisted
+- assertNotVisible:
+    text: Finish a nudge and something will grow here.
+    label: The empty state gave way rather than lingering

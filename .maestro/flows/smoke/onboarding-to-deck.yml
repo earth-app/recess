@@ -1,0 +1,86 @@
+appId: com.earthapp.recess
+name: Onboarding Reaches A Real Deck
+tags:
+  - eval
+---
+# `eval`, not `gate`, and it currently FAILS on purpose: it is the reproduction for a
+# Maestro-only problem where the app stops reacting to synthetic taps after a session walks
+# onboarding. Not the tab bar and not routing - tapping the deck's own front card afterwards
+# fails the same way, and both Chromium and WebKit pass this path. Kept as evidence rather than
+# deleted; the gate lane never depends on it. See src/pages/onboarding.vue for the full matrix.
+- runFlow:
+    file: ../_shared/launch-clean.yml
+- tapOn:
+    text: Next
+- extendedWaitUntil:
+    visible: A Few a Day. Then you're Done.
+    timeout: 20000
+- tapOn:
+    text: Next
+- extendedWaitUntil:
+    visible: Nothing Leaves this Phone.
+    timeout: 20000
+- tapOn:
+    text: Get Started
+- extendedWaitUntil:
+    visible: What are you Drawn to?
+    timeout: 20000
+- tapOn:
+    text: Nature
+- tapOn:
+    text: Next
+- extendedWaitUntil:
+    visible: When should we Nudge?
+    timeout: 20000
+- runFlow:
+    file: ../_shared/settle.yml
+- tapOn:
+    text: Next
+- extendedWaitUntil:
+    visible: Smart Validation
+    timeout: 30000
+- tapOn:
+    text: Not Now
+- extendedWaitUntil:
+    visible: Skip the Models?
+    timeout: 20000
+- tapOn:
+    text: Skip for Now
+- extendedWaitUntil:
+    visible: Start Something Today
+    timeout: 40000
+    label: Onboarding completed onto a painted Today page
+
+# every selector below is a string rendered in its authored case. the section headers on
+# Today and Week ("STILL OPEN", "THIS WEEK") are CSS `text-transform: uppercase`, and whether
+# an accessible name reports the authored or the rendered casing is engine-dependent, so
+# nothing here selects on one
+- tapOn:
+    text: Playground
+- extendedWaitUntil:
+    visible: Grown from 0 Nudges
+    timeout: 20000
+    label: Playground painted with an honest zero rather than a placeholder
+- assertVisible:
+    text: Only Yours
+    label: The per-install trait panel rendered, so the seed resolved
+
+- tapOn:
+    text: Week
+- extendedWaitUntil:
+    visible: This Week is Still Blank
+    timeout: 20000
+    label: Week shows its real empty state, not a spinner
+
+- tapOn:
+    text: Settings
+- extendedWaitUntil:
+    visible: On-Device Models
+    timeout: 20000
+
+- tapOn:
+    text: Today
+- extendedWaitUntil:
+    visible: Start Something Today
+    timeout: 20000
+    label: Round trip through every tab and back to a painted Today

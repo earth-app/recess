@@ -1,0 +1,58 @@
+appId: com.earthapp.recess
+name: Webview Survives Route Churn And A Relaunch
+tags:
+  - gate
+---
+# A WKWebView that boots fine and then paints nothing after enough navigation is the failure
+# a headless Chromium e2e cannot reproduce: it is the real engine, the real Capacitor bridge
+# and the real memory ceiling that break, not the DOM.
+- runFlow:
+    file: ../_shared/onboarded.yml
+
+# four tabs, three times round. each hop tears down one ion-router-outlet view and builds
+# another, which is where a blank shell shows up
+- repeat:
+    times: 3
+    commands:
+      - tapOn:
+          text: Playground
+      - extendedWaitUntil:
+          visible: Grown from 0 Nudges
+          timeout: 20000
+      - tapOn:
+          text: Week
+      - extendedWaitUntil:
+          visible: This Week is Still Blank
+          timeout: 20000
+      - tapOn:
+          text: Settings
+      - extendedWaitUntil:
+          visible: On-Device Models
+          timeout: 20000
+      - tapOn:
+          text: Today
+      - extendedWaitUntil:
+          visible: Start Something Today
+          timeout: 20000
+
+# a settings drill-down and back, which swaps the whole outlet rather than a tab
+- tapOn:
+    text: Settings
+- extendedWaitUntil:
+    visible: Your Data
+    timeout: 20000
+- tapOn:
+    text: Your Data
+- extendedWaitUntil:
+    visible: Erase Everything
+    timeout: 20000
+- tapOn:
+    text: Back
+- extendedWaitUntil:
+    visible: On-Device Models
+    timeout: 20000
+    label: Came back to a painted settings list, not a blank outlet
+
+- assertVisible:
+    text: Appearance
+    label: Still a real list after the churn

@@ -29,6 +29,7 @@ export default defineConfig({
 	expect: { timeout: 12_000 },
 	reporter: reporters,
 	outputDir: 'playwright-results',
+	globalTeardown: './tests/e2e/utils/global-teardown.ts',
 	webServer: {
 		// gated on the stamp `build:test` writes, not on `dist` existing: `dist` is a symlink
 		// to `.output/public`, so any plain `generate` leaves a build here that is not a test

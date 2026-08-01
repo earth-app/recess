@@ -179,7 +179,7 @@ export default defineNuxtConfig({
 			'@codecov/nuxt-plugin',
 			{
 				enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
-				bundleName: 'recess',
+				bundleName: process.env.NUXT_MODE === 'ios' ? 'recess-ios' : 'recess-android',
 				uploadToken: process.env.CODECOV_TOKEN
 			}
 		]

@@ -1,4 +1,5 @@
 import { test as base, expect, type Page } from '@playwright/test';
+import { saveCoverageForTest } from './coverage';
 import {
 	completedOnboarding,
 	installNativeMock,
@@ -79,6 +80,26 @@ export const test = base.extend<RecessFixtures>({
 
 	mockState: async ({ page }, use) => {
 		await use(() => readMockState(page));
+	},
+
+	/**
+	 * Wraps every page in V8 coverage when `COVERAGE=1`, chromium only - webkit exposes no
+	 * equivalent. `resetOnNavigation: false` matters here more than in a single-page app: the tab
+	 * shell navigates on nearly every spec, and the default would discard everything measured
+	 * before the last route change.
+	 */
+	page: async ({ page, browserName }, use, testInfo) => {
+		const collecting = browserName === 'chromium' && process.env.COVERAGE === '1';
+		if (collecting) await page.coverage.startJSCoverage({ resetOnNavigation: false });
+
+		await use(page);
+
+		if (!collecting) return;
+		try {
+			await saveCoverageForTest(testInfo.testId, await page.coverage.stopJSCoverage());
+		} catch {
+			// the page closed first; nothing left to read
+		}
 	}
 });
 

@@ -26,8 +26,29 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Typecheck
         run: bun run typecheck
+      # coverage rather than a bare run; the report is the only extra cost and the
+      # gate has to fail on a red test either way
       - name: Unit Tests
-        run: bun run test:unit
+        run: bun run test:unit:coverage
+      - name: Upload Unit Coverage to Codecov
+        if: ${{ always() }}
+        uses: codecov/codecov-action@v7
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: earth-app/recess
+          fail_ci_if_error: false
+          flags: unit
+          files: |
+            coverage/lcov.info
+            coverage/coverage-final.json
+      - name: Archive Unit Coverage
+        if: ${{ always() && github.event_name == 'push' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: recess-unit-coverage-${{ github.run_id }}
+          path: coverage/
+          retention-days: 14
+          overwrite: true
       - name: Validator Eval
         run: bun run test:eval
       - name: Recommender Eval
@@ -50,14 +71,38 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Install Playwright browsers
         run: bunx playwright install --with-deps chromium
-      - name: Run Playwright
-        run: bun run test:e2e
+      # the V8 remap needs the client sourcemaps that only a test build emits, and the
+      # chunk files on disk beside them, so the build cannot be skipped here
+      - name: Run Playwright with Coverage
+        run: bun run test:e2e:coverage
+      - name: Upload E2E Coverage to Codecov
+        if: ${{ always() }}
+        uses: codecov/codecov-action@v7
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: earth-app/recess
+          fail_ci_if_error: false
+          flags: e2e
+          files: |
+            coverage/lcov.info
+            coverage/coverage-final.json
+      - name: Archive E2E Coverage
+        if: ${{ always() && github.event_name == 'push' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: recess-e2e-coverage-${{ github.run_id }}
+          path: coverage/
+          retention-days: 14
+          overwrite: true
       - name: Archive Playwright report
         if: failure()
         uses: actions/upload-artifact@v7
         with:
           name: recess-playwright-${{ github.run_id }}
-          path: playwright-results/
+          path: |
+            playwright-report/
+            playwright-results/
+            .coverage/
           overwrite: true
 
   build-ios:
@@ -83,6 +128,8 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Build Project
         run: bun run generate:ios
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - name: Archive Build Artifacts
         id: archive
         uses: actions/upload-artifact@v7
@@ -120,6 +167,8 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Build Project
         run: bun run generate:android
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - name: Archive Build Artifacts
         id: archive
         uses: actions/upload-artifact@v7

@@ -49,7 +49,13 @@
 		"streakDayOne": "Día Uno",
 		"streakDays": "{count} Días",
 		"streakLongest": "{count} Días, tu Racha Más Larga",
-		"streakResting": "{count} Días, Descansando"
+		"streakResting": "{count} Días, Descansando",
+		"strip": "Últimos {count} días: {parts}",
+		"stripEmpty": "Aún no hay días que mostrar",
+		"stripDone": "{count} día hecho | {count} días hechos",
+		"stripRest": "{count} día de descanso | {count} días de descanso",
+		"stripQuiet": "{count} día tranquilo | {count} días tranquilos",
+		"stripAhead": "{count} día por venir | {count} días por venir"
 	},
 	"nudge": {
 		"imDone": "Ya Está",

@@ -49,7 +49,13 @@
 		"streakDayOne": "Day One",
 		"streakDays": "{count} Days",
 		"streakLongest": "{count} Days, Your Longest Yet",
-		"streakResting": "{count} Days, Resting"
+		"streakResting": "{count} Days, Resting",
+		"strip": "Last {count} days: {parts}",
+		"stripEmpty": "No days to show yet",
+		"stripDone": "{count} day done | {count} days done",
+		"stripRest": "{count} rest day | {count} rest days",
+		"stripQuiet": "{count} quiet day | {count} quiet days",
+		"stripAhead": "{count} day still ahead | {count} days still ahead"
 	},
 	"nudge": {
 		"imDone": "I'm Done",

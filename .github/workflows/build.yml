@@ -1,11 +1,69 @@
 name: Build Project
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Typecheck
+        run: bun run typecheck
+      - name: Unit Tests
+        run: bun run test:unit
+      - name: Validator Eval
+        run: bun run test:eval
+      - name: Recommender Eval
+        run: bun run test:eval:recommend
+
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: gate
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Install Playwright browsers
+        run: bunx playwright install --with-deps chromium
+      - name: Run Playwright
+        run: bun run test:e2e
+      - name: Archive Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: recess-playwright-${{ github.run_id }}
+          path: playwright-results/
+          overwrite: true
+
   build-ios:
     runs-on: macos-latest
     timeout-minutes: 30
+    needs: gate
 
     permissions:
       contents: read
@@ -42,6 +100,7 @@ jobs:
   build-android:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    needs: gate
 
     permissions:
       contents: read
@@ -74,3 +133,151 @@ jobs:
         with:
           subject-name: recess-build-android-${{ github.run_id }}
           subject-digest: sha256:${{ steps.archive.outputs.artifact-digest }}
+
+  compile-ios:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    needs: build-ios
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Build the web bundle
+        run: bun run generate:ios
+      - name: Sync Capacitor
+        run: bunx cap sync ios
+      - name: Build App, Widget and Watch
+        run: |
+          xcodebuild \
+            -project ios/App/App.xcodeproj \
+            -scheme App \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/dd-ios" \
+            -quiet \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build
+      - name: Archive the app bundle
+        uses: actions/upload-artifact@v7
+        with:
+          name: recess-app-ios-${{ github.run_id }}
+          path: ${{ runner.temp }}/dd-ios/Build/Products/Debug-iphonesimulator/App.app
+          overwrite: true
+
+  compile-android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    needs: build-android
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Build the web bundle
+        run: bun run generate:android
+      - name: Sync Capacitor
+        run: bunx cap sync android
+      - name: Assemble the debug APK
+        run: cd android && ./gradlew --console=plain assembleDebug
+      - name: Archive the APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: recess-apk-${{ github.run_id }}
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          overwrite: true
+
+  maestro-ios:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    needs: compile-ios
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/master'
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Install Maestro
+        run: |
+          curl -Ls https://get.maestro.mobile.dev | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+      - name: Run the gate flows
+        run: bun run maestro:ios
+      - name: Archive the maestro report
+        if: success() || failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: recess-maestro-ios-${{ github.run_id }}
+          path: /tmp/recess-maestro/ios/
+          overwrite: true
+
+  maestro-android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: compile-android
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/master'
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Install Maestro
+        run: |
+          curl -Ls https://get.maestro.mobile.dev | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' |
+            sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Run the gate flows
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          target: google_apis
+          disable-animations: true
+          script: bun run maestro:android
+      - name: Archive the maestro report
+        if: success() || failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: recess-maestro-android-${{ github.run_id }}
+          path: /tmp/recess-maestro/android/
+          overwrite: true

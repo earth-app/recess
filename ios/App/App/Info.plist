@@ -3,12 +3,12 @@
 	"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CAPACITOR_DEBUG</key>
+	<key>CAPACITOR_DEBUG</key>
 	<string>$(CAPACITOR_DEBUG)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>The Earth App</string>
+	<string>Recess</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -23,15 +23,97 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false />
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.lifestyle</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true />
+	<key>NSCameraUsageDescription</key>
+	<string>Recess uses your camera for nudges that ask you to photograph or scan something, for example
+		catching a bird on a branch or scanning the barcode of a book you are about to read. Photos are
+		checked on this device and never leave it.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string
+		>Recess uses your microphone for nudges that ask you to say out loud what you notice, for example
+		describing a sound you cannot place. Recordings are transcribed on this device and never leave
+		it.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Recess uses a rough location, only while you are using the app, to look up local weather and
+		sunset time so it does not suggest a walk during a thunderstorm or after dark. Your location is
+		never stored or sent anywhere.</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright (c) 2026 The Earth App</string>
+	<key>NSSupportsLiveActivities</key>
+	<true />
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false />
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Default</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+					<key>UISceneStoryboardFile</key>
+					<string>Main</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeTask</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Today</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.earthapp.recess.shortcut.today</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>route</key>
+				<string>/tabs/today</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeBookmark</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Playground</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.earthapp.recess.shortcut.playground</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>route</key>
+				<string>/tabs/playground</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeDate</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Your Week</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.earthapp.recess.shortcut.week</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>route</key>
+				<string>/tabs/week</string>
+			</dict>
+		</dict>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string>
+		<string>arm64</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -46,6 +128,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Automatic</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true />
 </dict>

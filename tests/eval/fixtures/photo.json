@@ -1,0 +1,344 @@
+[
+	{
+		"nudgeId": "home.task.clear_one_surface",
+		"shouldPass": true,
+		"note": "compliant: the surface is actually clear",
+		"describedAs": "an empty wooden desk with nothing on it at all, bare grain and a plain wall behind it"
+	},
+	{
+		"nudgeId": "home.task.clear_one_surface",
+		"shouldPass": false,
+		"note": "the surface was photographed before it was cleared",
+		"describedAs": "a table covered in unopened post, two mugs, a laptop bag and a pile of dishes"
+	},
+	{
+		"nudgeId": "home.task.clear_one_surface",
+		"shouldPass": false,
+		"note": "hits an authored negative label; a screen instead of a room",
+		"describedAs": "a screenshot of a phone home screen full of app icons"
+	},
+	{
+		"nudgeId": "cooking.create.something_from_nothing",
+		"shouldPass": true,
+		"note": "compliant: a finished home cooked meal",
+		"describedAs": "a plate of pasta under a thick tomato sauce, home cooked, on a kitchen table"
+	},
+	{
+		"nudgeId": "cooking.create.something_from_nothing",
+		"shouldPass": false,
+		"note": "the nudge rules out a shop run; this is a takeaway",
+		"describedAs": "a foil takeaway container of curry with the cardboard lid half off"
+	},
+	{
+		"nudgeId": "cooking.create.something_from_nothing",
+		"shouldPass": false,
+		"note": "hits an authored negative label; photographed after eating",
+		"describedAs": "an empty plate with a used fork lying across it in the sink"
+	},
+	{
+		"nudgeId": "cooking.create.back_of_the_cupboard",
+		"shouldPass": true,
+		"note": "compliant: the tinned thing got cooked",
+		"describedAs": "a bowl of bean stew next to the opened tin it came out of, on a worktop"
+	},
+	{
+		"nudgeId": "cooking.create.back_of_the_cupboard",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the tin is still shut",
+		"describedAs": "an unopened tin of chickpeas standing on a shelf next to a bag of pasta"
+	},
+	{
+		"nudgeId": "cooking.create.back_of_the_cupboard",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the cupboard rather than the cooking",
+		"describedAs": "a full kitchen cupboard with tins stacked three deep on every shelf"
+	},
+	{
+		"nudgeId": "cooking.create.breakfast_you_sit_down_for",
+		"shouldPass": true,
+		"note": "compliant: hot, on a plate, at a table",
+		"describedAs": "two fried eggs and a slice of buttered toast on a plate on the kitchen table"
+	},
+	{
+		"nudgeId": "cooking.create.breakfast_you_sit_down_for",
+		"shouldPass": false,
+		"note": "hits an authored negative label; cereal standing up is what the nudge rules out",
+		"describedAs": "a cereal box and an empty bowl standing on the kitchen worktop"
+	},
+	{
+		"nudgeId": "cooking.create.breakfast_you_sit_down_for",
+		"shouldPass": false,
+		"note": "hits an authored negative label; bought rather than made",
+		"describedAs": "the counter of a coffee shop with a queue in front of the menu board"
+	},
+	{
+		"nudgeId": "cooking.create.cold_thing_hot_day",
+		"shouldPass": true,
+		"note": "compliant: cold soup in a bowl",
+		"describedAs": "a bowl of chilled tomato soup with a swirl of oil on top, the bowl beaded with condensation"
+	},
+	{
+		"nudgeId": "cooking.create.cold_thing_hot_day",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the opposite of what was asked",
+		"describedAs": "a steaming hot plate of roast dinner with gravy poured over it"
+	},
+	{
+		"nudgeId": "cooking.create.cold_thing_hot_day",
+		"shouldPass": false,
+		"note": "hits an authored negative label; ingredients in a shop, nothing made",
+		"describedAs": "a supermarket shelf lined with tins of vegetables"
+	},
+	{
+		"nudgeId": "art.create.woodworking_project",
+		"shouldPass": true,
+		"note": "compliant: a handmade wooden object",
+		"describedAs": "a small handmade wooden box with visible saw marks, sitting on a workbench"
+	},
+	{
+		"nudgeId": "art.create.woodworking_project",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing was built",
+		"describedAs": "an empty room with bare floorboards and no furniture in it"
+	},
+	{
+		"nudgeId": "art.create.woodworking_project",
+		"shouldPass": false,
+		"note": "hits an authored negative label; bought rather than built",
+		"describedAs": "a store shelf stacked with flat pack furniture boxes"
+	},
+	{
+		"nudgeId": "art.create.draw_your_hand",
+		"shouldPass": true,
+		"note": "compliant: a bad drawing, which the nudge explicitly allows",
+		"describedAs": "a wobbly pencil drawing of a hand filling a sketchbook page"
+	},
+	{
+		"nudgeId": "art.create.draw_your_hand",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the hand itself rather than a drawing of it",
+		"describedAs": "a bare hand held up in front of the camera with the fingers spread"
+	},
+	{
+		"nudgeId": "art.create.draw_your_hand",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing drawn yet",
+		"describedAs": "a blank sheet of white paper on a desk with a pencil beside it"
+	},
+	{
+		"nudgeId": "art.create.fold_a_paper_animal",
+		"shouldPass": true,
+		"note": "compliant: a very bad crane still counts",
+		"describedAs": "a lopsided folded paper crane standing on a table"
+	},
+	{
+		"nudgeId": "art.create.fold_a_paper_animal",
+		"shouldPass": false,
+		"note": "hits an authored negative label; folded is not crumpled",
+		"describedAs": "a crumpled ball of paper on a desk"
+	},
+	{
+		"nudgeId": "art.create.fold_a_paper_animal",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing folded yet",
+		"describedAs": "a flat sheet of paper lying unfolded on a table"
+	},
+	{
+		"nudgeId": "art.create.handwritten_poem",
+		"shouldPass": true,
+		"note": "compliant: handwriting on paper",
+		"describedAs": "four lines of handwriting in blue biro across a notebook page"
+	},
+	{
+		"nudgeId": "art.create.handwritten_poem",
+		"shouldPass": false,
+		"note": "hits an authored negative label; typed, not handwritten",
+		"describedAs": "a printed page of typed text fresh out of a printer"
+	},
+	{
+		"nudgeId": "art.create.handwritten_poem",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing written yet",
+		"describedAs": "a blank notebook page lying open on a table"
+	},
+	{
+		"nudgeId": "art.create.desk_junk_sculpture",
+		"shouldPass": true,
+		"note": "compliant: household objects stacked into something",
+		"describedAs": "pens, a fork and a mug balanced into a wobbly tower on a desk"
+	},
+	{
+		"nudgeId": "art.create.desk_junk_sculpture",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing built",
+		"describedAs": "a tidy empty desk with nothing on it"
+	},
+	{
+		"nudgeId": "art.create.desk_junk_sculpture",
+		"shouldPass": false,
+		"note": "hits an authored negative label; objects in a shop, not a sculpture",
+		"describedAs": "a store shelf of stationery sealed in packets"
+	},
+	{
+		"nudgeId": "art.create.rainy_window_still_life",
+		"shouldPass": true,
+		"note": "compliant: a drawing of the view, rain included",
+		"describedAs": "a pencil sketch of a window with rain streaks on it and rooftops beyond"
+	},
+	{
+		"nudgeId": "art.create.rainy_window_still_life",
+		"shouldPass": false,
+		"note": "the hard near miss: the right subject photographed instead of drawn, and an authored negative",
+		"describedAs": "a photograph of a rainy window with drops running down the glass"
+	},
+	{
+		"nudgeId": "art.create.rainy_window_still_life",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing drawn yet",
+		"describedAs": "a blank sheet of paper with a pencil resting next to it"
+	},
+	{
+		"nudgeId": "errands.task.put_it_by_the_door",
+		"shouldPass": true,
+		"note": "compliant: the things that have to leave, on the floor by the door",
+		"describedAs": "a taped parcel and a tote bag on the floor in front of a front door"
+	},
+	{
+		"nudgeId": "errands.task.put_it_by_the_door",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing was put anywhere",
+		"describedAs": "an empty hallway with a bare wooden floor and nothing on it"
+	},
+	{
+		"nudgeId": "errands.task.put_it_by_the_door",
+		"shouldPass": false,
+		"note": "hits an authored negative label; a person rather than the parcel",
+		"describedAs": "a person posing indoors in front of a hallway mirror"
+	},
+	{
+		"nudgeId": "adventure.task.end_of_the_line",
+		"shouldPass": true,
+		"note": "compliant: the last stop, photographed there",
+		"describedAs": "an empty bus shelter beside a road with a timetable in a frame on the wall"
+	},
+	{
+		"nudgeId": "adventure.task.end_of_the_line",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the route rather than the place",
+		"describedAs": "a screenshot of a map with a bus route drawn across it"
+	},
+	{
+		"nudgeId": "adventure.task.end_of_the_line",
+		"shouldPass": false,
+		"note": "hits an authored negative label; never left the house",
+		"describedAs": "the inside of a living room with a sofa and a television"
+	},
+	{
+		"nudgeId": "adventure.notice.view_from_new_spot",
+		"shouldPass": true,
+		"note": "compliant: the actual view from a new spot",
+		"describedAs": "a long road stretching away into the distance between rows of houses"
+	},
+	{
+		"nudgeId": "adventure.notice.view_from_new_spot",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the photographer rather than the view",
+		"describedAs": "a selfie of a person posing with their arm held out towards the camera"
+	},
+	{
+		"nudgeId": "adventure.notice.view_from_new_spot",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the nudge rules out the bare sky",
+		"describedAs": "an empty sky with nothing else in the frame at all"
+	},
+	{
+		"nudgeId": "nature.task.same_tree",
+		"shouldPass": true,
+		"note": "compliant: one tree, outdoors, in daylight",
+		"describedAs": "a single large tree standing on its own at the edge of a field in daylight, trunk and branches filling the frame"
+	},
+	{
+		"nudgeId": "nature.task.same_tree",
+		"shouldPass": false,
+		"note": "hits an authored negative label; indoors and not a tree",
+		"describedAs": "an indoor houseplant in a ceramic pot on a windowsill"
+	},
+	{
+		"nudgeId": "nature.task.same_tree",
+		"shouldPass": false,
+		"note": "hits an authored negative label; outdoors but no tree in it",
+		"describedAs": "an empty street with parked cars along one side and no trees anywhere"
+	},
+	{
+		"nudgeId": "nature.notice.chewed_leaf",
+		"shouldPass": true,
+		"note": "compliant: the evidence something ate it",
+		"describedAs": "a green leaf close up with several holes chewed through it"
+	},
+	{
+		"nudgeId": "nature.notice.chewed_leaf",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing eats plastic",
+		"describedAs": "a plastic artificial plant standing in a plastic pot"
+	},
+	{
+		"nudgeId": "nature.notice.chewed_leaf",
+		"shouldPass": false,
+		"note": "hits an authored negative label; no leaf at all",
+		"describedAs": "bare pavement with nothing growing on it"
+	},
+	{
+		"nudgeId": "nature.notice.sky_right_now",
+		"shouldPass": true,
+		"note": "compliant: camera pointed straight up",
+		"describedAs": "clouds seen from directly below, filling the whole frame"
+	},
+	{
+		"nudgeId": "nature.notice.sky_right_now",
+		"shouldPass": false,
+		"note": "hits an authored negative label; a reading of the sky rather than the sky",
+		"describedAs": "a screenshot of a weather app showing tomorrow's forecast"
+	},
+	{
+		"nudgeId": "nature.notice.sky_right_now",
+		"shouldPass": false,
+		"note": "hits an authored negative label; pointed up but still indoors",
+		"describedAs": "a white ceiling with a light fitting in the middle of it"
+	},
+	{
+		"nudgeId": "nature.notice.water_moving",
+		"shouldPass": true,
+		"note": "compliant: water moving without help, outdoors",
+		"describedAs": "rain water running along a curb and disappearing down a drain outdoors"
+	},
+	{
+		"nudgeId": "nature.notice.water_moving",
+		"shouldPass": false,
+		"note": "hits an authored negative label; moving, but only because a tap is on",
+		"describedAs": "a kitchen sink with the tap running into it"
+	},
+	{
+		"nudgeId": "nature.notice.water_moving",
+		"shouldPass": false,
+		"note": "hits an authored negative label; no water at all",
+		"describedAs": "dry cracked ground with no water anywhere in the frame"
+	},
+	{
+		"nudgeId": "exercise.task.walk_uphill_for_the_view",
+		"shouldPass": true,
+		"note": "compliant: the view from high ground",
+		"describedAs": "a town seen from high ground with fields stretching out beyond it"
+	},
+	{
+		"nudgeId": "exercise.task.walk_uphill_for_the_view",
+		"shouldPass": false,
+		"note": "hits an authored negative label; never went outside",
+		"describedAs": "an indoor room with a sofa and a lamp beside it"
+	},
+	{
+		"nudgeId": "exercise.task.walk_uphill_for_the_view",
+		"shouldPass": false,
+		"note": "hits an authored negative label; outdoors but no view",
+		"describedAs": "a close up of a brick wall filling the whole frame"
+	}
+]

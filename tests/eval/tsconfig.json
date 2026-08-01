@@ -1,0 +1,9 @@
+{
+	"extends": "../../.nuxt/tsconfig.json",
+	"comment": "the eval lane runs under bun rather than vite, so it needs bun + node globals (Bun.Glob, Bun.plugin, import.meta.dir, process) on top of the Nuxt paths that map ~/* onto src. bun reads compilerOptions.paths from here too, which is the only reason the entry point can resolve ~/ at all",
+	"compilerOptions": {
+		"types": ["bun", "node"],
+		"noEmit": true
+	},
+	"include": ["./**/*.ts", "../../.nuxt/nuxt.d.ts"]
+}

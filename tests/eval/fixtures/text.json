@@ -1,0 +1,212 @@
+[
+	{
+		"nudgeId": "cooking.task.write_down_the_recipe",
+		"shouldPass": true,
+		"note": "strong: amounts, ordered steps and the mistake, all three criteria answered",
+		"text": "Tomato sauce. Two tins of chopped tomatoes, two onions, a whole head of garlic, a big pinch of salt, and enough olive oil to cover the bottom of the pan. Soften the onions first on a low heat, add the garlic once they go translucent, then the tomatoes, then simmer about forty minutes until it turns dark. The bit I always get wrong is the garlic; I put it in too early and burn it, so wait until the onions have gone soft and sweet."
+	},
+	{
+		"nudgeId": "cooking.task.write_down_the_recipe",
+		"shouldPass": true,
+		"note": "plain but genuine: same three criteria, no flourish",
+		"text": "Lentil soup. One cup of red lentils, a large carrot, an onion, two cloves of garlic, a litre of stock, cumin and salt. Cook the chopped onion and carrot in oil until soft, add the garlic for a minute, then the lentils and the stock, then simmer twenty five minutes until the lentils fall apart. I always add the salt at the start and the lentils stay hard, so hold the salt back until the end."
+	},
+	{
+		"nudgeId": "cooking.task.write_down_the_recipe",
+		"shouldPass": false,
+		"note": "weak: real content but far under the 160 character floor, so the length guard rejects it",
+		"text": "Tomatoes, onions, garlic. Cook it for a while."
+	},
+	{
+		"nudgeId": "cooking.task.write_down_the_recipe",
+		"shouldPass": false,
+		"note": "off topic: long enough to clear the length guard, answers a different question entirely",
+		"text": "The bus into town runs every twelve minutes until about seven and then drops to every half hour, which is why I always end up walking back along the main road instead of waiting at the stop by the roundabout for twenty minutes in the cold."
+	},
+	{
+		"nudgeId": "cooking.task.write_down_the_recipe",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary stuffed in with no actual recipe behind it",
+		"text": "Ingredients real amounts steps in order the bit you get wrong. Ingredients amounts tins tomatoes onions garlic salt olive oil. Steps order soften onions add garlic simmer forty minutes. The part that goes wrong burn it wait soft sweet. Ingredients amounts steps order wrong part."
+	},
+	{
+		"nudgeId": "learn.task.look_up_one_word",
+		"shouldPass": true,
+		"note": "strong: names the word, defines it plainly, says where it was met",
+		"text": "The word I looked up was gnomon, which turns out to be the name for the raised blade on a sundial, the part that throws the shadow you actually read. Plain version: it is the stick that makes the shadow. I have walked past one in a park for years and never once wondered that the pointy bit had its own word."
+	},
+	{
+		"nudgeId": "learn.task.look_up_one_word",
+		"shouldPass": true,
+		"note": "plain but genuine: definition in own words plus where it was met",
+		"text": "I looked up aglet. It means the little plastic or metal sleeve crimped onto the end of a shoelace so the threads do not fray. In my own words it is the hard tip that lets you thread a lace. I have retied laces my whole life and never knew the tip was a named part."
+	},
+	{
+		"nudgeId": "learn.task.look_up_one_word",
+		"shouldPass": false,
+		"note": "weak: under the 120 character floor, so the length guard rejects it",
+		"text": "I looked up gnomon. It is a sundial thing."
+	},
+	{
+		"nudgeId": "learn.task.look_up_one_word",
+		"shouldPass": false,
+		"note": "off topic: a list of the day's errands, no word looked up at all",
+		"text": "Dropped the parcel at the post office, picked up milk and washing powder, then queued at the pharmacy for twenty minutes because the machine was down and the only person on the counter was also answering the phone."
+	},
+	{
+		"nudgeId": "learn.task.look_up_one_word",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary with no word and no definition",
+		"text": "The word I looked up turns out to mean the metal band plain language not the dictionary entry close to how I would say it to a friend. Reading past this word for years guessing from context printed on a label never stopped to check. Word meaning plain language context label."
+	},
+	{
+		"nudgeId": "learn.task.how_does_it_work",
+		"shouldPass": true,
+		"note": "strong: names one object, explains the mechanism, states the surprise",
+		"text": "I picked the kettle on the counter next to the bread bin. Inside the base there is a coiled element that heats the water, and a little bimetal strip sitting in the path of the steam; when the steam hits it the two metals expand by different amounts, the strip bends and flips the switch off. What I did not expect is that nothing measures the water temperature at all. The kettle only knows it is boiling because steam bent a piece of metal."
+	},
+	{
+		"nudgeId": "learn.task.how_does_it_work",
+		"shouldPass": true,
+		"note": "plain but genuine: mechanism, specific object, surprise, no flourish",
+		"text": "The thing I picked is the zip on the jacket over the back of my chair. Each tooth is shaped so the slider pushes it sideways into the gap in the row opposite, and the wedge inside the slider is what forces them to interlock in order. The part that surprised me is that the slider is doing all the work; the teeth cannot hold on to each other on their own at all."
+	},
+	{
+		"nudgeId": "learn.task.how_does_it_work",
+		"shouldPass": false,
+		"note": "weak: under the 150 character floor, so the length guard rejects it",
+		"text": "The kettle boils water with a heating element in the bottom."
+	},
+	{
+		"nudgeId": "learn.task.how_does_it_work",
+		"shouldPass": false,
+		"note": "off topic: a diary entry, no object and no mechanism",
+		"text": "Slept badly and then sat in the same chair for most of the afternoon reading about a football transfer that has not happened yet, and by the time I looked up again it had gone dark outside and I had not eaten anything since breakfast."
+	},
+	{
+		"nudgeId": "learn.task.how_does_it_work",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary stuffed in, no object and no mechanism",
+		"text": "Squeezes the refrigerant until it turns hot dumps that heat out through the coils lets it expand inside the box gets cold pulls the heat out of the food. The thing I picked not appliances in general. The part I did not expect never makes cold only moves heat the back is warm."
+	},
+	{
+		"nudgeId": "art.task.describe_a_color",
+		"shouldPass": true,
+		"note": "strong: sensory, specific, and never names the color",
+		"text": "It feels like the last inch of tea gone cold in a mug, or the sound of a filing cabinet closing in an empty office. It is the shade of the lino in a school corridor, dulled by decades of shoes and mopped so often it has gone slightly soft looking. If it made a noise it would be a low hum you only notice when it stops."
+	},
+	{
+		"nudgeId": "art.task.describe_a_color",
+		"shouldPass": true,
+		"note": "plain but genuine: sensory comparisons, one specific object, no color words",
+		"text": "It looks the way a cold radiator feels through a sleeve, and it has the texture of chalk dust on a fingertip. It is exactly the surface of the plastic tray they hand you at airport security, scuffed all over with faint scratches. It would weigh almost nothing and it would taste like a coin."
+	},
+	{
+		"nudgeId": "art.task.describe_a_color",
+		"shouldPass": false,
+		"note": "weak: under the 120 character floor, so the length guard rejects it",
+		"text": "It is sort of cold and a bit like metal."
+	},
+	{
+		"nudgeId": "art.task.describe_a_color",
+		"shouldPass": false,
+		"note": "off topic: a description of a plot rather than a color",
+		"text": "The film was much longer than it needed to be and the middle hour was two people arguing in a car park about a contract, and then it ended with a helicopter for no reason anybody in the cinema could work out afterwards."
+	},
+	{
+		"nudgeId": "art.task.describe_a_color",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary plus the exact thing the nudge forbids, naming colors",
+		"text": "Sensory inside of a cold pipe biting foil ten seconds before a thunderstorm. Specific plastic chairs old waiting room dull greasy flickering tube light. Temperature texture weight sound. It is grey, slightly blue, a bit green, almost silver, definitely not brown."
+	},
+	{
+		"nudgeId": "adventure.task.new_street",
+		"shouldPass": true,
+		"note": "strong: where it was, what was on it, and that it was unfamiliar",
+		"text": "I turned up a lane behind the health centre that I have driven past a thousand times and never walked into. It runs uphill, bends right, and stops at a set of garages with a hand painted sign on one of the doors. Halfway along there is a house with a boat in the front garden. Strange to find somewhere five minutes from my door that I had genuinely never seen on foot."
+	},
+	{
+		"nudgeId": "adventure.task.new_street",
+		"shouldPass": true,
+		"note": "plain but genuine: location, detail, unfamiliarity, no flourish",
+		"text": "Walked down the cul de sac off the far end of my own road for the first time. It dead ends at a low wall with a footpath through to the allotments behind it. There was a cat asleep on a wheelie bin and a hedge cut into a rough spiral. I have lived here four years and never once turned in there."
+	},
+	{
+		"nudgeId": "adventure.task.new_street",
+		"shouldPass": false,
+		"note": "weak: under the 90 character floor, so the length guard rejects it",
+		"text": "Went down a new street. It was fine."
+	},
+	{
+		"nudgeId": "adventure.task.new_street",
+		"shouldPass": false,
+		"note": "off topic: a review of a phone game, nothing about walking anywhere",
+		"text": "Spent most of the evening on that puzzle game where you match the tiles, got to level ninety something and then it started asking for money to carry on, so I deleted it and felt slightly annoyed about the whole thing."
+	},
+	{
+		"nudgeId": "adventure.task.new_street",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary stuffed in with no street and no detail",
+		"text": "Turned into a road two streets over never once walked into bends left dead ends behind a supermarket. Porch nine wind chimes repair shop steep bit halfway along. Odd being somewhere this close to my own door never actually seen on foot. Road street porch shop steep close door."
+	},
+	{
+		"nudgeId": "nature.task.weather_report",
+		"shouldPass": true,
+		"note": "strong: bodily evidence plus sky and wind, no numbers",
+		"text": "My hands went stiff before I got to the end of the road and the wind kept finding the gap at my collar. The sky is one flat sheet of grey with no edge to it anywhere, and the birch at the corner is bending in gusts rather than steadily, so it keeps snapping back upright between them. The pavement smells like it is about to rain but has not started."
+	},
+	{
+		"nudgeId": "nature.task.weather_report",
+		"shouldPass": true,
+		"note": "plain but genuine: body evidence and sky and wind, no numbers",
+		"text": "Warm enough on my face that I took my jacket off after two minutes, and my shirt stuck to my back on the way up the hill. The clouds are small and spaced out and moving slowly, and the wind is only strong enough to move the very top leaves. I can hear it in the trees before I feel it on my skin."
+	},
+	{
+		"nudgeId": "nature.task.weather_report",
+		"shouldPass": false,
+		"note": "weak: under the 120 character floor, so the length guard rejects it",
+		"text": "Cold and grey and a bit windy today."
+	},
+	{
+		"nudgeId": "nature.task.weather_report",
+		"shouldPass": false,
+		"note": "off topic: an account of a phone call, no weather in it",
+		"text": "Rang the bank about the card that stopped working and spent thirty five minutes being moved between three people, and the third one told me the second one should not have transferred me at all, then the line dropped and I gave up."
+	},
+	{
+		"nudgeId": "nature.task.weather_report",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary stuffed in, plus the numbers the nudge forbids",
+		"text": "Evidence from the body ears sting puddles skin of ice. Sky and wind clouds low moving fast wind shoving the tops of the trees around. Body sky wind evidence cold. It is nine degrees, humidity about eighty percent, and the wind is roughly twenty miles an hour from the west."
+	},
+	{
+		"nudgeId": "people.task.ask_about_nine",
+		"shouldPass": true,
+		"note": "strong: who was asked, what they said, and the surprise",
+		"text": "I asked my neighbour what she was like at nine and she stood in the doorway talking for a quarter of an hour. She said she ran everywhere, refused to wear anything with buttons, and kept a list of every dog on the street with names she had made up for them. The part I did not expect was the list. She is the most disorganised person I know now."
+	},
+	{
+		"nudgeId": "people.task.ask_about_nine",
+		"shouldPass": true,
+		"note": "plain but genuine: who, answer, surprise, no flourish",
+		"text": "Asked my brother in law over dinner. He said at nine he was frightened of everything, would not go upstairs alone, and read the same three books over and over. What surprised me is that he says he was frightened, because he is the one who does all the talking in any room he walks into now."
+	},
+	{
+		"nudgeId": "people.task.ask_about_nine",
+		"shouldPass": false,
+		"note": "weak: under the 90 character floor, so the length guard rejects it",
+		"text": "Asked my mum. She said she was quiet."
+	},
+	{
+		"nudgeId": "people.task.ask_about_nine",
+		"shouldPass": false,
+		"note": "off topic: what the writer did at nine, nobody was asked anything",
+		"text": "Nobody was about so I thought about the washing machine instead, which has been making a knocking sound on the spin cycle for a fortnight now, and I have watched two videos about the bearings and decided to ignore it a while longer."
+	},
+	{
+		"nudgeId": "people.task.ask_about_nine",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary stuffed in, nobody asked and nothing reported",
+		"text": "Asked a coworker what she was like at nine talked for ten minutes without stopping. Obsessed with horses wore the same red jacket every day going to be a vet. The part I did not expect how loud that kid sounds quiet and careful about everything now. Nine coworker horses jacket vet loud quiet."
+	}
+]

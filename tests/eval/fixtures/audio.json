@@ -1,0 +1,226 @@
+[
+	{
+		"nudgeId": "home.notice.sound_of_your_home",
+		"shouldPass": true,
+		"note": "strong: room tone, household detail and no performance, all said out loud",
+		"seconds": 22,
+		"transcript": "There is a hum coming from the fridge in the next room and a fan running somewhere above the ceiling. I can hear water moving in a pipe behind the wall, the clock in the hall, and a floorboard settling every so often. Nobody is talking and there is no music on; it is just the room."
+	},
+	{
+		"nudgeId": "home.notice.sound_of_your_home",
+		"shouldPass": true,
+		"note": "plain but genuine: quiet indoor room, a couple of appliance details, nobody talking",
+		"seconds": 20,
+		"transcript": "It is very quiet indoors. The loudest thing is the fridge humming in the kitchen, then a distant appliance somewhere, maybe the boiler. A pipe ticks now and then and a floorboard creaks. No music, no voices, nothing else running."
+	},
+	{
+		"nudgeId": "home.notice.sound_of_your_home",
+		"shouldPass": false,
+		"note": "guard: recorded ambient sound with nobody speaking, so the transcript comes back empty",
+		"seconds": 20,
+		"transcript": ""
+	},
+	{
+		"nudgeId": "home.notice.sound_of_your_home",
+		"shouldPass": false,
+		"note": "off topic: a spoken shopping list, nothing about the sound of the room",
+		"seconds": 25,
+		"transcript": "Right, so I need milk, two loaves of bread, the washing powder that comes in the blue box, tomatoes if they look decent, and I have to remember to pick up the prescription before six because they shut early on a Thursday."
+	},
+	{
+		"nudgeId": "home.notice.sound_of_your_home",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary read out with nothing actually observed",
+		"seconds": 24,
+		"transcript": "Quiet hum of an indoor room with a fridge or a fan running somewhere in it. Small household sounds, a clock, water in a pipe, a floorboard, a distant appliance. Plain ambient room noise with nobody talking and no music playing. Room tone household detail no performance."
+	},
+	{
+		"nudgeId": "cooking.notice.the_kitchen_at_full_tilt",
+		"shouldPass": true,
+		"note": "strong: cooking sounds, handling sounds and one continuous real room",
+		"seconds": 24,
+		"transcript": "The pan is spitting away with the onions in it and the pot behind it has come up to a rolling boil, and under all of it the extractor fan is droning. I have just put the lid down on the pot and there is a knife going through an onion on the board next to me. You can hear the tap running into the sink at the end because the room echoes a bit."
+	},
+	{
+		"nudgeId": "cooking.notice.the_kitchen_at_full_tilt",
+		"shouldPass": true,
+		"note": "plain but genuine: sizzle, board, fan, one take in a real room",
+		"seconds": 18,
+		"transcript": "Something is sizzling hard in the pan, the extractor fan is on above it, and a pot is bubbling over slightly on the back ring. Plates are knocking together in the sink and a knife keeps hitting the wooden board. It is all one take in my kitchen."
+	},
+	{
+		"nudgeId": "cooking.notice.the_kitchen_at_full_tilt",
+		"shouldPass": false,
+		"note": "off topic: talking about the recipe rather than the sound of the kitchen working",
+		"seconds": 20,
+		"transcript": "My grandmother used to make this with double the butter and she never wrote any of it down, which is why every time I try it comes out slightly different and never quite as good as the one I remember eating at her table."
+	},
+	{
+		"nudgeId": "cooking.notice.the_kitchen_at_full_tilt",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary read out, no kitchen actually working",
+		"seconds": 21,
+		"transcript": "Food sizzling and spitting in a hot pan a pot bubbling over an extractor fan droning underneath all of it. Knife hitting a wooden board lid going down plates and cutlery knocking a tap running into the sink. One continuous take in a real room with real reverb not a clean sound effect."
+	},
+	{
+		"nudgeId": "learn.task.explain_it_out_loud",
+		"shouldPass": true,
+		"note": "strong: ordered explanation, plain language, own understanding and the fuzzy part",
+		"seconds": 70,
+		"transcript": "Okay, so how a heat pump works, start to finish. It takes a liquid that boils at a really low temperature and pushes it through a coil outside, where even cold air is warm enough to boil it into a gas. Then a compressor squeezes that gas, and squeezing it makes it hot, properly hot. That hot gas goes through a second coil indoors, gives its heat up to the water in your radiators, and turns back into a liquid. Then a valve lets the pressure out and it goes back round again. Plain version: it is a fridge running backwards, moving heat from outside to inside instead of the other way. The part I am still fuzzy on is why the expansion valve makes it cold rather than just slower."
+	},
+	{
+		"nudgeId": "learn.task.explain_it_out_loud",
+		"shouldPass": true,
+		"note": "plain but genuine: whole mechanism in order, everyday comparison, admits a gap",
+		"seconds": 60,
+		"transcript": "I will do how sourdough works. First you keep a bit of flour and water on the counter and wild yeast and bacteria from the air move into it, so you end up with a living starter. You feed it, it gets active, then you mix some into the dough. The yeast eats the sugars in the flour and lets off gas, and the gluten net you built by stretching the dough traps the gas, which is what makes it rise. The bacteria make the sour taste at the same time. Everyday version: the starter is a pet that breathes into your bread. The bit I still do not really get is why cold proofing overnight changes the flavour so much."
+	},
+	{
+		"nudgeId": "learn.task.explain_it_out_loud",
+		"shouldPass": false,
+		"note": "guard: a good explanation cut short at thirty seconds, under the forty five second floor",
+		"seconds": 30,
+		"transcript": "So a heat pump moves heat instead of making it. There is a coil outside where the refrigerant boils even in cold air, then a compressor squeezes it hot, and then it gives that heat up to your radiators indoors before going round again."
+	},
+	{
+		"nudgeId": "learn.task.explain_it_out_loud",
+		"shouldPass": false,
+		"note": "off topic: long enough, but it is an opinion about a course, not an explanation of anything",
+		"seconds": 55,
+		"transcript": "I signed up for the evening class thinking it would be practical and it turned out to be four weeks of somebody reading slides at us, and by the third week only about six people were still turning up, which felt like a fair verdict on the whole thing to be honest. I would probably do a different one next time, or just find the videos online and work through them at my own pace instead of sitting in a cold room on a Wednesday."
+	},
+	{
+		"nudgeId": "learn.task.explain_it_out_loud",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary read out with no mechanism explained",
+		"seconds": 50,
+		"transcript": "Here is how the whole thing works in order from the first step to the last with nothing quietly left out in the middle. I am dropping the jargon and using everyday comparisons so somebody who has never heard of this can follow along. I am saying this from memory in my own words and here is the one part I still do not really understand. In order, plain language, own words, from memory, first step to last step."
+	},
+	{
+		"nudgeId": "art.notice.describe_the_ugliest_thing",
+		"shouldPass": true,
+		"note": "strong: names the object, describes the texture, and says why it is ugly",
+		"seconds": 32,
+		"transcript": "The ugliest thing within reach is a scuffed plastic charger brick with one prong slightly bent and a sticker peeling off the corner. The surface is rough on two faces and slick on the others, the edges are chipped where it has been dropped, and the white has gone yellow with age. It is ugly because nobody ever decided how it should look; the shape came straight out of the machine that made it."
+	},
+	{
+		"nudgeId": "art.notice.describe_the_ugliest_thing",
+		"shouldPass": true,
+		"note": "plain but genuine: object, surface, judgement",
+		"seconds": 26,
+		"transcript": "It is a cracked plastic desk tidy with three compartments and a chip out of the rim. The outside is slightly greasy and rough where the moulding line runs, and one corner has gone chalky and pale. It is ugly because the shape is only there to be cheap to make; nobody chose any of it."
+	},
+	{
+		"nudgeId": "art.notice.describe_the_ugliest_thing",
+		"shouldPass": false,
+		"note": "off topic: talking about a nice object instead of describing the ugly one",
+		"seconds": 24,
+		"transcript": "My favourite thing on this desk is the mug my sister brought back from a trip, which is the right weight and keeps tea hot for ages, and I would be genuinely upset if it broke, which is probably why I never take it out of the house."
+	},
+	{
+		"nudgeId": "art.notice.describe_the_ugliest_thing",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary read out with no object actually described",
+		"seconds": 28,
+		"transcript": "The thing I am looking at is a scuffed plastic brick with a bent prong and a sticker peeling off one corner. The surface is rough in some spots and slick in others the edges are chipped the whole thing has gone yellow with age. Ugly because nobody decided how it should look shape came out of the machine not out of a person. Object texture judgement."
+	},
+	{
+		"nudgeId": "adventure.notice.say_what_you_hear",
+		"shouldPass": true,
+		"note": "strong: the sounds, the place, and that it is unfamiliar",
+		"seconds": 34,
+		"transcript": "I can hear traffic going past on the main road behind me, a bus braking somewhere further down, two people talking outside a doorway, and a vent humming above my head. I am standing at the far end of a street I have never walked down, next to a brick wall and a row of parked cars. This is not somewhere I ever come; I have driven past the end of this road for years and never stood on it."
+	},
+	{
+		"nudgeId": "adventure.notice.say_what_you_hear",
+		"shouldPass": true,
+		"note": "plain but genuine: sounds, place, unfamiliarity",
+		"seconds": 28,
+		"transcript": "Cars going past, a dog barking two gardens over, someone dragging a bin along the pavement, and a plane a long way up. I am standing on the corner of a lane behind the industrial units at the edge of town, by a fence and a lamp post. I have never been down here before, not once."
+	},
+	{
+		"nudgeId": "adventure.notice.say_what_you_hear",
+		"shouldPass": false,
+		"note": "off topic: spoken plans for the evening, no sounds and no place",
+		"seconds": 26,
+		"transcript": "I think I will just get the washing in and then do nothing for the rest of the evening, maybe put something on and fall asleep in front of it, because the week has been long and I have got to be up early again tomorrow for the same thing."
+	},
+	{
+		"nudgeId": "adventure.notice.say_what_you_hear",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary read out, nothing actually heard or located",
+		"seconds": 30,
+		"transcript": "I can hear traffic going past a bus braking somewhere behind me two people talking and a fan humming out of a vent above my head. I am standing on a corner at the far end of a street I have never been down next to a wall and a row of parked cars. This is not somewhere I ever come driven past the end of this road but never stood on it."
+	},
+	{
+		"nudgeId": "nature.notice.first_bird",
+		"shouldPass": true,
+		"note": "strong: names the bird, gives a direction, notes what is missing",
+		"seconds": 26,
+		"transcript": "There is a robin singing from the top of the fence and a crow answering it from much further off. The loud one is behind me and to the left, high up in the tree by the road. Nothing else is awake yet; no cars, no voices, just the one bird and a bit of wind in the hedge."
+	},
+	{
+		"nudgeId": "nature.notice.first_bird",
+		"shouldPass": true,
+		"note": "plain but genuine: call, direction, and the absence of everything else",
+		"seconds": 22,
+		"transcript": "A blackbird is going at it from somewhere up and to my right, on a roof or an aerial I think, and a wood pigeon keeps answering from straight ahead. Apart from those two it is completely silent out here. No traffic at all, no people, just wind."
+	},
+	{
+		"nudgeId": "nature.notice.first_bird",
+		"shouldPass": false,
+		"note": "guard: only twelve seconds recorded, under the twenty second floor",
+		"seconds": 12,
+		"transcript": "A robin on the fence behind me, and nothing else awake at all yet."
+	},
+	{
+		"nudgeId": "nature.notice.first_bird",
+		"shouldPass": false,
+		"note": "off topic: talking about the alarm clock rather than the bird",
+		"seconds": 24,
+		"transcript": "I set the alarm for half five and then lay there for twenty minutes arguing with myself about whether to get up at all, which is exactly what happened the last two times I tried this, so at some point I should probably just admit I am not a morning person."
+	},
+	{
+		"nudgeId": "nature.notice.first_bird",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary read out with no bird and no direction",
+		"seconds": 25,
+		"transcript": "A robin is singing from the top of the fence and a crow keeps answering it from further off. The loud one is behind me and to the left high up in the tree by the road. Nothing else is awake yet no cars no voices just the one bird and some wind. Bird call direction missing."
+	},
+	{
+		"nudgeId": "nature.notice.rain_sound",
+		"shouldPass": true,
+		"note": "strong: names the surfaces and describes the rhythm",
+		"seconds": 30,
+		"transcript": "Most of it is landing on the metal gutter above the back door and the rest is hitting a plastic bin lid, so it sounds like two different rains going at once. It comes in bursts as well; heavy for a few seconds, then almost nothing, then heavy again when the wind turns."
+	},
+	{
+		"nudgeId": "nature.notice.rain_sound",
+		"shouldPass": true,
+		"note": "plain but genuine: surface and rhythm, nothing else",
+		"seconds": 20,
+		"transcript": "It is falling on a car roof and on the leaves of the hedge, and those two sound completely different, one sharp and one soft. Steady for a while and then it gets much heavier for ten seconds at a time before dropping back again."
+	},
+	{
+		"nudgeId": "nature.notice.rain_sound",
+		"shouldPass": false,
+		"note": "guard: rain recorded with nobody speaking, so the transcript comes back empty",
+		"seconds": 18,
+		"transcript": ""
+	},
+	{
+		"nudgeId": "nature.notice.rain_sound",
+		"shouldPass": false,
+		"note": "off topic: complaining about the forecast instead of describing the rain",
+		"seconds": 22,
+		"transcript": "The forecast said it would be dry until the evening and it has been like this since about eleven, which is the third time this week it has been wrong, and I have started just taking a coat everywhere regardless of what the app says."
+	},
+	{
+		"nudgeId": "nature.notice.rain_sound",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary read out with no surface and no rhythm observed",
+		"seconds": 24,
+		"transcript": "The rain is hitting a metal gutter and a plastic bin lid so it sounds like two different rains at once. It comes in bursts heavy for a few seconds then almost nothing then heavy again. Names the surface describes the rhythm surface rhythm rain."
+	}
+]

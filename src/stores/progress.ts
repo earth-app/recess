@@ -67,6 +67,8 @@ export interface RecordInput {
 	count?: number;
 	text?: string;
 	media?: string;
+	/** the grid cell this was resolved in, when the nudge was bound to a place */
+	place?: { lat: number; lon: number };
 	now?: Date;
 }
 
@@ -154,7 +156,8 @@ export const useProgressStore = defineStore('progress', () => {
 			count: input.count,
 			text: input.text,
 			media: input.media,
-			duration_minutes: input.nudge.duration_minutes
+			duration_minutes: input.nudge.duration_minutes,
+			place: input.place
 		};
 
 		const next = [...entries.value, entry];

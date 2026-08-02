@@ -2,9 +2,6 @@ import type { NudgeOutcome } from '~/types/context';
 import type { Nudge } from '~/types/nudge';
 import type { Verdict } from '~/utils/validate';
 
-// The single path every resolution takes, so points, bests, unlocks, the widget
-// snapshot and the feedback line can never drift between surfaces.
-
 export interface ResolveInput {
 	nudge: Nudge;
 	outcome: NudgeOutcome;
@@ -24,6 +21,7 @@ export interface ResolveResult {
 }
 
 export function useResolve() {
+	const { placeFor } = useBoundPlaces();
 	const progress = useProgressStore();
 	const nudges = useNudgesStore();
 	const { feedbackFor } = useWriting();
@@ -58,7 +56,10 @@ export function useResolve() {
 				choice: input.choice,
 				count: input.count,
 				text: input.text,
-				media: input.media
+				media: input.media,
+				// stamped only when the nudge was bound to a spot today, so the ledger's
+				// location history is exactly "places you resolved something at", never a track
+				place: placeFor(input.nudge.id)
 			});
 
 			const isNewBest = await recordDayBest();

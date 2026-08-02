@@ -47,6 +47,12 @@
 
 					<div class="flex items-center gap-2">
 						<span
+							v-if="placeLine"
+							class="text-xs opacity-70"
+						>
+							{{ placeLine }}
+						</span>
+						<span
 							v-if="nudge.duration_minutes"
 							class="text-xs opacity-60"
 						>
@@ -381,6 +387,27 @@ const emit = defineEmits<{
 }>();
 
 const { t } = useI18n();
+
+const { bindingFor } = useBoundPlaces();
+
+/**
+ * Where this one could be done, when the day bound it to a spot.
+ *
+ * Says the walk and the direction, never "you have never been here" - recess keeps no passive
+ * location history, so the only true novelty claim is about what has been *resolved* where, and
+ * that is a weaker statement than it would sound. The name is OSM's when it has one.
+ */
+const placeLine = computed(() => {
+	if (!props.nudge) return null;
+	const binding = bindingFor(props.nudge.id);
+	if (!binding) return null;
+
+	const name = binding.place.place.n ?? t(`outThere.affordance.${binding.place.place.a[0]}`);
+	const minutes = t('outThere.walkMinutes', {
+		count: Math.max(1, Math.round(binding.place.minutes))
+	});
+	return `${name} - ${minutes} ${t(`outThere.compass.${binding.place.compass}`)}`;
+});
 const nudges = useNudgesStore();
 const { resolve, skip } = useResolve();
 const { validating, warming, status, run, reset } = useValidation();

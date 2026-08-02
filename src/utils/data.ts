@@ -90,7 +90,8 @@ const BASE_KEYS = [
 	'filters',
 	'tags',
 	'duration_minutes',
-	'locales'
+	'locales',
+	'place_affordances'
 ] as const;
 
 export const AUTHORED_KEYS: Record<NudgeType, readonly string[]> = {

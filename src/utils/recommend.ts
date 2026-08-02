@@ -13,6 +13,7 @@ import {
 } from '~/utils/affinity';
 import { dayKey, daysBetween, hashString, seededRandom, weightedSample } from '~/utils/day';
 import { partitionByFilters, type FiltersResult } from '~/utils/filters';
+import { DEFAULT_REACH_MAX_METRES } from '~/utils/geo';
 
 // Deterministic per day: the same day key always yields the same set, so the
 // deck survives a relaunch without persisting the selection. Weighted sampling
@@ -59,6 +60,21 @@ export const CALIBRATION_FLOOR = 0.15;
 export const CALIBRATION_WINDOW_DAYS = 28;
 
 /**
+ * Worst multiplier a place-bound nudge can take for having nothing nearby.
+ *
+ * The signal is a deterministic bump, deliberately NOT a seventh Beta-Bernoulli arm. At the
+ * handful of observations a geographic arm would collect in this app's lifetime, a Thompson draw
+ * flips the term's sign between days - and with a single user, that user sees every flip. Greedy
+ * is rate-optimal under covariate diversity (Bastani, Bayati & Khosravi 2021), and distance decay
+ * is measured pedestrian behaviour rather than an unknown reward, so there is nothing to learn.
+ *
+ * 0.45 sits alongside 'not enough daylight' (0.5) and 'pack missing' (0.4) rather than
+ * dominating them; the multiplier is `floor + (1 - floor) * reachability`, so it only ever
+ * discourages and can never zero a nudge out or push one above its base weight.
+ */
+export const REACH_FLOOR = 0.45;
+
+/**
  * Every knob the recommender eval calibrates.
  *
  * Each field mirrors the exported constant of the same meaning; the eval sweeps this
@@ -79,6 +95,9 @@ export interface RecommendTuning {
 	calibrationWeight: number;
 	calibrationFloor: number;
 	calibrationWindowDays: number;
+	reachFloor: number;
+	/** outer limit of the distance-decay curve, in metres */
+	reachMaxMetres: number;
 }
 
 export const RECOMMEND_TUNING: RecommendTuning = {
@@ -94,7 +113,9 @@ export const RECOMMEND_TUNING: RecommendTuning = {
 	mmrMu: MMR_MU,
 	calibrationWeight: CALIBRATION_WEIGHT,
 	calibrationFloor: CALIBRATION_FLOOR,
-	calibrationWindowDays: CALIBRATION_WINDOW_DAYS
+	calibrationWindowDays: CALIBRATION_WINDOW_DAYS,
+	reachFloor: REACH_FLOOR,
+	reachMaxMetres: DEFAULT_REACH_MAX_METRES
 };
 
 // #endregion
@@ -359,6 +380,33 @@ function scoreNudge(nudge: Nudge, scoring: Scoring, pickedSoFar: readonly Nudge[
 		}
 		// a long nudge late at night is a bad ask
 		if (ctx.hour >= 21 && nudge.duration_minutes > 15) bump(0.4, 'too long for this hour');
+	}
+
+	/**
+	 * Can this actually be done near you?
+	 *
+	 * Only applies to a nudge that declares what it needs from a place. `undefined` anywhere - no
+	 * pack, no position, an affordance the pack has never heard of - means the question was not
+	 * answerable, and an unanswerable question must not move the weight at all. Same fail-open
+	 * contract the weather signals follow, and what keeps a rural or offline user's deck
+	 * byte-identical to today's.
+	 */
+	const needs = nudge.place_affordances;
+	if (needs && needs.length > 0 && ctx.reachability) {
+		// every affordance must be reachable, so the worst one governs
+		let worst: number | null = null;
+		for (const affordance of needs) {
+			const score = ctx.reachability[affordance];
+			if (score === undefined) {
+				worst = null;
+				break;
+			}
+			worst = worst === null ? score : Math.min(worst, score);
+		}
+
+		if (worst !== null) {
+			bump(tuning.reachFloor + (1 - tuning.reachFloor) * worst, 'reachable nearby');
+		}
 	}
 
 	const tagOverlap = nudge.tags.filter((tag) => history.previousTags.has(tag)).length;

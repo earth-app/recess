@@ -321,7 +321,78 @@ function sampleEnum(type: string): string[] {
 			return ['camera'];
 		case 'model_pack':
 			return ['vision'];
+		case 'nearby':
+			return ['sit'];
 		default:
 			return ['en'];
 	}
 }
+
+describe('nearby', () => {
+	/**
+	 * The fail-open contract, stated as a test.
+	 *
+	 * No area pack or no position leaves `reachable_affordances` undefined, and an undefined
+	 * context value has to read as "unanswerable" rather than "nothing nearby". A user who never
+	 * opened Out There must never have a nudge withheld because of it.
+	 */
+	it('passes and reports indeterminate when nothing is known', () => {
+		const result = run({ type: 'nearby', value: { is: ['sit'] } });
+		expect(result.passed).toBe(true);
+		expect(result.indeterminate).toBe(true);
+	});
+
+	it('passes on a definite match', () => {
+		const result = run(
+			{ type: 'nearby', value: { is: ['sit'] } },
+			{ reachable_affordances: ['sit', 'green'] }
+		);
+		expect(result.passed).toBe(true);
+		expect(result.indeterminate).toBe(false);
+	});
+
+	it('blocks definitely when the pack is loaded and holds nothing that fits', () => {
+		const result = run(
+			{ type: 'nearby', value: { is: ['water'] } },
+			{ reachable_affordances: ['sit'] }
+		);
+		expect(result.passed).toBe(false);
+		expect(result.indeterminate).toBe(false);
+	});
+
+	// AND, matching permission and model_pack rather than the enum filters
+	it('requires every listed affordance, not any of them', () => {
+		expect(
+			run(
+				{ type: 'nearby', value: { is: ['sit', 'quiet'] } },
+				{ reachable_affordances: ['sit', 'quiet', 'green'] }
+			).passed
+		).toBe(true);
+		expect(
+			run({ type: 'nearby', value: { is: ['sit', 'quiet'] } }, { reachable_affordances: ['sit'] })
+				.passed
+		).toBe(false);
+	});
+
+	it('supports is_not for a nudge that wants you away from something', () => {
+		expect(
+			run(
+				{ type: 'nearby', value: { is_not: ['people'] } },
+				{ reachable_affordances: ['green', 'quiet'] }
+			).passed
+		).toBe(true);
+		expect(
+			run(
+				{ type: 'nearby', value: { is_not: ['people'] } },
+				{ reachable_affordances: ['green', 'people'] }
+			).passed
+		).toBe(false);
+	});
+
+	// an empty pack is a real answer, not a missing one
+	it('blocks when the pack loaded but reached nothing at all', () => {
+		expect(
+			run({ type: 'nearby', value: { is: ['sit'] } }, { reachable_affordances: [] }).passed
+		).toBe(false);
+	});
+});

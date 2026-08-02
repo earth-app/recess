@@ -151,6 +151,10 @@ export function evaluateFilter(
 			return compareSet(ctx.granted_permissions, filter.value);
 		case 'model_pack':
 			return compareSet(ctx.installed_packs, filter.value);
+		// unknown when no pack is loaded or no position is known, which passes - a user with
+		// neither must get exactly the deck they get today
+		case 'nearby':
+			return compareSet(ctx.reachable_affordances, filter.value);
 		case 'completed':
 			return compareSet(Object.keys(ctx.completions), filter.value);
 

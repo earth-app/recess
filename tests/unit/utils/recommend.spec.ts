@@ -787,3 +787,95 @@ describe('locked nudge types', () => {
 		expect([...seen], 'count nudges are unreachable even unlocked').toContain('count');
 	});
 });
+
+describe('recommendDaily place signal', () => {
+	const nearby = task({
+		id: 'nature.task.sit_somewhere',
+		slug: 'sit_somewhere',
+		category: 'nature',
+		place_affordances: ['sit']
+	});
+	const anywhere = think({ id: 'learn.think.anywhere', slug: 'anywhere', category: 'learn' });
+
+	/**
+	 * The invariant the whole place layer is built around.
+	 *
+	 * A user with no area pack, no position, or no network must get exactly the deck they get
+	 * today. If this ever fails, the feature has started changing the app for people who never
+	 * opted into it.
+	 */
+	it('produces a byte-identical deck when reachability is unknown', () => {
+		const pool = [nearby, anywhere];
+		const before = recommendDaily(pool, ctx(), [], { installSeed: SEED_A });
+		const after = recommendDaily(pool, ctx({ reachability: undefined }), [], {
+			installSeed: SEED_A
+		});
+
+		expect(after.nudges.map((n) => n.id)).toEqual(before.nudges.map((n) => n.id));
+		expect(after.scored.map((s) => s.weight)).toEqual(before.scored.map((s) => s.weight));
+	});
+
+	it('leaves a nudge that declares no place needs completely untouched', () => {
+		const withReach = recommendDaily([anywhere], ctx({ reachability: { sit: 0.9 } }), [], {
+			installSeed: SEED_A
+		});
+		const without = recommendDaily([anywhere], ctx(), [], { installSeed: SEED_A });
+
+		expect(withReach.scored[0]?.weight).toBe(without.scored[0]?.weight);
+	});
+
+	it('prefers a place-bound nudge when something close satisfies it', () => {
+		const close = recommendDaily([nearby], ctx({ reachability: { sit: 0.95 } }), [], {
+			installSeed: SEED_A
+		});
+		const distant = recommendDaily([nearby], ctx({ reachability: { sit: 0.02 } }), [], {
+			installSeed: SEED_A
+		});
+
+		expect(close.scored[0]!.weight).toBeGreaterThan(distant.scored[0]!.weight);
+	});
+
+	it('never zeroes a nudge out, however far away the nearest match is', () => {
+		const nothing = recommendDaily([nearby], ctx({ reachability: { sit: 0 } }), [], {
+			installSeed: SEED_A
+		});
+		expect(nothing.scored[0]!.weight).toBeGreaterThan(0);
+		expect(nothing.nudges).toHaveLength(1);
+	});
+
+	// every declared affordance has to be reachable, so the worst one governs
+	it('scores a multi-affordance nudge by its scarcest need', () => {
+		const both = task({
+			id: 'nature.task.quiet_seat',
+			slug: 'quiet_seat',
+			category: 'nature',
+			place_affordances: ['sit', 'quiet']
+		});
+
+		const balanced = recommendDaily([both], ctx({ reachability: { sit: 0.9, quiet: 0.9 } }), [], {
+			installSeed: SEED_A
+		});
+		const oneScarce = recommendDaily([both], ctx({ reachability: { sit: 0.9, quiet: 0.05 } }), [], {
+			installSeed: SEED_A
+		});
+
+		expect(oneScarce.scored[0]!.weight).toBeLessThan(balanced.scored[0]!.weight);
+	});
+
+	it('treats a partly-known answer as unknown rather than guessing the missing half', () => {
+		const both = task({
+			id: 'nature.task.quiet_seat',
+			slug: 'quiet_seat',
+			category: 'nature',
+			place_affordances: ['sit', 'quiet']
+		});
+
+		// the pack knows about seats but has never heard of anywhere quiet
+		const partial = recommendDaily([both], ctx({ reachability: { sit: 0.9 } }), [], {
+			installSeed: SEED_A
+		});
+		const unknown = recommendDaily([both], ctx(), [], { installSeed: SEED_A });
+
+		expect(partial.scored[0]!.weight).toBe(unknown.scored[0]!.weight);
+	});
+});

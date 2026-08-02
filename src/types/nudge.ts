@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { AFFORDANCES, type Affordance } from './places';
 
 // #region vocabularies
 
@@ -186,6 +187,9 @@ export const nudgeFilterSchema = z.discriminatedUnion('type', [
 	z.object({ type: z.literal('moon_phase'), value: enumFilterValue(MOON_PHASES) }),
 	z.object({ type: z.literal('permission'), value: enumFilterValue(PERMISSIONS) }),
 	z.object({ type: z.literal('model_pack'), value: enumFilterValue(MODEL_PACKS) }),
+	// AND semantics like permission and model_pack: `is` requires EVERY affordance to be
+	// reachable, because a nudge wanting somewhere quiet AND somewhere to sit needs both
+	z.object({ type: z.literal('nearby'), value: enumFilterValue(AFFORDANCES) }),
 	z.object({
 		type: z.literal('locale'),
 		value: z
@@ -232,6 +236,7 @@ export const ENUM_FILTER_TYPES = [
 	'moon_phase',
 	'permission',
 	'model_pack',
+	'nearby',
 	'locale',
 	'completed'
 ] as const satisfies readonly NudgeFilterType[];
@@ -370,7 +375,15 @@ const authoredBase = z.object({
 	filters: z.array(nudgeFilterSchema).optional(),
 	tags: z.array(z.string().min(1)).optional(),
 	duration_minutes: z.number().int().min(1).max(240).optional(),
-	locales: z.array(z.string().min(1)).min(1).optional()
+	locales: z.array(z.string().min(1)).min(1).optional(),
+	/**
+	 * what this nudge needs from a real place, if anything.
+	 *
+	 * purely a declaration - it never blocks. the recommender uses it to prefer nudges you can
+	 * actually act on nearby, and Out There uses it to bind a card to a spot. a nudge with none
+	 * of these is location-independent and behaves exactly as it always has.
+	 */
+	place_affordances: z.array(z.enum(AFFORDANCES)).min(1).optional()
 });
 
 const actionSchema = z
@@ -461,6 +474,8 @@ interface NudgeCommon {
 	tags: string[];
 	duration_minutes?: number;
 	locales?: string[];
+	/** what this nudge needs from a real place; absent means location-independent */
+	place_affordances?: Affordance[];
 }
 
 export type TaskNudge = NudgeCommon & {

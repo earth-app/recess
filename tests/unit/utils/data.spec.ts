@@ -544,7 +544,8 @@ describe('AUTHORED_KEYS', () => {
 		filters: [{ type: 'time_of_day', value: { is: ['day'] } }],
 		tags: ['sample'],
 		duration_minutes: 5,
-		locales: ['en']
+		locales: ['en'],
+		place_affordances: ['sit']
 	};
 
 	const photo = {

@@ -302,6 +302,88 @@
 						/>
 					</DevSection>
 
+					<DevSection title="Where You Are">
+						<p class="text-xs opacity-65">
+							Sets the position the deck and Out There read, without the OS prompt. Stored snapped
+							to the same 100 m grid a real fix is.
+						</p>
+						<div class="flex flex-wrap gap-2">
+							<IonButton
+								v-for="spot in DEV_PLACES"
+								:key="spot.label"
+								size="small"
+								fill="outline"
+								class="text-xs!"
+								@click="pinAt(spot.latitude, spot.longitude)"
+							>
+								{{ spot.label }}
+							</IonButton>
+						</div>
+						<IonInput
+							v-model.number="latInput"
+							type="number"
+							label="Latitude"
+							label-placement="stacked"
+							fill="outline"
+							class="text-sm!"
+						/>
+						<IonInput
+							v-model.number="lonInput"
+							type="number"
+							label="Longitude"
+							label-placement="stacked"
+							fill="outline"
+							class="text-sm!"
+						/>
+						<div class="flex flex-wrap gap-2">
+							<IonButton
+								size="small"
+								fill="outline"
+								class="text-xs!"
+								:disabled="latInput === null || lonInput === null"
+								@click="pinAt(latInput ?? 0, lonInput ?? 0)"
+							>
+								Pin Here
+							</IonButton>
+							<IonButton
+								size="small"
+								fill="outline"
+								color="medium"
+								class="text-xs!"
+								@click="clearPosition"
+							>
+								Forget Position
+							</IonButton>
+						</div>
+					</DevSection>
+
+					<DevSection title="Area Pack">
+						<p class="text-xs opacity-65">
+							Installs the committed Chicago Loop fixture, so Out There has real places without a
+							download. Pin Chicago above first or nothing will be in range.
+						</p>
+						<div class="flex flex-wrap gap-2">
+							<IonButton
+								size="small"
+								fill="outline"
+								class="text-xs!"
+								@click="loadFixturePack"
+							>
+								{{ packBusy ? 'Loading' : 'Install Fixture Pack' }}
+							</IonButton>
+							<IonButton
+								size="small"
+								fill="outline"
+								color="medium"
+								class="text-xs!"
+								@click="dropPacks"
+							>
+								Remove Packs
+							</IonButton>
+						</div>
+						<p class="text-xs opacity-65">{{ packSummary }}</p>
+					</DevSection>
+
 					<IonButton
 						size="small"
 						color="primary"
@@ -403,6 +485,59 @@ const overrides = devOverrides();
 const context = reactive({ ...overrides.context });
 const hourInput = ref<number | null>(overrides.context.hour);
 const tempInput = ref<number | null>(overrides.context.temperature);
+
+// #region place
+
+/** somewhere with a committed fixture pack, plus two contrasting densities to sanity-check against */
+const DEV_PLACES = [
+	{ label: 'Chicago Loop', latitude: 41.8819, longitude: -87.6278 },
+	{ label: 'London', latitude: 51.5074, longitude: -0.1278 },
+	{ label: 'Rural Montana', latitude: 47.0527, longitude: -109.6333 }
+] as const;
+
+const { setManual, clear: clearStoredPosition, snapshot: devPosition } = usePosition();
+const { adopt, remove: removeArea, installed: installedAreas } = useAreas();
+
+const latInput = ref<number | null>(devPosition.value?.latitude ?? null);
+const lonInput = ref<number | null>(devPosition.value?.longitude ?? null);
+const packBusy = ref(false);
+
+const packSummary = computed(() =>
+	installedAreas.value.length === 0
+		? 'No pack installed.'
+		: installedAreas.value
+				.map((area) => `${area.label}: ${area.places} places, ${Math.round(area.bytes / 1024)} KB`)
+				.join(' / ')
+);
+
+async function pinAt(latitude: number, longitude: number) {
+	const stored = await setManual(latitude, longitude);
+	latInput.value = stored.latitude;
+	lonInput.value = stored.longitude;
+}
+
+async function clearPosition() {
+	await clearStoredPosition();
+	latInput.value = null;
+	lonInput.value = null;
+}
+
+async function loadFixturePack() {
+	packBusy.value = true;
+	try {
+		// the same real OSM cut the unit tests run against, so dev and CI see identical data
+		const fixture = await import('../../../tests/fixtures/areas/us-il-chicago-loop.json');
+		await adopt(fixture.default ?? fixture);
+	} finally {
+		packBusy.value = false;
+	}
+}
+
+async function dropPacks() {
+	for (const area of [...installedAreas.value]) await removeArea(area.id);
+}
+
+// #endregion
 const seed = reactive({ days: 14, perDay: 3, gaps: 0 });
 
 const overridesActive = computed(() => devOverridesActive());

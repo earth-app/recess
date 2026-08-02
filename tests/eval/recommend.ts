@@ -2,7 +2,10 @@ import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { LedgerEntry, NudgeContext, WeatherSnapshot } from '~/types/context';
 import type { Nudge, NudgeCategory, NudgeType } from '~/types/nudge';
+import { areaPackSchema } from '~/types/places';
+import { reachabilityIndex } from '~/utils/places';
 import type { RecommendTuning } from '~/utils/recommend';
+import areaFixture from '../fixtures/areas/us-il-chicago-loop.json';
 import { EVAL_DIR, installSourceResolver } from './harness';
 
 // The recommender eval: 180 scripted days per persona, reporting intra-list diversity,
@@ -115,6 +118,16 @@ const WEATHER_SCRIPT: { code: number; temperature_c: number; wind_speed_kmh: num
 const LATITUDE = 41.88;
 const LONGITUDE = -87.63;
 
+/**
+ * A real area pack, so the geographic signal is actually exercised.
+ *
+ * Without this the personas have no pack and `reachability` stays undefined, which means the
+ * place layer correctly does nothing - and `reachMaxMetres` would be swept against a world where
+ * it cannot possibly move a number. The Chicago Loop cut covers LATITUDE/LONGITUDE above, so the
+ * sweep measures the knob against the same real OSM density a user in a dense city sees.
+ */
+const AREA_PACK = areaPackSchema.parse(areaFixture);
+
 interface World {
 	now: Date;
 	day: string;
@@ -216,6 +229,32 @@ function buildWorld(sources: Sources, offset: number): World {
 	};
 }
 
+/**
+ * The two place fields, recomputed per sweep value.
+ *
+ * Memoised because a 180-day run rebuilds the context every day and the index is a full pass
+ * over 1111 places; the answer only depends on the radius, which is constant within a run.
+ */
+const reachCache = new Map<number, Pick<NudgeContext, 'reachable_affordances' | 'reachability'>>();
+
+function reachContext(maxMetres: number | undefined) {
+	const key = maxMetres ?? -1;
+	const cached = reachCache.get(key);
+	if (cached) return cached;
+
+	const index = reachabilityIndex(
+		AREA_PACK,
+		{ latitude: LATITUDE, longitude: LONGITUDE },
+		maxMetres === undefined ? {} : { maxMetres }
+	);
+	const value = {
+		reachable_affordances: index?.affordances,
+		reachability: index?.scores
+	};
+	reachCache.set(key, value);
+	return value;
+}
+
 interface RunInput {
 	sources: Sources;
 	catalog: readonly Nudge[];
@@ -311,7 +350,8 @@ function runPersona(input: RunInput): ArmMetrics {
 			installed_packs: ['vision', 'text', 'audio', 'writing'],
 			weather: world.weather,
 			latitude: LATITUDE,
-			longitude: LONGITUDE
+			longitude: LONGITUDE,
+			...reachContext(tuning.reachMaxMetres)
 		};
 
 		const result = recommendDaily(catalog, ctx, entries, {
@@ -478,7 +518,10 @@ const SWEEPS: { knob: keyof RecommendTuning; values: number[] }[] = [
 	{ knob: 'itemSatiationHalfLifeDays', values: [3, 10, 21, 45] },
 	{ knob: 'categorySatiationHalfLifeDays', values: [1, 2, 4, 7] },
 	{ knob: 'interestPseudoCount', values: [0, 3, 6, 12] },
-	{ knob: 'skipEvidenceWeight', values: [0.1, 0.2, 0.5, 1] }
+	{ knob: 'skipEvidenceWeight', values: [0.1, 0.2, 0.5, 1] },
+	// the geographic knobs; only meaningful because AREA_PACK gives the personas real places
+	{ knob: 'reachMaxMetres', values: [400, 800, 1600, 3200] },
+	{ knob: 'reachFloor', values: [0.25, 0.45, 0.7, 1] }
 ];
 
 // #endregion

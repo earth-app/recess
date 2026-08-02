@@ -1,7 +1,9 @@
+import { isPositionUsable } from '~/composables/usePosition';
 import type { NudgeContext, WeatherSnapshot } from '~/types/context';
 import type { ModelPack } from '~/types/nudge';
 import { dayKey, moonIllumination, moonPhaseFor, seasonFor, timeOfDayFor } from '~/utils/day';
 import { devContext, devPacksInstalled } from '~/utils/dev';
+import { reachabilityIndex } from '~/utils/places';
 import { daylightRemaining } from '~/utils/sun';
 
 // Assembles everything the filter engine reads. Deliberately synchronous and
@@ -20,16 +22,33 @@ export function useNudgeContext() {
 	const models = useModelsStore();
 	const { granted } = usePermissions();
 	const { snapshot } = useWeather();
+	const { snapshot: position } = usePosition();
+	const { pack } = useAreas();
 
 	function build(inputs: ContextInputs = {}): NudgeContext {
 		const now = inputs.now ?? new Date();
 		const dev = devContext();
 		let weather = snapshot.value ?? undefined;
 
-		// coordinates come from the weather snapshot when geolocation was never asked,
-		// which is enough for sun math and keeps us from prompting for it
-		const latitude = dev?.latitude ?? inputs.latitude ?? weather?.latitude;
-		const longitude = dev?.longitude ?? inputs.longitude ?? weather?.longitude;
+		/**
+		 * The cached position is the source, and the weather snapshot is only a fallback.
+		 *
+		 * This used to read coordinates out of the weather snapshot alone, which never worked on a
+		 * fresh install: `useWeather.refresh` needs coordinates to fetch, and the only supplier of
+		 * coordinates was the snapshot it had not fetched yet. Neither side ever populated, so
+		 * `ctx.weather` stayed undefined forever and every weather, temperature, wind, humidity,
+		 * UV and daylight filter returned UNKNOWN for the life of the install.
+		 *
+		 * Reading from the cache and never prompting here is deliberate: the deck must stay
+		 * deterministic for the day (see `stores/nudges.ts` on why the pick is persisted), so a
+		 * fix that lands mid-session updates the cache for tomorrow rather than re-picking today.
+		 */
+		const stored = isPositionUsable(position.value ?? null, now.getTime())
+			? (position.value ?? undefined)
+			: undefined;
+
+		const latitude = dev?.latitude ?? inputs.latitude ?? stored?.latitude ?? weather?.latitude;
+		const longitude = dev?.longitude ?? inputs.longitude ?? stored?.longitude ?? weather?.longitude;
 
 		if (dev && (dev.weather !== null || dev.temperature !== null)) {
 			// a synthetic snapshot rather than a mutated one; the real cache stays intact
@@ -53,6 +72,11 @@ export function useNudgeContext() {
 			};
 		}
 
+		const coordinate =
+			latitude !== undefined && longitude !== undefined ? { latitude, longitude } : null;
+		// one pass over the pack, shared by the nearby filter and the recommender's bump
+		const reach = reachabilityIndex(pack.value, coordinate);
+
 		return {
 			now,
 			day: dayKey(now),
@@ -75,7 +99,9 @@ export function useNudgeContext() {
 					? daylightRemaining(now, latitude, longitude)
 					: undefined,
 			latitude,
-			longitude
+			longitude,
+			reachable_affordances: reach?.affordances,
+			reachability: reach?.scores
 		};
 	}
 

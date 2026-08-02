@@ -42,4 +42,19 @@
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--
+        @capacitor/geolocation ships an empty manifest, so nothing merges in and these have to be
+        declared by hand. Without them Android location silently never works.
+        COARSE is what the app actually asks for; FINE is declared because the plugin's own
+        permission check reads both, and Android 12+ lets the user pick Approximate anyway.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- required="false" or Play filters the app off every device without GPS hardware -->
+    <uses-feature
+		android:name="android.hardware.location.gps"
+		android:required="false"
+	/>
 </manifest>

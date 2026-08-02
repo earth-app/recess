@@ -198,6 +198,7 @@ const settings = useAppSettingsState();
 const { build } = useNudgeContext();
 const { skip, refreshToday } = useResolve();
 const { refresh: refreshWeather } = useWeather();
+const { hydrate: hydratePosition } = usePosition();
 const { refreshSchedule } = useLocalNotifications();
 const { toast } = useNotify();
 const { startIfUnseen } = useAppTour();
@@ -270,7 +271,15 @@ async function hydrate() {
 	// the install seed keys the day's stream, so it has to be resolved before the first
 	// `ensure()`. `app.vue` also awaits it, but this page's onMounted can win that race,
 	// and a deck picked with an empty seed then sticks for the rest of the day
-	await Promise.all([installSeed(), progress.load(), nudges.load(settings.value.locale)]);
+	// hydratePosition only reads the cache and never prompts, so boot stays silent - asking
+	// for location is the Out There tab's job. Without it the coordinate loop never closes
+	// and weather can never fetch on a fresh install
+	await Promise.all([
+		installSeed(),
+		progress.load(),
+		nudges.load(settings.value.locale),
+		hydratePosition()
+	]);
 
 	// weather is opportunistic: a missing snapshot makes weather filters pass, so
 	// the deck is never blocked waiting on it

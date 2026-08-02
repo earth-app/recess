@@ -8,6 +8,7 @@ import type {
 	ValidationType,
 	WeatherCondition
 } from './nudge';
+import type { Affordance } from './places';
 
 // #region weather
 
@@ -27,6 +28,42 @@ export interface WeatherSnapshot {
 
 /** past this age the snapshot stops counting as known and weather filters pass */
 export const WEATHER_MAX_AGE_MS = 6 * 60 * 60 * 1000;
+
+// #endregion
+
+// #region position
+
+export interface PositionSnapshot {
+	/** already snapped to the privacy grid; the raw fix is never stored */
+	latitude: number;
+	longitude: number;
+	/** metres, as the OS reported it before snapping; null when hand-pinned */
+	accuracy: number | null;
+	fetched_at: number;
+	/** the user pinned this area by hand instead of granting location */
+	manual: boolean;
+}
+
+/**
+ * Past this, the Out There tab refreshes on open and the UI may say "last known".
+ * It does NOT stop the position being used - see below.
+ */
+export const POSITION_MAX_AGE_MS = 12 * 60 * 60 * 1000;
+
+/**
+ * Past this, the position stops feeding the filter context entirely.
+ *
+ * Two thresholds rather than one, because the two questions are different. Sun and season math
+ * only need to know roughly which part of the world you are in, so yesterday's fix is perfectly
+ * good and expiring it at 12h would throw away a usable answer for nothing. But a fix from last
+ * month might be a different continent, and `daylight_remaining` would then be a confidently
+ * wrong number rather than an absent one - which is the failure mode this codebase cares most
+ * about. A week is long enough to survive travel and a flat battery, short enough that a stale
+ * position degrades to "unknown" (and so to a passing filter) before it can start lying.
+ *
+ * A hand-pinned position never expires, because the user asserted it.
+ */
+export const POSITION_USABLE_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
 // #endregion
 
@@ -56,6 +93,15 @@ export interface LedgerEntry {
 	/** filesystem path of a captured photo or audio clip, never a data url */
 	media?: string;
 	duration_minutes?: number;
+	/**
+	 * the grid cell this was resolved in, when the nudge was bound to a place.
+	 *
+	 * A cell, never a fix - it is written already snapped, so the ledger cannot hold a finer
+	 * position than the app is willing to use anywhere else. This is what Warm Ground reads, and
+	 * it is the ONLY location history recess keeps: there is no passive tracking, so a cell only
+	 * appears here because the user resolved something there.
+	 */
+	place?: { lat: number; lon: number };
 }
 
 export interface ProgressSnapshot {
@@ -119,6 +165,25 @@ export interface NudgeContext {
 	daylight_remaining?: number;
 	latitude?: number;
 	longitude?: number;
+	/**
+	 * affordances with at least one reachable place in the loaded area pack.
+	 *
+	 * Precomputed rather than handing the filter engine the whole pack, so `evaluateFilter` stays
+	 * the cheap synchronous function it is today and `compareSet` can be reused verbatim - the
+	 * `nearby` filter is then exactly as AND-strict as `permission` and `model_pack`.
+	 *
+	 * `undefined` means unanswerable (no pack, no position) and so passes, which is what keeps a
+	 * rural or offline user's deck identical to what it is today.
+	 */
+	reachable_affordances?: Affordance[];
+	/**
+	 * best reachability score per affordance, in (0, 1].
+	 *
+	 * Feeds the recommender's soft bump, never a filter. Separate from the list above because
+	 * "is there one at all" and "how far is it" are different questions and only the first one is
+	 * allowed to gate anything.
+	 */
+	reachability?: Partial<Record<Affordance, number>>;
 }
 
 // #endregion

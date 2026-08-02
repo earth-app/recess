@@ -1,0 +1,63 @@
+appId: com.earthapp.recess
+name: Location Denied Leaves Out There Usable
+tags:
+  - gate
+---
+# The one promise that only a real permission store can test: refusing location is never a
+# dead end. Out There must still offer a way forward, and the rest of the app must be
+# untouched - the deck is picked from a cached position, so a refusal cannot change it.
+- runFlow:
+    file: ../_shared/onboarded.yml
+
+# iOS takes never/inuse, Android takes deny/allow; the plugin's own check reads both, so the
+# platforms need separate calls rather than one shared value
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - setPermissions:
+          appId: com.earthapp.recess
+          permissions:
+            location: never
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - setPermissions:
+          appId: com.earthapp.recess
+          permissions:
+            location: deny
+
+- tapOn:
+    text: Out There
+- waitForAnimationToEnd:
+    timeout: 5000
+
+- extendedWaitUntil:
+    visible: Where are you?
+    timeout: 20000
+    label: The tab opens on the ask rather than an empty map
+
+- assertVisible:
+    text: Pin my Area Instead
+    label: Refusing location offers a hand-pinned area, so it is never a dead end
+
+# tapping through the refusal has to leave the surface standing
+- tapOn:
+    text: Use my Location
+- waitForAnimationToEnd:
+    timeout: 8000
+
+- assertVisible:
+    text: Pin my Area Instead
+    label: A refusal leaves the alternative in place instead of emptying the page
+
+# the deck reads position from cache and never re-picks on a fix, so a refusal here must not
+# have touched Today at all
+- tapOn:
+    text: Today
+- waitForAnimationToEnd:
+    timeout: 5000
+- assertVisible:
+    text: Still Open
+    label: The deck is unchanged by anything that happened in Out There

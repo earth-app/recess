@@ -32,3 +32,6 @@ android/app/src/main/assets/capacitor.config.json
 android/app/src/main/assets/capacitor.plugins.json
 android/local.properties
 android/capacitor-cordova-android-plugins/
+
+# a real OSM extract used as a test fixture; prettier would reflow 1111 objects
+tests/fixtures/areas/*.json

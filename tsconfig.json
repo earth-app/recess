@@ -1,5 +1,15 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
+  // paths are restated here purely for bun's *runtime* resolver, which reads the tsconfig
+  // nearest the imported file rather than following the extends chain into .nuxt - without it
+  // `bun run scripts/build-area-pack.ts` cannot load a src util that imports via ~/.
+  // this is a solution file (files: []), so the compilerOptions do not affect `vue-tsc -b`.
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/*": ["./src/*"]
+    }
+  },
   "files": [],
   "references": [
     {

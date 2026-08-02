@@ -61,3 +61,5 @@ android/local.properties
 
 resources/ios/**/*
 resources/android/**/*
+# built area packs; published to the HF dataset repo, never committed
+dist-areas/

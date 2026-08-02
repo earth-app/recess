@@ -27,6 +27,7 @@
 		"validation_type": "barcode",
 		"points": 10,
 		"tags": ["store"],
+		"place_affordances": ["food"],
 		"filters": [
 			{
 				"type": "hour",
@@ -113,6 +114,92 @@
 			],
 			"threshold": 0.58,
 			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "fill_the_bottle_out_there",
+		"title": "Llena tu botella en un lugar que no sea tu casa",
+		"description": "Hay una llave pública o una fuente más cerca de lo que crees. Encuéntrala, llena algo y bébelo ahí parado.",
+		"icon": "mdi:water",
+		"color": "@blue",
+		"points": 12,
+		"duration_minutes": 15,
+		"tags": ["water"],
+		"place_affordances": ["drink"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is_not": ["winter"]
+				}
+			},
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "return_it_to_the_shelf",
+		"title": "Devuelve el libro hoy",
+		"description": "Lleva el libro de la biblioteca al edificio al que pertenece y escanea su código de barras al entrar.",
+		"icon": "mdi:bookshelf",
+		"color": "@indigo",
+		"points": 20,
+		"duration_minutes": 30,
+		"tags": ["return", "books"],
+		"place_affordances": ["read"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [9, 18]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "book",
+			"require_checksum": true
+		}
+	},
+	{
+		"id": "buy_it_from_the_small_place",
+		"title": "Cómpralo en el lugar chico",
+		"description": "Eso que ibas a comprar en la tienda grande, cómpralo en la chica de dos calles más allá. Escanéalo cuando ya lo tengas en la mano.",
+		"icon": "mdi:storefront-outline",
+		"color": "@orange",
+		"points": 16,
+		"duration_minutes": 25,
+		"tags": ["store"],
+		"place_affordances": ["food"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 18]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "retail",
+			"require_checksum": true
 		}
 	}
 ]

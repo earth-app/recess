@@ -89,5 +89,30 @@
 				"leads_to": "people.task.say_hi"
 			}
 		]
+	},
+	{
+		"id": "who_else_is_here_for_this",
+		"question": "Cada quien en este lugar vino por su propia razón. ¿Sabes cuál es, aunque sea una?",
+		"icon": "mdi:account-question-outline",
+		"color": "@coral",
+		"points": 10,
+		"tags": ["strangers"],
+		"place_affordances": ["people"],
+		"actions": [
+			{
+				"label": "Ni una",
+				"color": "@gray"
+			},
+			{
+				"label": "Puedo adivinar una",
+				"color": "@yellow"
+			},
+			{
+				"label": "Voy a preguntar",
+				"color": "@coral",
+				"icon": "mdi:hand-wave",
+				"leads_to": "people.task.say_hi"
+			}
+		]
 	}
 ]

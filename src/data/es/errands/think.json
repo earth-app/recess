@@ -1,0 +1,11 @@
+[
+	{
+		"id": "the_errand_you_could_walk",
+		"prompt": "Una cosa de la lista de esta semana se puede hacer a pie. Averigua cuál, y por dónde pasarías en el camino.",
+		"icon": "mdi:shoe-print",
+		"color": "@brown",
+		"points": 8,
+		"tags": ["overdue"],
+		"place_affordances": ["food"]
+	}
+]

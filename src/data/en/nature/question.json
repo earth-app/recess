@@ -47,5 +47,35 @@
 				"leads_to": "nature.task.night_walk_no_phone"
 			}
 		]
+	},
+	{
+		"id": "nearest_wild_water",
+		"question": "Where is the nearest water you did not have to turn a tap for?",
+		"icon": "mdi:waves",
+		"color": "@teal",
+		"points": 10,
+		"tags": ["water"],
+		"place_affordances": ["water"],
+		"actions": [
+			{
+				"label": "Ten Minutes That Way",
+				"color": "@teal",
+				"icon": "mdi:map-marker"
+			},
+			{
+				"label": "Somewhere, Vaguely",
+				"color": "@gray"
+			},
+			{
+				"label": "Nothing for Miles",
+				"color": "@brown"
+			},
+			{
+				"label": "Going to Go Look",
+				"color": "@blue",
+				"icon": "mdi:door-open",
+				"leads_to": "nature.notice.water_moving"
+			}
+		]
 	}
 ]

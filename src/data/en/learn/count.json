@@ -13,5 +13,29 @@
 			"min": 1,
 			"max": 40
 		}
+	},
+	{
+		"id": "languages_in_earshot",
+		"prompt": "Sit somewhere busy and count the languages you can hear. The ones you cannot identify still count.",
+		"unit": "languages",
+		"icon": "mdi:translate",
+		"color": "@teal",
+		"points": 14,
+		"duration_minutes": 15,
+		"tags": ["words", "counting"],
+		"place_affordances": ["people"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 20]
+				}
+			}
+		],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 1,
+			"max": 20
+		}
 	}
 ]

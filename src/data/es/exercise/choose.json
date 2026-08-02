@@ -43,5 +43,26 @@
 				"icon": "mdi:scale-balance"
 			}
 		]
+	},
+	{
+		"id": "hill_or_flat",
+		"prompt": "La misma distancia por los dos lados: la ruta plana que pasa por las tiendas, o la que sube.",
+		"icon": "mdi:terrain",
+		"color": "@lime",
+		"points": 5,
+		"tags": ["walk"],
+		"place_affordances": ["view"],
+		"options": [
+			{
+				"text": "La plana",
+				"color": "@gray",
+				"icon": "mdi:road-variant"
+			},
+			{
+				"text": "La que sube",
+				"color": "@lime",
+				"icon": "mdi:terrain"
+			}
+		]
 	}
 ]

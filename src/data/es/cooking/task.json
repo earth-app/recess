@@ -81,5 +81,25 @@
 			"min_length": 160,
 			"max_length": 1200
 		}
+	},
+	{
+		"id": "buy_one_thing_you_cannot_name",
+		"title": "Compra una cosa cuyo nombre no sepas",
+		"description": "En el mercado o en la verdulería, agarra la verdura que nunca has cocinado y llévatela a casa. Ya la buscarás después.",
+		"icon": "mdi:carrot",
+		"color": "@lime",
+		"points": 16,
+		"duration_minutes": 30,
+		"tags": ["improvise"],
+		"place_affordances": ["food"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 18]
+				}
+			}
+		],
+		"validation_type": "confirm"
 	}
 ]

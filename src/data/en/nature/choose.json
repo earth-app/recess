@@ -48,5 +48,34 @@
 				"icon": "mdi:snowflake"
 			}
 		]
+	},
+	{
+		"id": "shade_or_sun",
+		"prompt": "One spot outside for the whole afternoon: deep shade under trees, or open sun with nothing over you?",
+		"icon": "mdi:weather-sunny",
+		"color": "@lime",
+		"points": 5,
+		"tags": ["seasons", "trees"],
+		"place_affordances": ["green"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is": ["spring", "summer"]
+				}
+			}
+		],
+		"options": [
+			{
+				"text": "Under the Trees",
+				"color": "@green",
+				"icon": "mdi:tree"
+			},
+			{
+				"text": "Out in the Open",
+				"color": "@gold",
+				"icon": "mdi:white-balance-sunny"
+			}
+		]
 	}
 ]

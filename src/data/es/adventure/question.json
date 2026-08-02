@@ -64,5 +64,36 @@
 				"leads_to": "adventure.task.end_of_the_line"
 			}
 		]
+	},
+	{
+		"id": "furthest_you_can_see",
+		"question": "¿Cuál es la cosa más lejana que alcanzas a ver desde donde estás parado?",
+		"icon": "mdi:binoculars",
+		"color": "@purple",
+		"points": 10,
+		"tags": ["look"],
+		"place_affordances": ["view"],
+		"actions": [
+			{
+				"label": "Una pared",
+				"color": "@gray",
+				"icon": "mdi:wall"
+			},
+			{
+				"label": "El final de la calle",
+				"color": "@teal"
+			},
+			{
+				"label": "El horizonte de verdad",
+				"color": "@purple",
+				"icon": "mdi:binoculars"
+			},
+			{
+				"label": "Voy a subir a algún lado",
+				"color": "@lime",
+				"icon": "mdi:terrain",
+				"leads_to": "exercise.task.walk_uphill_for_the_view"
+			}
+		]
 	}
 ]

@@ -22,5 +22,14 @@
 		"color": "@pink",
 		"points": 12,
 		"tags": ["memory"]
+	},
+	{
+		"id": "the_regulars",
+		"prompt": "Cerca de ti hay un lugar con clientes de siempre que se saben el pedido de memoria. Averigua cuál es, y si tú eres el de siempre en alguna parte.",
+		"icon": "mdi:coffee-outline",
+		"color": "@brown",
+		"points": 8,
+		"tags": ["neighbors"],
+		"place_affordances": ["people"]
 	}
 ]

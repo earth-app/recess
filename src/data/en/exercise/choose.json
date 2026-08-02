@@ -43,5 +43,26 @@
 				"icon": "mdi:scale-balance"
 			}
 		]
+	},
+	{
+		"id": "hill_or_flat",
+		"prompt": "Same distance either way: the flat route past the shops, or the one that goes up?",
+		"icon": "mdi:terrain",
+		"color": "@lime",
+		"points": 5,
+		"tags": ["walk"],
+		"place_affordances": ["view"],
+		"options": [
+			{
+				"text": "The Flat One",
+				"color": "@gray",
+				"icon": "mdi:road-variant"
+			},
+			{
+				"text": "The One That Goes Up",
+				"color": "@lime",
+				"icon": "mdi:terrain"
+			}
+		]
 	}
 ]

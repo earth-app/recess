@@ -1,0 +1,26 @@
+[
+	{
+		"id": "benches_between_here_and_there",
+		"prompt": "Walk somewhere you were going anyway and count the benches on the way. Occupied ones count.",
+		"unit": "benches",
+		"icon": "mdi:bench",
+		"color": "@brown",
+		"points": 12,
+		"duration_minutes": 20,
+		"tags": ["sit", "counting"],
+		"place_affordances": ["sit"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			}
+		],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 40
+		}
+	}
+]

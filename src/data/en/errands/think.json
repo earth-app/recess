@@ -1,0 +1,11 @@
+[
+	{
+		"id": "the_errand_you_could_walk",
+		"prompt": "One thing on this week's list could be done on foot. Work out which one, and what you would pass on the way.",
+		"icon": "mdi:shoe-print",
+		"color": "@brown",
+		"points": 8,
+		"tags": ["overdue"],
+		"place_affordances": ["food"]
+	}
+]

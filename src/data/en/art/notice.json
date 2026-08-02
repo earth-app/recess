@@ -43,5 +43,57 @@
 			"threshold": 0.72,
 			"min_seconds": 20
 		}
+	},
+	{
+		"id": "describe_the_public_art",
+		"prompt": "Stand in front of a piece of public art and describe it out loud to somebody who is not there. Then say whether you like it.",
+		"icon": "mdi:palette",
+		"color": "@pink",
+		"points": 16,
+		"duration_minutes": 10,
+		"tags": ["looking"],
+		"place_affordances": ["art"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "what_it_is",
+					"weight": 0.4,
+					"ideal": "It is a bronze figure about twice my height standing on a block of pale stone with a plaque bolted to the front."
+				},
+				{
+					"id": "detail",
+					"weight": 0.35,
+					"ideal": "One hand has been rubbed shiny by people touching it and the rest has gone green, and there is a bird nesting behind the shoulder."
+				},
+				{
+					"id": "verdict",
+					"weight": 0.25,
+					"ideal": "I do not like it; it is trying to be solemn in a spot where everybody is eating lunch."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
 	}
 ]

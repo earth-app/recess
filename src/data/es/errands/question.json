@@ -57,5 +57,35 @@
 				"icon": "mdi:check-circle-outline"
 			}
 		]
+	},
+	{
+		"id": "where_do_you_actually_go",
+		"question": "¿A cuántos de los lugares que usas cada semana podrías llegar caminando?",
+		"icon": "mdi:map-marker-radius",
+		"color": "@brown",
+		"points": 10,
+		"tags": ["store"],
+		"place_affordances": ["food"],
+		"actions": [
+			{
+				"label": "A todos",
+				"color": "@green"
+			},
+			{
+				"label": "Como a la mitad",
+				"color": "@gold"
+			},
+			{
+				"label": "A ninguno; manejo",
+				"color": "@gray",
+				"icon": "mdi:car"
+			},
+			{
+				"label": "Voy a probar uno a pie",
+				"color": "@orange",
+				"icon": "mdi:shoe-print",
+				"leads_to": "errands.task.buy_it_from_the_small_place"
+			}
+		]
 	}
 ]

@@ -43,5 +43,57 @@
 			"threshold": 0.72,
 			"min_seconds": 20
 		}
+	},
+	{
+		"id": "describe_the_public_art",
+		"prompt": "Párate frente a una obra de arte pública y descríbela en voz alta a alguien que no está ahí. Después di si te gusta.",
+		"icon": "mdi:palette",
+		"color": "@pink",
+		"points": 16,
+		"duration_minutes": 10,
+		"tags": ["looking"],
+		"place_affordances": ["art"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "what_it_is",
+					"weight": 0.4,
+					"ideal": "Es una figura de bronce del doble de mi altura, parada sobre un bloque de piedra clara con una placa atornillada al frente."
+				},
+				{
+					"id": "detail",
+					"weight": 0.35,
+					"ideal": "Una mano quedó brillosa de tanto que la tocan y el resto se puso verde, y hay un pájaro anidando detrás del hombro."
+				},
+				{
+					"id": "verdict",
+					"weight": 0.25,
+					"ideal": "No me gusta; está tratando de ser solemne en un lugar donde todos están comiendo."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
 	}
 ]

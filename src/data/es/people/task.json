@@ -7,7 +7,8 @@
 		"color": "@yellow",
 		"validation_type": "confirm",
 		"points": 10,
-		"tags": ["strangers"]
+		"tags": ["strangers"],
+		"place_affordances": ["people"]
 	},
 	{
 		"id": "go_for_a_walk",
@@ -19,6 +20,7 @@
 		"points": 15,
 		"duration_minutes": 20,
 		"tags": ["outside"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -42,7 +44,8 @@
 		"color": "@blue",
 		"validation_type": "confirm",
 		"points": 20,
-		"tags": ["kindness"]
+		"tags": ["kindness"],
+		"place_affordances": ["people"]
 	},
 	{
 		"id": "call_someone",
@@ -95,6 +98,7 @@
 		"points": 25,
 		"duration_minutes": 15,
 		"tags": ["conversation"],
+		"place_affordances": ["people"],
 		"filters": [
 			{
 				"type": "model_pack",
@@ -103,5 +107,78 @@
 				}
 			}
 		]
+	},
+	{
+		"id": "sit_where_people_are",
+		"title": "Siéntate donde hay gente y no hagas nada",
+		"description": "Busca una banca por donde de verdad pase gente, siéntate y quédate quince minutos con el teléfono en el bolsillo. No estás esperando a nadie.",
+		"icon": "mdi:bench",
+		"color": "@coral",
+		"points": 18,
+		"duration_minutes": 20,
+		"tags": ["strangers", "sit"],
+		"place_affordances": ["sit", "people"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "ask_someone_who_works_there",
+		"title": "Pregúntale a quien atiende lo que nadie le pregunta",
+		"description": "Donde sea que alguien esté trabajando hoy, pregúntale qué parte del trabajo nunca le preguntan, y anota lo que te dijo.",
+		"icon": "mdi:store",
+		"color": "@gold",
+		"points": 26,
+		"duration_minutes": 20,
+		"tags": ["conversation"],
+		"place_affordances": ["people"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [9, 18]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "who_and_where",
+					"weight": 0.3,
+					"ideal": "Le pregunté a la señora de la caja de la panadería de la esquina, a media tarde, cuando no había nadie más."
+				},
+				{
+					"id": "what_they_said",
+					"weight": 0.45,
+					"ideal": "Me dijo que todos preguntan por el pan y que nadie pregunta nunca por lo de las cuatro de la mañana, que es la única parte difícil de verdad."
+				},
+				{
+					"id": "what_it_cost_you",
+					"weight": 0.25,
+					"ideal": "Me costó dos intentos preguntar; la primera vez compré un bolillo y me fui sin decir nada."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 120
+		}
 	}
 ]

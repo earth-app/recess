@@ -69,5 +69,39 @@
 				"icon": "mdi:clock-alert-outline"
 			}
 		]
+	},
+	{
+		"id": "shelter_or_soaked",
+		"prompt": "Rain starts, and there is a shelter forty seconds away. Run for it, or keep walking?",
+		"icon": "mdi:home-roof",
+		"color": "@gray",
+		"points": 6,
+		"tags": ["weather", "decide"],
+		"place_affordances": ["shelter"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is": ["any_precipitation"]
+				}
+			}
+		],
+		"options": [
+			{
+				"text": "Run for the Shelter",
+				"color": "@gray",
+				"icon": "mdi:home-roof"
+			},
+			{
+				"text": "Keep Walking",
+				"color": "@blue",
+				"icon": "mdi:walk"
+			},
+			{
+				"text": "Stop and Let It Land",
+				"color": "@teal",
+				"icon": "mdi:weather-pouring"
+			}
+		]
 	}
 ]

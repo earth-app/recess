@@ -55,5 +55,35 @@
 				"leads_to": "exercise.task.walk_until_a_song_ends"
 			}
 		]
+	},
+	{
+		"id": "where_would_you_run_to",
+		"question": "Si tuvieras que correr hacia algo verde desde aquí, ¿hacia dónde estarías corriendo?",
+		"icon": "mdi:run",
+		"color": "@lime",
+		"points": 8,
+		"tags": ["outside"],
+		"place_affordances": ["green"],
+		"actions": [
+			{
+				"label": "Al parque",
+				"color": "@green",
+				"icon": "mdi:tree"
+			},
+			{
+				"label": "No hay nada verde cerca",
+				"color": "@gray"
+			},
+			{
+				"label": "Ni idea",
+				"color": "@brown"
+			},
+			{
+				"label": "Mejor voy caminando",
+				"color": "@lime",
+				"icon": "mdi:walk",
+				"leads_to": "exercise.task.lap_of_the_green"
+			}
+		]
 	}
 ]

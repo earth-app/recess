@@ -22,5 +22,15 @@
 		"color": "@purple",
 		"points": 10,
 		"tags": ["teach"]
+	},
+	{
+		"id": "what_this_place_was_for",
+		"prompt": "Find the oldest building you can see and work out what it was built to do. Almost nothing is still doing its first job.",
+		"icon": "mdi:bank-outline",
+		"color": "@brown",
+		"points": 10,
+		"duration_minutes": 10,
+		"tags": ["how_things_work", "old"],
+		"place_affordances": ["old"]
 	}
 ]

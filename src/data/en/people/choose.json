@@ -59,5 +59,26 @@
 				"icon": "mdi:walk"
 			}
 		]
+	},
+	{
+		"id": "counter_or_corner",
+		"prompt": "One seat in a busy room: the counter where somebody will talk to you, or the corner where nobody will?",
+		"icon": "mdi:sofa-single",
+		"color": "@coral",
+		"points": 6,
+		"tags": ["strangers"],
+		"place_affordances": ["people"],
+		"options": [
+			{
+				"text": "The Counter",
+				"color": "@coral",
+				"icon": "mdi:coffee"
+			},
+			{
+				"text": "The Corner",
+				"color": "@indigo",
+				"icon": "mdi:sofa-single"
+			}
+		]
 	}
 ]

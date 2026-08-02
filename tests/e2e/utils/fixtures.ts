@@ -162,6 +162,6 @@ export async function waitForDeck(page: Page) {
  * does emit a stable `id`, and matching on label text is unreliable because the
  * today tab's innerText also contains its badge count.
  */
-export function tab(page: Page, name: 'today' | 'playground' | 'week' | 'settings') {
+export function tab(page: Page, name: 'today' | 'playground' | 'out-there' | 'week' | 'settings') {
 	return page.locator(`#tab-button-${name}`);
 }

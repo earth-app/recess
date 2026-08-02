@@ -161,5 +161,83 @@
 			"kind": "book",
 			"require_checksum": true
 		}
+	},
+	{
+		"id": "read_the_plaque",
+		"title": "Read the Plaque You Walk Past",
+		"description": "Every memorial has words on it nobody reads. Find one, read all of it, and write down what it is actually for.",
+		"icon": "mdi:script-text-outline",
+		"color": "@gold",
+		"points": 18,
+		"duration_minutes": 20,
+		"tags": ["words", "old"],
+		"place_affordances": ["old"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "what_it_says",
+					"weight": 0.4,
+					"ideal": "The plaque is on a low stone by the church gate and it lists eleven names from one village, all from the same two years."
+				},
+				{
+					"id": "what_it_is_for",
+					"weight": 0.35,
+					"ideal": "It is not decoration; somebody paid for it so those eleven names would stay readable after everyone who knew them was gone."
+				},
+				{
+					"id": "how_long_you_have_passed_it",
+					"weight": 0.25,
+					"ideal": "I have walked past this thing most weeks for years and I could not have told you a single word on it."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 120,
+			"max_length": 800
+		}
+	},
+	{
+		"id": "borrow_something_you_wont_finish",
+		"title": "Borrow a Book You Will Not Finish",
+		"description": "Go where the free books are, take one you have no business reading, and scan the barcode before you open it.",
+		"icon": "mdi:bookshelf",
+		"color": "@indigo",
+		"points": 16,
+		"duration_minutes": 30,
+		"tags": ["books"],
+		"place_affordances": ["read"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [9, 18]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "book",
+			"require_checksum": true
+		}
 	}
 ]

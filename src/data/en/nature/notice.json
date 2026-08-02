@@ -7,6 +7,7 @@
 		"points": 12,
 		"duration_minutes": 5,
 		"tags": ["plants"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "season",
@@ -52,6 +53,7 @@
 		"points": 20,
 		"duration_minutes": 10,
 		"tags": ["birds"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -147,6 +149,7 @@
 		"points": 12,
 		"duration_minutes": 10,
 		"tags": ["water"],
+		"place_affordances": ["water"],
 		"filters": [
 			{
 				"type": "permission",
@@ -221,6 +224,116 @@
 			],
 			"threshold": 0.72,
 			"min_seconds": 15
+		}
+	},
+	{
+		"id": "the_wood_from_inside",
+		"prompt": "Get far enough into trees that you cannot see out of them, then photograph what is above your head.",
+		"icon": "mdi:tree",
+		"color": "@green",
+		"points": 24,
+		"duration_minutes": 45,
+		"tags": ["trees", "walk"],
+		"place_affordances": ["green"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 60
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a tree canopy seen from below",
+				"a photo of branches and leaves against the sky",
+				"a photo of the inside of a wood looking upwards"
+			],
+			"negative_labels": [
+				"a photo of a ceiling",
+				"a photo of a single houseplant indoors",
+				"a screenshot of a screen",
+				"a photo of an open field with no trees"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "listen_to_the_water",
+		"prompt": "Stand next to moving water and say out loud what it sounds like without using the word water.",
+		"icon": "mdi:ear-hearing",
+		"color": "@teal",
+		"points": 18,
+		"duration_minutes": 15,
+		"tags": ["water", "listen"],
+		"place_affordances": ["water"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "the_sound",
+					"weight": 0.45,
+					"ideal": "It is a constant hiss with a heavier knocking underneath it where the current hits the stones."
+				},
+				{
+					"id": "no_easy_word",
+					"weight": 0.3,
+					"ideal": "I am getting through this without saying the obvious word; I am calling it the rush, the pouring, the thing going over the edge."
+				},
+				{
+					"id": "what_else",
+					"weight": 0.25,
+					"ideal": "Behind it there is wind in the reeds and a duck complaining about something further along."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
 		}
 	}
 ]

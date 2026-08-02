@@ -8,6 +8,7 @@
 		"points": 8,
 		"duration_minutes": 2,
 		"tags": ["grass"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "season",
@@ -45,6 +46,7 @@
 		"points": 15,
 		"duration_minutes": 10,
 		"tags": ["trees"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -127,6 +129,7 @@
 		"points": 25,
 		"duration_minutes": 20,
 		"tags": ["night"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -138,6 +141,96 @@
 				"type": "weather",
 				"value": {
 					"is_not": ["severe", "any_thunderstorm", "any_freezing"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "follow_the_water",
+		"title": "Follow the Water Until It Disappears",
+		"description": "Find the nearest moving water and walk beside it in one direction until it goes under something. Turn around there.",
+		"icon": "mdi:water-outline",
+		"color": "@teal",
+		"points": 22,
+		"duration_minutes": 40,
+		"tags": ["water", "walk"],
+		"place_affordances": ["water"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 50
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "the_quietest_ten_minutes",
+		"title": "Find the Quietest Place You Can Reach",
+		"description": "Walk until the traffic drops out of the background, then stand there for ten minutes doing nothing else.",
+		"icon": "mdi:volume-off",
+		"color": "@indigo",
+		"points": 20,
+		"duration_minutes": 30,
+		"tags": ["quiet", "walk"],
+		"place_affordances": ["quiet"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "somebody_elses_vegetables",
+		"title": "Go Look at Somebody Else's Vegetables",
+		"description": "Find the allotments or the community plot nearest you and walk the path between them. Somebody out there is losing a slow war with slugs.",
+		"icon": "mdi:sprout",
+		"color": "@lime",
+		"points": 14,
+		"duration_minutes": 20,
+		"tags": ["plants", "grow"],
+		"place_affordances": ["grow"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is_not": ["winter"]
+				}
+			},
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
 				}
 			}
 		],

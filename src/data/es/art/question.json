@@ -24,5 +24,30 @@
 				"leads_to": "art.create.draw_your_hand"
 			}
 		]
+	},
+	{
+		"id": "nearest_thing_made_by_hand",
+		"question": "¿Qué es lo más cercano a ti que alguien hizo a mano?",
+		"icon": "mdi:hand-back-right",
+		"color": "@coral",
+		"points": 8,
+		"tags": ["making"],
+		"place_affordances": ["art"],
+		"actions": [
+			{
+				"label": "Algo en este cuarto",
+				"color": "@green"
+			},
+			{
+				"label": "Nada al alcance",
+				"color": "@gray"
+			},
+			{
+				"label": "Salgo a buscar una",
+				"color": "@pink",
+				"icon": "mdi:pencil-outline",
+				"leads_to": "art.create.copy_the_public_one"
+			}
+		]
 	}
 ]

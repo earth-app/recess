@@ -172,5 +172,56 @@
 			"threshold": 0.58,
 			"require_fresh_exif": true
 		}
+	},
+	{
+		"id": "eat_it_where_you_bought_it",
+		"prompt": "Compra algo caliente en el lugar donde lo hornearon y cómetelo afuera antes de que se enfríe. Fotografíalo primero, rápido.",
+		"icon": "mdi:bread-slice",
+		"color": "@gold",
+		"points": 14,
+		"duration_minutes": 20,
+		"tags": ["bakery"],
+		"place_affordances": ["food"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [7, 17]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of fresh bread or a pastry held in a hand outdoors",
+				"a photo of a bakery pastry on paper outside"
+			],
+			"negative_labels": [
+				"a photo of a supermarket shelf",
+				"a photo of an empty plate",
+				"a screenshot of a screen",
+				"a photo of a packaged sandwich in plastic"
+			],
+			"threshold": 0.58,
+			"require_fresh_exif": true
+		}
 	}
 ]

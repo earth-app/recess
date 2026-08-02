@@ -43,5 +43,26 @@
 				"icon": "mdi:help"
 			}
 		]
+	},
+	{
+		"id": "statue_or_mural",
+		"prompt": "One of these stays in your town forever: the statue nobody looks at, or the mural everybody photographs.",
+		"icon": "mdi:image-frame",
+		"color": "@pink",
+		"points": 6,
+		"tags": ["hypothetical"],
+		"place_affordances": ["art"],
+		"options": [
+			{
+				"text": "The Statue",
+				"color": "@brown",
+				"icon": "mdi:pillar"
+			},
+			{
+				"text": "The Mural",
+				"color": "@pink",
+				"icon": "mdi:spray"
+			}
+		]
 	}
 ]

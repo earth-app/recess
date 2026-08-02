@@ -8,6 +8,7 @@
 		"validation_type": "barcode",
 		"points": 10,
 		"tags": ["store"],
+		"place_affordances": ["food"],
 		"filters": [
 			{
 				"type": "hour",

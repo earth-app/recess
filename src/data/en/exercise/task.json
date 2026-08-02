@@ -102,6 +102,7 @@
 		"points": 26,
 		"duration_minutes": 45,
 		"tags": ["walk"],
+		"place_affordances": ["view"],
 		"filters": [
 			{
 				"type": "weather",
@@ -128,5 +129,57 @@
 				}
 			}
 		]
+	},
+	{
+		"id": "use_the_outdoor_gym",
+		"title": "Use the Outdoor Gym Nobody Uses",
+		"description": "Those metal frames in the park are a real gym. Do one thing on three of them; badly counts.",
+		"icon": "mdi:weight-lifter",
+		"color": "@lime",
+		"points": 18,
+		"duration_minutes": 20,
+		"tags": ["outside"],
+		"place_affordances": ["move"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 30
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "lap_of_the_green",
+		"title": "Walk the Edge of the Nearest Green",
+		"description": "Find the boundary of the closest park or field and walk all the way around it without cutting a corner.",
+		"icon": "mdi:map-marker-path",
+		"color": "@green",
+		"points": 20,
+		"duration_minutes": 35,
+		"tags": ["walk", "outside"],
+		"place_affordances": ["green"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 45
+				}
+			}
+		],
+		"validation_type": "confirm"
 	}
 ]

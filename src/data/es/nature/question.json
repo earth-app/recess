@@ -47,5 +47,35 @@
 				"leads_to": "nature.task.night_walk_no_phone"
 			}
 		]
+	},
+	{
+		"id": "nearest_wild_water",
+		"question": "¿Dónde está el agua más cercana para la que no tuviste que abrir una llave?",
+		"icon": "mdi:waves",
+		"color": "@teal",
+		"points": 10,
+		"tags": ["water"],
+		"place_affordances": ["water"],
+		"actions": [
+			{
+				"label": "A diez minutos por allá",
+				"color": "@teal",
+				"icon": "mdi:map-marker"
+			},
+			{
+				"label": "En algún lado, más o menos",
+				"color": "@gray"
+			},
+			{
+				"label": "Nada en kilómetros",
+				"color": "@brown"
+			},
+			{
+				"label": "Voy a asomarme",
+				"color": "@blue",
+				"icon": "mdi:door-open",
+				"leads_to": "nature.notice.water_moving"
+			}
+		]
 	}
 ]

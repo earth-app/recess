@@ -24,5 +24,14 @@
 		"points": 8,
 		"duration_minutes": 3,
 		"tags": ["rest"]
+	},
+	{
+		"id": "the_nearest_roof_that_is_not_yours",
+		"prompt": "Averigua a dónde irías si tu casa se cerrara para ti seis horas y no tuvieras dinero. Cerca de ti está ese lugar.",
+		"icon": "mdi:home-roof",
+		"color": "@gray",
+		"points": 10,
+		"tags": ["place"],
+		"place_affordances": ["shelter"]
 	}
 ]

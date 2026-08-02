@@ -64,5 +64,36 @@
 				"leads_to": "adventure.task.end_of_the_line"
 			}
 		]
+	},
+	{
+		"id": "furthest_you_can_see",
+		"question": "What is the furthest thing you can see from where you are standing?",
+		"icon": "mdi:binoculars",
+		"color": "@purple",
+		"points": 10,
+		"tags": ["look"],
+		"place_affordances": ["view"],
+		"actions": [
+			{
+				"label": "A Wall",
+				"color": "@gray",
+				"icon": "mdi:wall"
+			},
+			{
+				"label": "The End of the Street",
+				"color": "@teal"
+			},
+			{
+				"label": "Actual Horizon",
+				"color": "@purple",
+				"icon": "mdi:binoculars"
+			},
+			{
+				"label": "Going Somewhere Higher",
+				"color": "@lime",
+				"icon": "mdi:terrain",
+				"leads_to": "exercise.task.walk_uphill_for_the_view"
+			}
+		]
 	}
 ]

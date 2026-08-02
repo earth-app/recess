@@ -89,5 +89,30 @@
 				"leads_to": "people.task.say_hi"
 			}
 		]
+	},
+	{
+		"id": "who_else_is_here_for_this",
+		"question": "Everybody else in this place came for their own reason. Do you know what a single one of them is?",
+		"icon": "mdi:account-question-outline",
+		"color": "@coral",
+		"points": 10,
+		"tags": ["strangers"],
+		"place_affordances": ["people"],
+		"actions": [
+			{
+				"label": "Not a Clue",
+				"color": "@gray"
+			},
+			{
+				"label": "I Can Guess One",
+				"color": "@yellow"
+			},
+			{
+				"label": "Going to Ask",
+				"color": "@coral",
+				"icon": "mdi:hand-wave",
+				"leads_to": "people.task.say_hi"
+			}
+		]
 	}
 ]

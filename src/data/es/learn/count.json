@@ -13,5 +13,29 @@
 			"min": 1,
 			"max": 40
 		}
+	},
+	{
+		"id": "languages_in_earshot",
+		"prompt": "Siéntate en un lugar concurrido y cuenta los idiomas que alcanzas a oír. Los que no logras identificar también cuentan.",
+		"unit": "idiomas",
+		"icon": "mdi:translate",
+		"color": "@teal",
+		"points": 14,
+		"duration_minutes": 15,
+		"tags": ["words", "counting"],
+		"place_affordances": ["people"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 20]
+				}
+			}
+		],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 1,
+			"max": 20
+		}
 	}
 ]

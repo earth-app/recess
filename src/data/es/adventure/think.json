@@ -6,5 +6,15 @@
 		"color": "@gold",
 		"points": 8,
 		"tags": ["reflect"]
+	},
+	{
+		"id": "the_place_that_closed",
+		"prompt": "Algo a distancia caminable antes era otra cosa. Ve a pararte ahí y averigua qué era.",
+		"icon": "mdi:storefront-outline",
+		"color": "@brown",
+		"points": 10,
+		"duration_minutes": 10,
+		"tags": ["old", "memory"],
+		"place_affordances": ["old"]
 	}
 ]

@@ -1,0 +1,60 @@
+[
+	{
+		"id": "out_of_breath_out_loud",
+		"prompt": "Sube algo a pie y, antes de que se te calme la respiración, di en voz alta qué tan mal estuvo y quién te convenció.",
+		"icon": "mdi:microphone",
+		"color": "@orange",
+		"points": 20,
+		"duration_minutes": 30,
+		"tags": ["walk"],
+		"place_affordances": ["view"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 45
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "the_climb",
+					"weight": 0.4,
+					"ideal": "Fueron como quince minutos de subida por un camino de grava y en el último tercio me paraba cada veinte pasos."
+				},
+				{
+					"id": "the_body",
+					"weight": 0.3,
+					"ideal": "Me tiemblan las piernas, no puedo terminar una frase sin meter aire a la mitad y traigo las orejas calientes."
+				},
+				{
+					"id": "the_reason",
+					"weight": 0.3,
+					"ideal": "Subí porque llevo cuatro años viendo esta subida desde el autobús sin subirla nunca."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 15
+		}
+	}
+]

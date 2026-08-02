@@ -43,5 +43,26 @@
 				"icon": "mdi:help"
 			}
 		]
+	},
+	{
+		"id": "statue_or_mural",
+		"prompt": "Una de las dos se queda en tu ciudad para siempre: la estatua que nadie mira, o el mural que todos fotografían.",
+		"icon": "mdi:image-frame",
+		"color": "@pink",
+		"points": 6,
+		"tags": ["hypothetical"],
+		"place_affordances": ["art"],
+		"options": [
+			{
+				"text": "La estatua",
+				"color": "@brown",
+				"icon": "mdi:pillar"
+			},
+			{
+				"text": "El mural",
+				"color": "@pink",
+				"icon": "mdi:spray"
+			}
+		]
 	}
 ]

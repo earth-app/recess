@@ -13,5 +13,29 @@
 			"min": 0,
 			"max": 40
 		}
+	},
+	{
+		"id": "shops_you_have_never_entered",
+		"prompt": "Camina tu ruta de siempre y cuenta los lugares en los que nunca has entrado.",
+		"unit": "lugares",
+		"icon": "mdi:storefront",
+		"color": "@teal",
+		"points": 14,
+		"duration_minutes": 20,
+		"tags": ["store", "counting"],
+		"place_affordances": ["food"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			}
+		],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 40
+		}
 	}
 ]

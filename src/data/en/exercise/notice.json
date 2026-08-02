@@ -1,0 +1,60 @@
+[
+	{
+		"id": "out_of_breath_out_loud",
+		"prompt": "Climb something on foot and, before your breathing settles, say out loud how bad it was and what talked you into it.",
+		"icon": "mdi:microphone",
+		"color": "@orange",
+		"points": 20,
+		"duration_minutes": 30,
+		"tags": ["walk"],
+		"place_affordances": ["view"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 45
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "the_climb",
+					"weight": 0.4,
+					"ideal": "That was about fifteen minutes straight up a gravel path and for the last third of it I was stopping every twenty steps."
+				},
+				{
+					"id": "the_body",
+					"weight": 0.3,
+					"ideal": "My legs are shaking, I cannot get a full sentence out without a breath in the middle of it, and my ears are hot."
+				},
+				{
+					"id": "the_reason",
+					"weight": 0.3,
+					"ideal": "I came up because I have looked at this hill from the bus for four years without ever going up it."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 15
+		}
+	}
+]

@@ -1,0 +1,54 @@
+[
+	{
+		"id": "the_room_at_its_loudest",
+		"prompt": "Sit in a room full of strangers and say out loud what the noise is actually made of. Cutlery, chair legs, one laugh.",
+		"icon": "mdi:account-group",
+		"color": "@coral",
+		"points": 16,
+		"duration_minutes": 15,
+		"tags": ["strangers", "listen"],
+		"place_affordances": ["people"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 20]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "the_parts",
+					"weight": 0.5,
+					"ideal": "There is a coffee machine screaming every couple of minutes, cups going down on saucers, chairs dragging, and about six conversations underneath all of it."
+				},
+				{
+					"id": "the_one_that_carries",
+					"weight": 0.3,
+					"ideal": "One laugh is louder than everything else in here and it goes off roughly every thirty seconds."
+				},
+				{
+					"id": "what_is_absent",
+					"weight": 0.2,
+					"ideal": "Nobody is playing music and there is no traffic through the glass, so the whole sound is made of people."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
+	}
+]

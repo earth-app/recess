@@ -1,0 +1,53 @@
+[
+	{
+		"id": "a_line_of_found_things",
+		"prompt": "Acomoda en fila lo que te dio el suelo, del más chico al más grande, fotografíalo y después devuélvelo todo.",
+		"icon": "mdi:leaf",
+		"color": "@lime",
+		"points": 18,
+		"duration_minutes": 25,
+		"tags": ["build", "plants"],
+		"place_affordances": ["green"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is_not": ["winter"]
+				}
+			},
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of leaves and stones arranged in a line on the ground",
+				"a photo of small natural objects sorted by size outdoors"
+			],
+			"negative_labels": [
+				"a photo of bare ground",
+				"a photo of a tidy indoor table",
+				"a screenshot of a screen",
+				"a photo of a pile of rubbish"
+			],
+			"threshold": 0.58,
+			"require_fresh_exif": true
+		}
+	}
+]

@@ -7,10 +7,35 @@
 		"color": "@gold",
 		"points": 15,
 		"tags": ["strangers"],
+		"place_affordances": ["people"],
 		"validation_type": "count",
 		"validation_data": {
 			"min": 1,
 			"max": 50
+		}
+	},
+	{
+		"id": "hellos_returned",
+		"prompt": "Go somewhere with people in it, look up at everyone who passes, and count how many look back.",
+		"unit": "people",
+		"icon": "mdi:eye-outline",
+		"color": "@yellow",
+		"points": 16,
+		"duration_minutes": 25,
+		"tags": ["strangers", "counting"],
+		"place_affordances": ["people"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			}
+		],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 60
 		}
 	}
 ]

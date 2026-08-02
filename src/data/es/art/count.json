@@ -13,5 +13,29 @@
 			"min": 4,
 			"max": 60
 		}
+	},
+	{
+		"id": "things_hung_on_the_walls",
+		"prompt": "Ve a un lugar con arte en las paredes y cuenta las piezas que de verdad te llevarías a casa.",
+		"unit": "piezas",
+		"icon": "mdi:image-frame",
+		"color": "@purple",
+		"points": 12,
+		"duration_minutes": 20,
+		"tags": ["looking", "counting"],
+		"place_affordances": ["art"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [10, 17]
+				}
+			}
+		],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 40
+		}
 	}
 ]

@@ -7,6 +7,7 @@
 		"points": 12,
 		"duration_minutes": 5,
 		"tags": ["plants"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "season",
@@ -52,6 +53,7 @@
 		"points": 20,
 		"duration_minutes": 10,
 		"tags": ["birds"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -147,6 +149,7 @@
 		"points": 12,
 		"duration_minutes": 10,
 		"tags": ["water"],
+		"place_affordances": ["water"],
 		"filters": [
 			{
 				"type": "permission",
@@ -221,6 +224,116 @@
 			],
 			"threshold": 0.72,
 			"min_seconds": 15
+		}
+	},
+	{
+		"id": "the_wood_from_inside",
+		"prompt": "Métete entre los árboles hasta que ya no puedas ver hacia afuera, y fotografía lo que tienes encima de la cabeza.",
+		"icon": "mdi:tree",
+		"color": "@green",
+		"points": 24,
+		"duration_minutes": 45,
+		"tags": ["trees", "walk"],
+		"place_affordances": ["green"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 60
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a tree canopy seen from below",
+				"a photo of branches and leaves against the sky",
+				"a photo of the inside of a wood looking upwards"
+			],
+			"negative_labels": [
+				"a photo of a ceiling",
+				"a photo of a single houseplant indoors",
+				"a screenshot of a screen",
+				"a photo of an open field with no trees"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "listen_to_the_water",
+		"prompt": "Párate junto a agua en movimiento y di en voz alta a qué suena, sin usar la palabra agua.",
+		"icon": "mdi:ear-hearing",
+		"color": "@teal",
+		"points": 18,
+		"duration_minutes": 15,
+		"tags": ["water", "listen"],
+		"place_affordances": ["water"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "the_sound",
+					"weight": 0.45,
+					"ideal": "Es un siseo constante con un golpeteo más pesado debajo, donde la corriente pega en las piedras."
+				},
+				{
+					"id": "no_easy_word",
+					"weight": 0.3,
+					"ideal": "Estoy aguantando sin decir la palabra obvia; le digo el rumor, el chorro, eso que se tira por el borde."
+				},
+				{
+					"id": "what_else",
+					"weight": 0.25,
+					"ideal": "Detrás hay viento en los juncos y un pato quejándose de algo más adelante."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
 		}
 	}
 ]

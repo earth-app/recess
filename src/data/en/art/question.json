@@ -24,5 +24,30 @@
 				"leads_to": "art.create.draw_your_hand"
 			}
 		]
+	},
+	{
+		"id": "nearest_thing_made_by_hand",
+		"question": "What is the nearest thing to you that somebody made by hand?",
+		"icon": "mdi:hand-back-right",
+		"color": "@coral",
+		"points": 8,
+		"tags": ["making"],
+		"place_affordances": ["art"],
+		"actions": [
+			{
+				"label": "Something in This Room",
+				"color": "@green"
+			},
+			{
+				"label": "Nothing Within Reach",
+				"color": "@gray"
+			},
+			{
+				"label": "Going Out to Find One",
+				"color": "@pink",
+				"icon": "mdi:pencil-outline",
+				"leads_to": "art.create.copy_the_public_one"
+			}
+		]
 	}
 ]

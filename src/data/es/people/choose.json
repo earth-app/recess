@@ -59,5 +59,26 @@
 				"icon": "mdi:walk"
 			}
 		]
+	},
+	{
+		"id": "counter_or_corner",
+		"prompt": "Un solo asiento en un lugar lleno: la barra donde alguien te va a hablar, o el rincón donde nadie lo hará.",
+		"icon": "mdi:sofa-single",
+		"color": "@coral",
+		"points": 6,
+		"tags": ["strangers"],
+		"place_affordances": ["people"],
+		"options": [
+			{
+				"text": "La barra",
+				"color": "@coral",
+				"icon": "mdi:coffee"
+			},
+			{
+				"text": "El rincón",
+				"color": "@indigo",
+				"icon": "mdi:sofa-single"
+			}
+		]
 	}
 ]

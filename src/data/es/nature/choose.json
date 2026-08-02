@@ -48,5 +48,34 @@
 				"icon": "mdi:snowflake"
 			}
 		]
+	},
+	{
+		"id": "shade_or_sun",
+		"prompt": "Un solo lugar afuera toda la tarde: sombra cerrada bajo los árboles, o sol abierto sin nada encima.",
+		"icon": "mdi:weather-sunny",
+		"color": "@lime",
+		"points": 5,
+		"tags": ["seasons", "trees"],
+		"place_affordances": ["green"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is": ["spring", "summer"]
+				}
+			}
+		],
+		"options": [
+			{
+				"text": "Bajo los árboles",
+				"color": "@green",
+				"icon": "mdi:tree"
+			},
+			{
+				"text": "A cielo abierto",
+				"color": "@gold",
+				"icon": "mdi:white-balance-sunny"
+			}
+		]
 	}
 ]

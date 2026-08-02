@@ -57,5 +57,35 @@
 				"icon": "mdi:check-circle-outline"
 			}
 		]
+	},
+	{
+		"id": "where_do_you_actually_go",
+		"question": "How many of the places you use every week could you walk to?",
+		"icon": "mdi:map-marker-radius",
+		"color": "@brown",
+		"points": 10,
+		"tags": ["store"],
+		"place_affordances": ["food"],
+		"actions": [
+			{
+				"label": "All of Them",
+				"color": "@green"
+			},
+			{
+				"label": "About Half",
+				"color": "@gold"
+			},
+			{
+				"label": "None; I Drive",
+				"color": "@gray",
+				"icon": "mdi:car"
+			},
+			{
+				"label": "Trying One on Foot",
+				"color": "@orange",
+				"icon": "mdi:shoe-print",
+				"leads_to": "errands.task.buy_it_from_the_small_place"
+			}
+		]
 	}
 ]

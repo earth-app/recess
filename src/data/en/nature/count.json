@@ -8,6 +8,7 @@
 		"points": 12,
 		"duration_minutes": 5,
 		"tags": ["birds"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -30,6 +31,31 @@
 		"color": "@lime",
 		"points": 5,
 		"tags": ["plants"],
+		"place_affordances": ["green"],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 0,
+			"max": 60
+		}
+	},
+	{
+		"id": "birds_on_the_water",
+		"prompt": "Stand at the edge of the nearest water and count everything alive that is on it. Ducks, gulls, one heron if you are lucky.",
+		"unit": "animals",
+		"icon": "mdi:duck",
+		"color": "@teal",
+		"points": 15,
+		"duration_minutes": 10,
+		"tags": ["birds", "water"],
+		"place_affordances": ["water"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			}
+		],
 		"validation_type": "count",
 		"validation_data": {
 			"min": 0,

@@ -69,5 +69,39 @@
 				"icon": "mdi:clock-alert-outline"
 			}
 		]
+	},
+	{
+		"id": "shelter_or_soaked",
+		"prompt": "Empieza a llover y hay un techo a cuarenta segundos. ¿Corres o sigues caminando?",
+		"icon": "mdi:home-roof",
+		"color": "@gray",
+		"points": 6,
+		"tags": ["weather", "decide"],
+		"place_affordances": ["shelter"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is": ["any_precipitation"]
+				}
+			}
+		],
+		"options": [
+			{
+				"text": "Correr al techo",
+				"color": "@gray",
+				"icon": "mdi:home-roof"
+			},
+			{
+				"text": "Seguir caminando",
+				"color": "@blue",
+				"icon": "mdi:walk"
+			},
+			{
+				"text": "Pararme y dejar que caiga",
+				"color": "@teal",
+				"icon": "mdi:weather-pouring"
+			}
+		]
 	}
 ]

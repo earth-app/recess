@@ -7,6 +7,7 @@
 		"points": 18,
 		"duration_minutes": 15,
 		"tags": ["listen"],
+		"place_affordances": ["people"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -64,6 +65,7 @@
 		"points": 22,
 		"duration_minutes": 30,
 		"tags": ["look"],
+		"place_affordances": ["view"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -110,6 +112,116 @@
 				"a screenshot of a map",
 				"a photo of a computer screen",
 				"a photo of the sky with nothing in it"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "market_at_full_volume",
+		"prompt": "Stand in the middle of a market and say out loud the three loudest things in it. Then say which one you would miss.",
+		"icon": "mdi:microphone",
+		"color": "@orange",
+		"points": 18,
+		"duration_minutes": 15,
+		"tags": ["listen", "market"],
+		"place_affordances": ["food"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 16]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "the_three",
+					"weight": 0.4,
+					"ideal": "A man is shouting prices over everyone, a metal shutter keeps rolling up and down, and there is a radio going somewhere behind the fruit."
+				},
+				{
+					"id": "where_from",
+					"weight": 0.3,
+					"ideal": "The shouting is coming from two stalls to my right and the radio is further back, near the wall."
+				},
+				{
+					"id": "which_one",
+					"weight": 0.3,
+					"ideal": "I would miss the shouting; without it this would just be a car park with tables in it."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
+	},
+	{
+		"id": "water_from_the_edge",
+		"prompt": "Get to the edge of the nearest water and photograph it from as close as you dare. Not from the bridge.",
+		"icon": "mdi:waves",
+		"color": "@teal",
+		"points": 20,
+		"duration_minutes": 30,
+		"tags": ["water", "walk"],
+		"place_affordances": ["water"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 45
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of the edge of a lake or river",
+				"a photo of water taken from the bank",
+				"a photo of a river seen from close to the surface"
+			],
+			"negative_labels": [
+				"a photo of a swimming pool",
+				"a photo of a glass of water on a table",
+				"a screenshot of a map",
+				"a photo of dry ground"
 			],
 			"threshold": 0.6,
 			"require_fresh_exif": true

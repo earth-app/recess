@@ -93,5 +93,31 @@
 				}
 			}
 		]
+	},
+	{
+		"id": "the_step_outside_your_door",
+		"title": "Siéntate afuera de tu propia puerta",
+		"description": "Un escalón, una barda, una silla; lo que sea de afuera que te aguante. Diez minutos, de espaldas a la casa.",
+		"icon": "mdi:door-open",
+		"color": "@gold",
+		"points": 12,
+		"duration_minutes": 12,
+		"tags": ["air", "rest"],
+		"place_affordances": ["sit"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "cold"]
+				}
+			}
+		],
+		"validation_type": "confirm"
 	}
 ]

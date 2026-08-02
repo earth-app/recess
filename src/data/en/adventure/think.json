@@ -6,5 +6,15 @@
 		"color": "@gold",
 		"points": 8,
 		"tags": ["reflect"]
+	},
+	{
+		"id": "the_place_that_closed",
+		"prompt": "Somewhere within walking distance used to be something else. Go stand where it is and work out what it was.",
+		"icon": "mdi:storefront-outline",
+		"color": "@brown",
+		"points": 10,
+		"duration_minutes": 10,
+		"tags": ["old", "memory"],
+		"place_affordances": ["old"]
 	}
 ]

@@ -8,6 +8,7 @@
 		"points": 8,
 		"duration_minutes": 2,
 		"tags": ["grass"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "season",
@@ -45,6 +46,7 @@
 		"points": 15,
 		"duration_minutes": 10,
 		"tags": ["trees"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -127,6 +129,7 @@
 		"points": 25,
 		"duration_minutes": 20,
 		"tags": ["night"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -138,6 +141,96 @@
 				"type": "weather",
 				"value": {
 					"is_not": ["severe", "any_thunderstorm", "any_freezing"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "follow_the_water",
+		"title": "Sigue el agua hasta que desaparezca",
+		"description": "Busca el agua en movimiento más cercana y camina a su lado en una sola dirección hasta que se meta debajo de algo. Ahí te das la vuelta.",
+		"icon": "mdi:water-outline",
+		"color": "@teal",
+		"points": 22,
+		"duration_minutes": 40,
+		"tags": ["water", "walk"],
+		"place_affordances": ["water"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["severe", "any_thunderstorm"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 50
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "the_quietest_ten_minutes",
+		"title": "Encuentra el lugar más silencioso al que puedas llegar",
+		"description": "Camina hasta que el tráfico se caiga del fondo y quédate ahí diez minutos sin hacer nada más.",
+		"icon": "mdi:volume-off",
+		"color": "@indigo",
+		"points": 20,
+		"duration_minutes": 30,
+		"tags": ["quiet", "walk"],
+		"place_affordances": ["quiet"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "somebody_elses_vegetables",
+		"title": "Ve a ver las verduras de otra persona",
+		"description": "Busca los huertos o el terreno comunitario más cercano y camina el pasillo que los separa. Alguien ahí afuera está perdiendo una guerra lenta contra los caracoles.",
+		"icon": "mdi:sprout",
+		"color": "@lime",
+		"points": 14,
+		"duration_minutes": 20,
+		"tags": ["plants", "grow"],
+		"place_affordances": ["grow"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is_not": ["winter"]
+				}
+			},
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
 				}
 			}
 		],

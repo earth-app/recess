@@ -14,5 +14,15 @@
 		"color": "@brown",
 		"points": 8,
 		"tags": ["unfinished"]
+	},
+	{
+		"id": "who_paid_for_this",
+		"prompt": "Go stand in front of the nearest public artwork and work out who paid for it, and what they wanted you to feel about them.",
+		"icon": "mdi:cash-multiple",
+		"color": "@gold",
+		"points": 10,
+		"duration_minutes": 10,
+		"tags": ["taste"],
+		"place_affordances": ["art"]
 	}
 ]

@@ -27,6 +27,7 @@
 		"points": 20,
 		"duration_minutes": 25,
 		"tags": ["walk", "counting"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "weather",
@@ -41,5 +42,35 @@
 				}
 			}
 		]
+	},
+	{
+		"id": "laps_of_the_pitch",
+		"prompt": "Busca una cancha o una pista y camina vueltas hasta que te aburras. Cuéntalas.",
+		"unit": "vueltas",
+		"icon": "mdi:soccer-field",
+		"color": "@lime",
+		"points": 16,
+		"duration_minutes": 25,
+		"tags": ["counting", "outside"],
+		"place_affordances": ["move"],
+		"filters": [
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			},
+			{
+				"type": "daylight_remaining",
+				"value": {
+					"greater_than_or_eq": 30
+				}
+			}
+		],
+		"validation_type": "count",
+		"validation_data": {
+			"min": 1,
+			"max": 40
+		}
 	}
 ]

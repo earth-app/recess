@@ -1,0 +1,54 @@
+[
+	{
+		"id": "the_room_at_its_loudest",
+		"prompt": "Siéntate en un lugar lleno de desconocidos y di en voz alta de qué está hecho el ruido. Cubiertos, patas de silla, una risa.",
+		"icon": "mdi:account-group",
+		"color": "@coral",
+		"points": 16,
+		"duration_minutes": 15,
+		"tags": ["strangers", "listen"],
+		"place_affordances": ["people"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 20]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["microphone"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["audio", "text"]
+				}
+			}
+		],
+		"validation_type": "audio",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "the_parts",
+					"weight": 0.5,
+					"ideal": "Hay una cafetera que chilla cada par de minutos, tazas que caen en los platos, sillas que se arrastran y como seis conversaciones debajo de todo."
+				},
+				{
+					"id": "the_one_that_carries",
+					"weight": 0.3,
+					"ideal": "Una risa suena más fuerte que todo lo demás aquí dentro y se dispara cada treinta segundos."
+				},
+				{
+					"id": "what_is_absent",
+					"weight": 0.2,
+					"ideal": "Nadie puso música y no se oye el tráfico a través del vidrio, así que todo el sonido está hecho de gente."
+				}
+			],
+			"threshold": 0.72,
+			"min_seconds": 20
+		}
+	}
+]

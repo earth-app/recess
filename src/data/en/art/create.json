@@ -236,5 +236,95 @@
 			"threshold": 0.6,
 			"require_fresh_exif": true
 		}
+	},
+	{
+		"id": "copy_the_public_one",
+		"prompt": "Find something somebody made on purpose and left outside, then draw it in five minutes flat. Wonky is the correct outcome.",
+		"icon": "mdi:pencil-outline",
+		"color": "@pink",
+		"points": 20,
+		"duration_minutes": 20,
+		"tags": ["drawing"],
+		"place_affordances": ["art"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a drawing of a statue on paper",
+				"a photo of a pencil sketch of a sculpture in a sketchbook"
+			],
+			"negative_labels": [
+				"a photo of a statue",
+				"a photo of a printed page",
+				"a screenshot of a screen",
+				"a photo of a blank sheet of paper"
+			],
+			"threshold": 0.6,
+			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "rubbing_of_something_old",
+		"prompt": "Hold paper against the oldest carved thing you can find and rub a pencil over it until the letters come up.",
+		"icon": "mdi:script-text-outline",
+		"color": "@brown",
+		"points": 18,
+		"duration_minutes": 25,
+		"tags": ["build", "old"],
+		"place_affordances": ["old"],
+		"filters": [
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["vision"]
+				}
+			}
+		],
+		"validation_type": "photo",
+		"validation_data": {
+			"labels": [
+				"a photo of a pencil rubbing of carved letters on paper",
+				"a drawing of raised lettering transferred onto paper"
+			],
+			"negative_labels": [
+				"a photo of a carved stone",
+				"a photo of a printed page",
+				"a screenshot of a screen",
+				"a photo of a blank sheet of paper"
+			],
+			"threshold": 0.58,
+			"require_fresh_exif": true
+		}
 	}
 ]

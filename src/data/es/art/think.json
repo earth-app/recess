@@ -14,5 +14,15 @@
 		"color": "@brown",
 		"points": 8,
 		"tags": ["unfinished"]
+	},
+	{
+		"id": "who_paid_for_this",
+		"prompt": "Ve a pararte frente a la obra pública más cercana y averigua quién la pagó, y qué querían que sintieras por ellos.",
+		"icon": "mdi:cash-multiple",
+		"color": "@gold",
+		"points": 10,
+		"duration_minutes": 10,
+		"tags": ["taste"],
+		"place_affordances": ["art"]
 	}
 ]

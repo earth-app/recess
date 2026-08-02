@@ -22,5 +22,15 @@
 		"color": "@teal",
 		"points": 8,
 		"tags": ["weather"]
+	},
+	{
+		"id": "who_planted_this",
+		"prompt": "Ve a pararte en el verde plantado más cercano y averigua quién decidió que estuviera ahí. Alguien lo dibujó en un plano.",
+		"icon": "mdi:sprout",
+		"color": "@green",
+		"points": 8,
+		"duration_minutes": 5,
+		"tags": ["plants"],
+		"place_affordances": ["green"]
 	}
 ]

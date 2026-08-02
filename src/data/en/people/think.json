@@ -22,5 +22,14 @@
 		"color": "@pink",
 		"points": 12,
 		"tags": ["memory"]
+	},
+	{
+		"id": "the_regulars",
+		"prompt": "Somewhere near you has regulars who all know each other's order. Work out which place, and whether you are one anywhere.",
+		"icon": "mdi:coffee-outline",
+		"color": "@brown",
+		"points": 8,
+		"tags": ["neighbors"],
+		"place_affordances": ["people"]
 	}
 ]

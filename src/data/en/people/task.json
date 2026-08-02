@@ -7,7 +7,8 @@
 		"color": "@yellow",
 		"validation_type": "confirm",
 		"points": 10,
-		"tags": ["strangers"]
+		"tags": ["strangers"],
+		"place_affordances": ["people"]
 	},
 	{
 		"id": "go_for_a_walk",
@@ -19,6 +20,7 @@
 		"points": 15,
 		"duration_minutes": 20,
 		"tags": ["outside"],
+		"place_affordances": ["green"],
 		"filters": [
 			{
 				"type": "time_of_day",
@@ -42,7 +44,8 @@
 		"color": "@blue",
 		"validation_type": "confirm",
 		"points": 20,
-		"tags": ["kindness"]
+		"tags": ["kindness"],
+		"place_affordances": ["people"]
 	},
 	{
 		"id": "call_someone",
@@ -95,6 +98,7 @@
 		"points": 25,
 		"duration_minutes": 15,
 		"tags": ["conversation"],
+		"place_affordances": ["people"],
 		"filters": [
 			{
 				"type": "model_pack",
@@ -103,5 +107,78 @@
 				}
 			}
 		]
+	},
+	{
+		"id": "sit_where_people_are",
+		"title": "Sit Somewhere Busy and Do Nothing",
+		"description": "Find a bench where people actually pass, sit down, and stay fifteen minutes with your phone in your pocket. You are not waiting for anyone.",
+		"icon": "mdi:bench",
+		"color": "@coral",
+		"points": 18,
+		"duration_minutes": 20,
+		"tags": ["strangers", "sit"],
+		"place_affordances": ["sit", "people"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "ask_someone_who_works_there",
+		"title": "Ask Someone Behind a Counter What Nobody Asks",
+		"description": "Wherever somebody is working today, ask them the part of the job people never ask about, then write down what they said.",
+		"icon": "mdi:store",
+		"color": "@gold",
+		"points": 26,
+		"duration_minutes": 20,
+		"tags": ["conversation"],
+		"place_affordances": ["people"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [9, 18]
+				}
+			},
+			{
+				"type": "model_pack",
+				"value": {
+					"is": ["text"]
+				}
+			}
+		],
+		"validation_type": "text",
+		"validation_data": {
+			"rubric": [
+				{
+					"id": "who_and_where",
+					"weight": 0.3,
+					"ideal": "I asked the woman running the till at the bakery on the corner, mid afternoon, when nobody else was in."
+				},
+				{
+					"id": "what_they_said",
+					"weight": 0.45,
+					"ideal": "She said everyone asks about the bread and nobody ever asks about the four in the morning part, which is the only part that is actually hard."
+				},
+				{
+					"id": "what_it_cost_you",
+					"weight": 0.25,
+					"ideal": "It took me two goes to actually ask; the first time I bought a roll and left without saying anything."
+				}
+			],
+			"threshold": 0.74,
+			"min_length": 120
+		}
 	}
 ]

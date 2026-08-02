@@ -55,5 +55,35 @@
 				"leads_to": "exercise.task.walk_until_a_song_ends"
 			}
 		]
+	},
+	{
+		"id": "where_would_you_run_to",
+		"question": "If you had to run somewhere green from here, where would you be running?",
+		"icon": "mdi:run",
+		"color": "@lime",
+		"points": 8,
+		"tags": ["outside"],
+		"place_affordances": ["green"],
+		"actions": [
+			{
+				"label": "The Park",
+				"color": "@green",
+				"icon": "mdi:tree"
+			},
+			{
+				"label": "Nothing Green Near Me",
+				"color": "@gray"
+			},
+			{
+				"label": "No Idea",
+				"color": "@brown"
+			},
+			{
+				"label": "Walking There Instead",
+				"color": "@lime",
+				"icon": "mdi:walk",
+				"leads_to": "exercise.task.lap_of_the_green"
+			}
+		]
 	}
 ]

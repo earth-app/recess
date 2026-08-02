@@ -27,6 +27,7 @@
 		"validation_type": "barcode",
 		"points": 10,
 		"tags": ["store"],
+		"place_affordances": ["food"],
 		"filters": [
 			{
 				"type": "hour",
@@ -113,6 +114,92 @@
 			],
 			"threshold": 0.58,
 			"require_fresh_exif": true
+		}
+	},
+	{
+		"id": "fill_the_bottle_out_there",
+		"title": "Fill Your Bottle Somewhere That Is Not Home",
+		"description": "There is a public tap or a fountain closer than you think. Find it, fill something, and drink it standing up.",
+		"icon": "mdi:water",
+		"color": "@blue",
+		"points": 12,
+		"duration_minutes": 15,
+		"tags": ["water"],
+		"place_affordances": ["drink"],
+		"filters": [
+			{
+				"type": "season",
+				"value": {
+					"is_not": ["winter"]
+				}
+			},
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "return_it_to_the_shelf",
+		"title": "Give the Book Back Today",
+		"description": "Take the library book to the building it belongs to, and scan its barcode on the way in.",
+		"icon": "mdi:bookshelf",
+		"color": "@indigo",
+		"points": 20,
+		"duration_minutes": 30,
+		"tags": ["return", "books"],
+		"place_affordances": ["read"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [9, 18]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "book",
+			"require_checksum": true
+		}
+	},
+	{
+		"id": "buy_it_from_the_small_place",
+		"title": "Buy It From the Small Place Instead",
+		"description": "Whatever you were going to get from the big shop, get it from the small one two streets over. Scan it once it is in your hand.",
+		"icon": "mdi:storefront-outline",
+		"color": "@orange",
+		"points": 16,
+		"duration_minutes": 25,
+		"tags": ["store"],
+		"place_affordances": ["food"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [8, 18]
+				}
+			},
+			{
+				"type": "permission",
+				"value": {
+					"is": ["camera"]
+				}
+			}
+		],
+		"validation_type": "barcode",
+		"validation_data": {
+			"kind": "retail",
+			"require_checksum": true
 		}
 	}
 ]

@@ -59,6 +59,7 @@
 		"points": 8,
 		"duration_minutes": 5,
 		"tags": ["looking"],
+		"place_affordances": ["read"],
 		"filters": [
 			{
 				"type": "permission",

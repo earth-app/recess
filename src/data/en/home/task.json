@@ -93,5 +93,31 @@
 				}
 			}
 		]
+	},
+	{
+		"id": "the_step_outside_your_door",
+		"title": "Sit Outside Your Own Front Door",
+		"description": "A step, a wall, a chair; anything outside that holds you. Ten minutes, facing away from the house.",
+		"icon": "mdi:door-open",
+		"color": "@gold",
+		"points": 12,
+		"duration_minutes": 12,
+		"tags": ["air", "rest"],
+		"place_affordances": ["sit"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe", "cold"]
+				}
+			}
+		],
+		"validation_type": "confirm"
 	}
 ]

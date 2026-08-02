@@ -66,6 +66,7 @@
 		"points": 30,
 		"duration_minutes": 120,
 		"tags": ["transit"],
+		"place_affordances": ["shelter"],
 		"filters": [
 			{
 				"type": "daylight_remaining",
@@ -156,11 +157,58 @@
 		"points": 10,
 		"duration_minutes": 15,
 		"tags": ["unfamiliar", "doorway"],
+		"place_affordances": ["food"],
 		"filters": [
 			{
 				"type": "hour",
 				"value": {
 					"between": [9, 18]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "bench_you_never_sat_on",
+		"title": "Sit on the Bench You Always Walk Past",
+		"description": "There is a bench on your usual route that you have never once used. Sit on it for five minutes and work out what it is pointed at.",
+		"icon": "mdi:bench",
+		"color": "@brown",
+		"points": 12,
+		"duration_minutes": 10,
+		"tags": ["sit", "unfamiliar"],
+		"place_affordances": ["sit"],
+		"filters": [
+			{
+				"type": "time_of_day",
+				"value": {
+					"is_not": ["night"]
+				}
+			},
+			{
+				"type": "weather",
+				"value": {
+					"is_not": ["any_precipitation", "severe"]
+				}
+			}
+		],
+		"validation_type": "confirm"
+	},
+	{
+		"id": "doors_of_the_old_building",
+		"title": "Go Inside the Oldest Building You Can Walk To",
+		"description": "A church, a museum, a town hall; whatever has been standing the longest. Get through the door and stay ten minutes.",
+		"icon": "mdi:pillar",
+		"color": "@brown",
+		"points": 22,
+		"duration_minutes": 45,
+		"tags": ["old", "doorway"],
+		"place_affordances": ["old"],
+		"filters": [
+			{
+				"type": "hour",
+				"value": {
+					"between": [9, 17]
 				}
 			}
 		],

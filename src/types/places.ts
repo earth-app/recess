@@ -197,7 +197,14 @@ export const areaManifestEntrySchema = z.object({
 	id: z.string().min(1),
 	label: z.string().min(1),
 	bbox: z.tuple([z.number(), z.number(), z.number(), z.number()]),
-	/** real measured size of the gzipped pack; never an estimate shown to the user */
+	/**
+	 * Uncompressed size of the pack file, measured off the file that will be served.
+	 *
+	 * Deliberately the raw size rather than the gzipped one: whether the CDN negotiates
+	 * compression is not something the app can know, so the raw figure is true either way and can
+	 * only ever overstate the transfer. It is also exactly what lands on disk. Never an estimate -
+	 * `scripts/build-area-manifest.ts` reads it off the file.
+	 */
 	bytes: z.number().nonnegative(),
 	places: z.number().nonnegative(),
 	built_at: z.number()

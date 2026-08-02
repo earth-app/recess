@@ -41,6 +41,12 @@ const nudges = useNudgesStore();
 const tabs = computed(() => [
 	{ tab: 'today', href: '/tabs/today', icon: 'mdi:weather-sunny', label: t('nav.today') },
 	{ tab: 'playground', href: '/tabs/playground', icon: 'mdi:slide', label: t('nav.playground') },
+	{
+		tab: 'out-there',
+		href: '/tabs/out-there',
+		icon: 'mdi:compass-outline',
+		label: t('nav.outThere')
+	},
 	{ tab: 'week', href: '/tabs/week', icon: 'mdi:calendar-week', label: t('nav.week') },
 	{ tab: 'settings', href: '/tabs/settings', icon: 'mdi:cog', label: t('nav.settings') }
 ]);

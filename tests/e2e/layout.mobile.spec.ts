@@ -143,7 +143,7 @@ test.describe('layout at phone width', () => {
 		await bootToday();
 		await waitForDeck(page);
 
-		for (const name of ['today', 'playground', 'week', 'settings'] as const) {
+		for (const name of ['today', 'playground', 'out-there', 'week', 'settings'] as const) {
 			await tab(page, name).click();
 			await expect(page).toHaveURL(new RegExp(`/tabs/${name}`));
 			await expectClean(page, name);

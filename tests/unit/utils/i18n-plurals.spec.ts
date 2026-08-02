@@ -31,6 +31,7 @@ const PLURALISED: { key: string; file: string }[] = [
 	{ key: 'playground.visitorBody', file: 'components/playground/Share.vue' },
 	{ key: 'playground.pointsToGo', file: 'pages/tabs/playground.vue' },
 	{ key: 'playground.biomeRemaining', file: 'pages/tabs/playground.vue' },
+	{ key: 'outThere.placeCount', file: 'components/place/FieldMap.vue' },
 	{ key: 'week.nudgesValue', file: 'pages/tabs/week.vue' },
 	{ key: 'week.categoriesValue', file: 'pages/tabs/week.vue' },
 	{ key: 'week.daysValue', file: 'pages/tabs/week.vue' },
@@ -65,7 +66,10 @@ const SINGLE_FORM_OK = new Map<string, string>([
 	['notifications.middayBody', '"1 left, if you have a minute." already agrees'],
 	['notifications.eveningBody', '"1 left. Any one of them counts." already agrees'],
 	['settings.dailyCountValue', '"1 a day" already agrees'],
-	['today.strip', 'the count is the strip window, 7 or 9 days, never 1']
+	['today.strip', 'the count is the strip window, 7 or 9 days, never 1'],
+	['outThere.walkMinutes', '"1 min" already agrees'],
+	['outThere.withinWalk', 'renders as "Within a N Minute Walk"; the floor is 10'],
+	['outThere.nothingNearby', 'the radius floor is 10 minutes, so it is never 1']
 ]);
 
 function read(messages: Messages, key: string): string | undefined {

@@ -14,7 +14,7 @@
  * For anything larger than a city, prefer a Geofabrik extract piped through
  * `osmium extract --polygon` and `osmium tags-filter` rather than Overpass.
  */
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
 import { TAG_AFFORDANCES, type AreaPack, type PackedPlace } from '../src/types/places';
 import { snapToGrid } from '../src/utils/geo';
@@ -30,13 +30,18 @@ interface Args {
 	out: string;
 }
 
-function parseArgs(argv: string[]): Args {
+function flagsOf(argv: string[]): Map<string, string> {
 	const flags = new Map<string, string>();
 	for (let index = 0; index < argv.length; index += 2) {
 		const key = argv[index];
 		const value = argv[index + 1];
 		if (key?.startsWith('--') && value !== undefined) flags.set(key.slice(2), value);
 	}
+	return flags;
+}
+
+function parseArgs(argv: string[]): Args {
+	const flags = flagsOf(argv);
 
 	const id = flags.get('id');
 	const label = flags.get('label');
@@ -123,25 +128,53 @@ function dedupe(places: PackedPlace[]): PackedPlace[] {
 	return [...seen.values()].sort((a, b) => (a.id < b.id ? -1 : 1));
 }
 
-async function main() {
-	const args = parseArgs(process.argv.slice(2));
-	const query = buildQuery(args.bbox);
+/**
+ * Ask Overpass, with backoff.
+ *
+ * 429 is the documented rate-limit response and 504 means the instance could not satisfy the
+ * request in time - both are transient and both were seen in practice on the very first run of
+ * this script. A public community instance is allowed to say no; failing a publish on one 504
+ * would just mean re-running the whole job.
+ */
+async function queryOverpass(id: string, query: string): Promise<{ elements?: OverpassElement[] }> {
+	const attempts = 4;
 
-	console.log(`querying overpass for ${args.id} ...`);
-	const response = await fetch(OVERPASS, {
-		method: 'POST',
-		body: `data=${encodeURIComponent(query)}`,
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			'User-Agent': 'recess-area-pack-builder/1.0 (github.com/earth-app)'
+	for (let attempt = 1; attempt <= attempts; attempt++) {
+		console.log(`querying overpass for ${id} (attempt ${attempt}/${attempts}) ...`);
+
+		let response: Response | null = null;
+		try {
+			response = await fetch(OVERPASS, {
+				method: 'POST',
+				body: `data=${encodeURIComponent(query)}`,
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'User-Agent': 'recess-area-pack-builder/1.0 (github.com/earth-app)'
+				}
+			});
+		} catch (error) {
+			if (attempt === attempts) throw error;
 		}
-	});
 
-	if (!response.ok) {
-		throw new Error(`overpass ${response.status} ${response.statusText}`);
+		if (response?.ok) return (await response.json()) as { elements?: OverpassElement[] };
+
+		const status = response ? `${response.status} ${response.statusText}` : 'network error';
+		const retryable = !response || response.status === 429 || response.status >= 500;
+		if (!retryable || attempt === attempts) throw new Error(`overpass ${status}`);
+
+		// 30s, 60s, 120s - the public instances recover on the order of a minute, not seconds
+		const wait = 30_000 * 2 ** (attempt - 1);
+		console.log(`  ${status}; retrying in ${wait / 1000}s`);
+		await new Promise((resolve) => setTimeout(resolve, wait));
 	}
 
-	const body = (await response.json()) as { elements?: OverpassElement[] };
+	throw new Error('overpass: exhausted retries');
+}
+
+async function buildArea(args: Args) {
+	const query = buildQuery(args.bbox);
+
+	const body = await queryOverpass(args.id, query);
 	const elements = body.elements ?? [];
 
 	const places = dedupe(
@@ -187,6 +220,46 @@ async function main() {
 		.filter((affordance, index, all) => all.indexOf(affordance) === index)
 		.filter((affordance) => !counts.has(affordance));
 	if (missing.length > 0) console.log(`\nnot present in this area: ${missing.join(', ')}`);
+}
+
+interface AreaSpec {
+	id: string;
+	label: string;
+	bbox: [number, number, number, number];
+}
+
+/**
+ * Pause between areas.
+ *
+ * The Overpass maintainers ask that automated use stay light on the public instances, and a live
+ * `/api/status` reports only two concurrent slots per IP - which CI runners share. One query per
+ * area with a real gap between them is the difference between a courteous consumer and the
+ * "app relying on the public instances as a backend" their manual calls out.
+ */
+const AREA_DELAY_MS = 20_000;
+
+async function main() {
+	const flags = flagsOf(process.argv.slice(2));
+
+	if (!flags.has('all')) {
+		await buildArea(parseArgs(process.argv.slice(2)));
+		return;
+	}
+
+	const listPath = flags.get('all') || 'scripts/areas.json';
+	const { areas } = JSON.parse(await readFile(listPath, 'utf8')) as { areas: AreaSpec[] };
+	if (!Array.isArray(areas) || areas.length === 0) throw new Error(`no areas in ${listPath}`);
+
+	const out = flags.get('out') ?? 'dist-areas/packs';
+	console.log(`building ${areas.length} area(s) from ${listPath}\n`);
+
+	for (const [index, area] of areas.entries()) {
+		await buildArea({ ...area, out });
+		if (index < areas.length - 1) {
+			console.log(`\nwaiting ${AREA_DELAY_MS / 1000}s before the next area ...\n`);
+			await new Promise((resolve) => setTimeout(resolve, AREA_DELAY_MS));
+		}
+	}
 }
 
 await main();

@@ -1,5 +1,8 @@
 ext {
-    minSdkVersion = 24
+    // 26, not capacitor's default 24: @capacitor/barcode-scanner bundles
+    // io.ionic.libs:ionbarcode-android, whose manifest declares 26, and the merger refuses a
+    // lower floor. tools:overrideLibrary would silence it and crash the scanner on 24-25 instead
+    minSdkVersion = 26
     compileSdkVersion = 36
     targetSdkVersion = 36
     androidxActivityVersion = '1.11.0'

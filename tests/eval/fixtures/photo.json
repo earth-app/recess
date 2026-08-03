@@ -340,5 +340,113 @@
 		"shouldPass": false,
 		"note": "hits an authored negative label; outdoors but no view",
 		"describedAs": "a close up of a brick wall filling the whole frame"
+	},
+	{
+		"nudgeId": "adventure.notice.water_from_the_edge",
+		"shouldPass": true,
+		"note": "compliant: the edge of a river, taken from the bank rather than the bridge",
+		"describedAs": "the muddy edge of a river photographed from the bank, brown water moving past close to the surface"
+	},
+	{
+		"nudgeId": "adventure.notice.water_from_the_edge",
+		"shouldPass": false,
+		"note": "hits an authored negative label; water, but the wrong water entirely",
+		"describedAs": "a public swimming pool with lane ropes across it and nobody in it"
+	},
+	{
+		"nudgeId": "adventure.notice.water_from_the_edge",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the river looked up rather than stood next to",
+		"describedAs": "a screenshot of a map with a blue river drawn across it"
+	},
+	{
+		"nudgeId": "art.create.copy_the_public_one",
+		"shouldPass": true,
+		"note": "compliant: a wonky drawing, which the nudge says is the correct outcome",
+		"describedAs": "a wonky pencil sketch of a statue filling a sketchbook page"
+	},
+	{
+		"nudgeId": "art.create.copy_the_public_one",
+		"shouldPass": false,
+		"note": "the near miss: the statue photographed instead of drawn, and an authored negative",
+		"describedAs": "a photo of a bronze statue on a stone plinth in a square"
+	},
+	{
+		"nudgeId": "art.create.copy_the_public_one",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing drawn yet",
+		"describedAs": "a blank sketchbook page with a pencil lying across it"
+	},
+	{
+		"nudgeId": "art.create.rubbing_of_something_old",
+		"shouldPass": true,
+		"note": "compliant: the carved letters came up on the paper",
+		"describedAs": "a sheet of paper with carved letters coming up out of grey pencil rubbing across it"
+	},
+	{
+		"nudgeId": "art.create.rubbing_of_something_old",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the carved stone itself, no paper on it",
+		"describedAs": "a weathered carved stone with the letters cut deep into the face and no paper on it"
+	},
+	{
+		"nudgeId": "art.create.rubbing_of_something_old",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the letters printed rather than rubbed",
+		"describedAs": "a printed page of gothic lettering fresh out of a printer"
+	},
+	{
+		"nudgeId": "cooking.create.eat_it_where_you_bought_it",
+		"shouldPass": true,
+		"note": "compliant: still warm, in a hand, outside the place that baked it",
+		"describedAs": "a warm pastry held in one hand on a paper bag, outdoors on a bench"
+	},
+	{
+		"nudgeId": "cooking.create.eat_it_where_you_bought_it",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing was baked and nothing is warm",
+		"describedAs": "a packaged sandwich sealed in plastic from a chiller cabinet"
+	},
+	{
+		"nudgeId": "cooking.create.eat_it_where_you_bought_it",
+		"shouldPass": false,
+		"note": "hits an authored negative label; photographed after eating rather than before",
+		"describedAs": "an empty plate with pastry crumbs left on it"
+	},
+	{
+		"nudgeId": "nature.create.a_line_of_found_things",
+		"shouldPass": true,
+		"note": "compliant: found things in a line, sorted by size, on the ground",
+		"describedAs": "seven leaves and stones laid out in a line on the ground outdoors, smallest at one end and biggest at the other"
+	},
+	{
+		"nudgeId": "nature.create.a_line_of_found_things",
+		"shouldPass": false,
+		"note": "hits an authored negative label; gathered but never arranged",
+		"describedAs": "a heap of leaves and litter swept into a pile against a wall"
+	},
+	{
+		"nudgeId": "nature.create.a_line_of_found_things",
+		"shouldPass": false,
+		"note": "hits an authored negative label; nothing laid out at all",
+		"describedAs": "bare ground with nothing on it"
+	},
+	{
+		"nudgeId": "nature.notice.the_wood_from_inside",
+		"shouldPass": true,
+		"note": "compliant: shot straight up from inside the trees",
+		"describedAs": "branches and leaves crossing overhead against the sky, photographed straight up from inside a wood"
+	},
+	{
+		"nudgeId": "nature.notice.the_wood_from_inside",
+		"shouldPass": false,
+		"note": "hits an authored negative label; never got in among the trees",
+		"describedAs": "an open field with no trees in it and sky above"
+	},
+	{
+		"nudgeId": "nature.notice.the_wood_from_inside",
+		"shouldPass": false,
+		"note": "hits an authored negative label; the camera pointed up indoors instead",
+		"describedAs": "a single houseplant indoors on a windowsill seen from below"
 	}
 ]

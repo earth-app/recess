@@ -222,5 +222,110 @@
 		"note": "adversarial: rubric vocabulary read out with no surface and no rhythm observed",
 		"seconds": 24,
 		"transcript": "The rain is hitting a metal gutter and a plastic bin lid so it sounds like two different rains at once. It comes in bursts heavy for a few seconds then almost nothing then heavy again. Names the surface describes the rhythm surface rhythm rain."
+	},
+	{
+		"nudgeId": "adventure.notice.market_at_full_volume",
+		"shouldPass": true,
+		"note": "strong: the three loudest things, where each is coming from, and which one would be missed",
+		"seconds": 31,
+		"transcript": "The three loudest things in here are a man shouting prices over the top of everyone, a metal shutter that keeps rolling up and down, and a radio going somewhere behind the fruit. The shouting is two stalls to my right, the shutter is straight behind me, and the radio is further back near the wall. I would miss the shouting. Without it this is a car park with tables in it."
+	},
+	{
+		"nudgeId": "adventure.notice.market_at_full_volume",
+		"shouldPass": false,
+		"note": "guard: twelve seconds spoken, under the twenty second floor",
+		"seconds": 12,
+		"transcript": "A man shouting prices, a shutter rolling up and down, and a radio behind the fruit."
+	},
+	{
+		"nudgeId": "adventure.notice.market_at_full_volume",
+		"shouldPass": false,
+		"note": "guard: held the phone up and recorded the market without speaking, so the transcript comes back empty",
+		"seconds": 26,
+		"transcript": ""
+	},
+	{
+		"nudgeId": "art.notice.describe_the_public_art",
+		"shouldPass": true,
+		"note": "strong: what it is, one detail nobody would guess, and a verdict",
+		"seconds": 35,
+		"transcript": "It is a steel thing about three times my height, four bent plates welded into something like a wave, standing on a low concrete block with a plaque bolted to the front. The bottom edge has been rubbed bright by people leaning on it, the rest has gone rust brown, and somebody has wedged a coffee cup into the gap at the back. I do like it. It is the only thing on this street that is not a right angle."
+	},
+	{
+		"nudgeId": "art.notice.describe_the_public_art",
+		"shouldPass": false,
+		"note": "guard: eleven seconds spoken, under the twenty second floor",
+		"seconds": 11,
+		"transcript": "A steel sculpture three times my height on a concrete block, rusted brown, and I like it."
+	},
+	{
+		"nudgeId": "art.notice.describe_the_public_art",
+		"shouldPass": false,
+		"note": "guard: stood in front of it and recorded the street instead of describing anything, so the transcript is empty",
+		"seconds": 28,
+		"transcript": ""
+	},
+	{
+		"nudgeId": "exercise.notice.out_of_breath_out_loud",
+		"shouldPass": true,
+		"note": "strong: the climb, the state of the body, and what talked them into it",
+		"seconds": 40,
+		"transcript": "That was twenty minutes straight up a gravel path and for the last stretch I was stopping every twenty steps. My legs are shaking, I cannot get a full sentence out without a breath in the middle of it, and my ears have gone hot. I came up because I have looked at this hill out of the bus window for four years and never once walked it."
+	},
+	{
+		"nudgeId": "exercise.notice.out_of_breath_out_loud",
+		"shouldPass": false,
+		"note": "guard: nine seconds spoken, under the fifteen second floor",
+		"seconds": 9,
+		"transcript": "That was horrible, my legs have gone, and I only came up because I said I would."
+	},
+	{
+		"nudgeId": "exercise.notice.out_of_breath_out_loud",
+		"shouldPass": false,
+		"note": "guard: recorded the breathing and never spoke, so the transcript comes back empty",
+		"seconds": 25,
+		"transcript": ""
+	},
+	{
+		"nudgeId": "nature.notice.listen_to_the_water",
+		"shouldPass": true,
+		"note": "strong: the sound and what is behind it, and gets through without the banned word",
+		"seconds": 28,
+		"transcript": "It is a flat hiss most of the time with a knocking underneath where the current shoves into the stones, and every so often a heavier slap when something bigger goes over the lip. I am not going to say the obvious word; call it the rush, the pouring, the thing going over the edge. Behind all of that there is wind in the reeds and a duck complaining further along."
+	},
+	{
+		"nudgeId": "nature.notice.listen_to_the_water",
+		"shouldPass": false,
+		"note": "guard: eleven seconds spoken, under the twenty second floor",
+		"seconds": 11,
+		"transcript": "A flat hiss with a knocking under it where the current hits the stones."
+	},
+	{
+		"nudgeId": "nature.notice.listen_to_the_water",
+		"shouldPass": false,
+		"note": "guard: recorded the stream itself and said nothing, so the transcript comes back empty",
+		"seconds": 24,
+		"transcript": ""
+	},
+	{
+		"nudgeId": "people.notice.the_room_at_its_loudest",
+		"shouldPass": true,
+		"note": "strong: the parts the noise is made of, the one that carries, and what is absent",
+		"seconds": 30,
+		"transcript": "The noise in here is a coffee machine screaming every couple of minutes, cups going down on saucers, chair legs dragging on tile, and about six conversations running underneath all of it. One laugh carries over everything else and it goes off roughly every thirty seconds, from the table by the window. Nobody is playing music and no traffic comes through the glass, so the whole sound is made of people."
+	},
+	{
+		"nudgeId": "people.notice.the_room_at_its_loudest",
+		"shouldPass": false,
+		"note": "guard: thirteen seconds spoken, under the twenty second floor",
+		"seconds": 13,
+		"transcript": "Coffee machine, cups on saucers, chairs dragging, and one laugh over the top of all of it."
+	},
+	{
+		"nudgeId": "people.notice.the_room_at_its_loudest",
+		"shouldPass": false,
+		"note": "guard: sat there and recorded the room without saying anything, so the transcript comes back empty",
+		"seconds": 24,
+		"transcript": ""
 	}
 ]

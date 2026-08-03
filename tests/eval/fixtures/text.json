@@ -208,5 +208,65 @@
 		"shouldPass": false,
 		"note": "adversarial: rubric vocabulary stuffed in, nobody asked and nothing reported",
 		"text": "Asked a coworker what she was like at nine talked for ten minutes without stopping. Obsessed with horses wore the same red jacket every day going to be a vet. The part I did not expect how loud that kid sounds quiet and careful about everything now. Nine coworker horses jacket vet loud quiet."
+	},
+	{
+		"nudgeId": "learn.task.read_the_plaque",
+		"shouldPass": true,
+		"note": "strong: what the plaque says, what it is for, and how long it has been walked past",
+		"text": "The plaque is a brass one bolted to the wall of the old library, green at the edges, and it says the building was paid for by public subscription in 1897 so that anybody in the town could read for nothing. That is what it is actually for; somebody wanted the reason kept on the wall long after the people who put the money in were gone. I have walked past it most weeks for six years and could not have told you a single word on it."
+	},
+	{
+		"nudgeId": "learn.task.read_the_plaque",
+		"shouldPass": true,
+		"note": "plain but genuine: the words, the purpose, the years of walking past, no flourish",
+		"text": "The plaque is a low stone by the park gate. It lists nine names from this one village, all of them from the same two years. It is not decoration; somebody paid for it so those nine names would still be readable now that everyone who knew them is gone. I go past it on the way to the shop and I have never once stopped and read the whole thing."
+	},
+	{
+		"nudgeId": "learn.task.read_the_plaque",
+		"shouldPass": false,
+		"note": "weak: under the 120 character floor, so the length guard rejects it",
+		"text": "Read the plaque by the gate. It is a war memorial, nine names."
+	},
+	{
+		"nudgeId": "learn.task.read_the_plaque",
+		"shouldPass": false,
+		"note": "off topic: long enough to clear the guard, no plaque and nothing read",
+		"text": "The recycling gets collected on a Tuesday and they have started leaving the boxes out in the middle of the pavement instead of back against the wall, so the whole street spends Tuesday evening working out whose is whose from the numbers written on the side in marker."
+	},
+	{
+		"nudgeId": "learn.task.read_the_plaque",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary stuffed in, no plaque actually read",
+		"text": "What it says what it is for how long I have walked past it. Low stone by the church gate eleven names one village same two years. Not decoration somebody paid for it names stay readable after everyone who knew them was gone. Walked past most weeks for years could not have told you a single word on it. Plaque names readable years."
+	},
+	{
+		"nudgeId": "people.task.ask_someone_who_works_there",
+		"shouldPass": true,
+		"note": "strong: who and where, what they said, and what asking cost",
+		"text": "I asked the man on the fish counter in the market hall at about half three, once the queue had gone. He said everyone asks him what is fresh and nobody ever asks about the cold, which is the part that actually wrecks you, because his hands stop closing properly by about eleven in the morning. It took me two goes to say anything. The first time I bought a piece of haddock and walked straight out."
+	},
+	{
+		"nudgeId": "people.task.ask_someone_who_works_there",
+		"shouldPass": true,
+		"note": "plain but genuine: person, place, what they said, and the nerve it took",
+		"text": "I asked the woman running the till at the petrol station, late afternoon, nobody else in. She said people ask about the lottery all day long and nobody ever asks about the night shift, which is the only part that is genuinely hard, because the hours leave her ill for two days afterwards. I walked round the aisle twice before I got the nerve to ask her."
+	},
+	{
+		"nudgeId": "people.task.ask_someone_who_works_there",
+		"shouldPass": false,
+		"note": "weak: under the 120 character floor, so the length guard rejects it",
+		"text": "Asked the bloke in the shop. He said the job was fine."
+	},
+	{
+		"nudgeId": "people.task.ask_someone_who_works_there",
+		"shouldPass": false,
+		"note": "off topic: a dripping tap, nobody was asked anything",
+		"text": "The bathroom tap has started dripping again, about once every ten seconds, which is quiet enough to ignore in daylight and completely impossible to ignore at two at night, so at some point this week I will have to take the whole thing apart and work out which washer has gone."
+	},
+	{
+		"nudgeId": "people.task.ask_someone_who_works_there",
+		"shouldPass": false,
+		"note": "adversarial: rubric vocabulary stuffed in, nobody behind a counter was asked",
+		"text": "Who and where what they said what it cost me. The woman running the till at the bakery on the corner mid afternoon nobody else in. Everyone asks about the bread nobody ever asks about the four in the morning part the only part that is actually hard. Two goes to ask bought a roll and left without saying anything. Counter till asked said hard."
 	}
 ]

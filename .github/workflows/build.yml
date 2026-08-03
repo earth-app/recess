@@ -26,8 +26,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Typecheck
         run: bun run typecheck
-      # coverage rather than a bare run; the report is the only extra cost and the
-      # gate has to fail on a red test either way
       - name: Unit Tests
         run: bun run test:unit:coverage
       - name: Upload Unit Coverage to Codecov
@@ -54,6 +52,94 @@ jobs:
       - name: Recommender Eval
         run: bun run test:eval:recommend
 
+  publish-areas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    needs: gate
+    if: github.ref == 'refs/heads/master'
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Verify Inputs
+        run: |
+          ls scripts/areas.json \
+             scripts/build-area-pack.ts \
+             scripts/build-area-manifest.ts \
+             src/types/places.ts \
+             src/utils/places.ts \
+             src/utils/geo.ts
+      - name: Compute the Refresh Bucket
+        id: bucket
+        run: echo "id=$(( $(date -u +%s) / 2592000 ))" >> "$GITHUB_OUTPUT"
+      - name: Check whether these packs already published
+        id: probe
+        uses: actions/cache/restore@v6
+        with:
+          path: .areas-published
+          key: >-
+            areas-v1-${{ steps.bucket.outputs.id }}-${{ hashFiles(
+              'scripts/areas.json',
+              'scripts/build-area-pack.ts',
+              'scripts/build-area-manifest.ts',
+              'src/types/places.ts',
+              'src/utils/places.ts',
+              'src/utils/geo.ts'
+            ) }}
+          lookup-only: true
+
+      - name: Set up Bun
+        if: steps.probe.outputs.cache-hit != 'true'
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+      - name: Install dependencies
+        if: steps.probe.outputs.cache-hit != 'true'
+        run: bun install --frozen-lockfile
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Install the hf CLI
+        if: steps.probe.outputs.cache-hit != 'true'
+        run: |
+          curl -LsSf https://hf.co/cli/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Cut the packs from OpenStreetMap
+        if: steps.probe.outputs.cache-hit != 'true'
+        run: bun run scripts/build-area-pack.ts --all scripts/areas.json --out dist-areas/packs
+      - name: Build the manifest and the dataset README
+        if: steps.probe.outputs.cache-hit != 'true'
+        run: bun run scripts/build-area-manifest.ts --dir dist-areas
+      - name: Publish to Hugging Face
+        if: steps.probe.outputs.cache-hit != 'true'
+        env:
+          HF_OIDC_RESOURCE: datasets/earth-app/recess-areas
+        run: |
+          hf upload earth-app/recess-areas dist-areas . \
+            --repo-type dataset \
+            --commit-message "Rebuild area packs from ${GITHUB_SHA::7}"
+      - name: Mark the key as published
+        if: steps.probe.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p .areas-published
+          echo "$GITHUB_SHA $GITHUB_RUN_ID" > .areas-published/run
+      - name: Save the published marker
+        if: steps.probe.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v6
+        with:
+          path: .areas-published
+          key: ${{ steps.probe.outputs.cache-primary-key }}
+      - name: Archive Dataset
+        if: ${{ !cancelled() && steps.probe.outputs.cache-hit != 'true' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: recess-area-packs-${{ github.run_id }}
+          path: dist-areas/
+          retention-days: 90
+          overwrite: true
+
   e2e:
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -71,8 +157,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Install Playwright browsers
         run: bunx playwright install --with-deps chromium
-      # the V8 remap needs the client sourcemaps that only a test build emits, and the
-      # chunk files on disk beside them, so the build cannot be skipped here
       - name: Run Playwright with Coverage
         run: bun run test:e2e:coverage
       - name: Upload E2E Coverage to Codecov

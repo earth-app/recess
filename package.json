@@ -96,6 +96,7 @@
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^8.4.2",
+    "@earth-app/moho": "^1.0.2",
     "@ionic/cli": "^7.2.1",
     "@nuxt/test-utils": "^4.0.3",
     "@playwright/test": "^1.62.0",

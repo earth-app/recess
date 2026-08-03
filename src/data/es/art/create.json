@@ -282,6 +282,7 @@
 				"a photo of a statue",
 				"a photo of a printed page",
 				"a screenshot of a screen",
+				"a photo of a blank sketchbook page with a pencil on it",
 				"a photo of a blank sheet of paper"
 			],
 			"threshold": 0.6,
@@ -318,7 +319,8 @@
 				"a drawing of raised lettering transferred onto paper"
 			],
 			"negative_labels": [
-				"a photo of a carved stone",
+				"a photo of carved letters on a stone wall",
+				"a photo of an engraved plaque or gravestone",
 				"a photo of a printed page",
 				"a screenshot of a screen",
 				"a photo of a blank sheet of paper"
